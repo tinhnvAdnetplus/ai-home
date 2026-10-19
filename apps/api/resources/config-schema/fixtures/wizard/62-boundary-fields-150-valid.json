@@ -1,0 +1,1230 @@
+{
+  "description": "Wizard containing exactly 150 fields in a single section",
+  "expected": {
+    "codes": [],
+    "ok": true
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_f150",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f_0",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_1",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_2",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_3",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_4",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_5",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_6",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_7",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_8",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_9",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_10",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_11",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_12",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_13",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_14",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_15",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_16",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_17",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_18",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_19",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_20",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_21",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_22",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_23",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_24",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_25",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_26",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_27",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_28",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_29",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_30",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_31",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_32",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_33",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_34",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_35",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_36",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_37",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_38",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_39",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_40",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_41",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_42",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_43",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_44",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_45",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_46",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_47",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_48",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_49",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_50",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_51",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_52",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_53",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_54",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_55",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_56",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_57",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_58",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_59",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_60",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_61",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_62",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_63",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_64",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_65",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_66",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_67",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_68",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_69",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_70",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_71",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_72",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_73",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_74",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_75",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_76",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_77",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_78",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_79",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_80",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_81",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_82",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_83",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_84",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_85",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_86",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_87",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_88",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_89",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_90",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_91",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_92",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_93",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_94",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_95",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_96",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_97",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_98",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_99",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_100",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_101",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_102",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_103",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_104",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_105",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_106",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_107",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_108",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_109",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_110",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_111",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_112",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_113",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_114",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_115",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_116",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_117",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_118",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_119",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_120",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_121",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_122",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_123",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_124",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_125",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_126",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_127",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_128",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_129",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_130",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_131",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_132",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_133",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_134",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_135",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_136",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_137",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_138",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_139",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_140",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_141",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_142",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_143",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_144",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_145",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_146",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_147",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_148",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "f_149",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "sec_f150",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Fields Total Boundary: Exactly 150 Fields (Valid)",
+  "structural": "valid"
+}

@@ -1,0 +1,49 @@
+{
+  "description": "Deny-list rejects constructor as a field key",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "key"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_hostile_1",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "constructor",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_hostile_1_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Prototype Key Denial: constructor",
+  "structural": "invalid"
+}

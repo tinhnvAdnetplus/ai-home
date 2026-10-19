@@ -1,0 +1,58 @@
+{
+  "description": "maxSelected cannot exceed the total number of options defined",
+  "expected": {
+    "codes": [
+      "SELECTION_LIMITS_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "maxSelected"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_sel_opt_count",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_sel_opt_count",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "maxSelected": 5,
+                "options": [
+                  {
+                    "label": {
+                      "ja": "1"
+                    },
+                    "value": "opt_1"
+                  }
+                ],
+                "required": false,
+                "type": "checkbox_group"
+              }
+            ],
+            "key": "step_sel_opt_count_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Selection Limits Exceed Available Options",
+  "structural": "valid"
+}

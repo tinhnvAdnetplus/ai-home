@@ -1,0 +1,119 @@
+{
+  "description": "Condition AST with exactly 60 total nodes, the maximum allowed",
+  "expected": {
+    "codes": [],
+    "ok": true
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_cond_n60",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_cond_n60",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text",
+                "visibleWhen": {
+                  "and": [
+                    {
+                      "and": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                      ]
+                    },
+                    {
+                      "and": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                      ]
+                    },
+                    {
+                      "and": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                      ]
+                    },
+                    {
+                      "and": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                      ]
+                    },
+                    {
+                      "and": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                      ]
+                    },
+                    {
+                      "and": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                      ]
+                    }
+                  ]
+                }
+              }
+            ],
+            "key": "step_cond_n60_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Condition Nodes Boundary: Exactly 60 Nodes (Valid)",
+  "structural": "valid"
+}

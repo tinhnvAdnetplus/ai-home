@@ -1,0 +1,26 @@
+{
+    "schemaVersion": 1,
+    "steps": [
+        { "key": "step_01", "title": { "ja": "ステップ1" }, "sections": [] },
+        { "key": "step_02", "title": { "ja": "ステップ2" }, "sections": [] },
+        { "key": "step_03", "title": { "ja": "ステップ3" }, "sections": [] },
+        { "key": "step_04", "title": { "ja": "ステップ4" }, "sections": [] },
+        { "key": "step_05", "title": { "ja": "ステップ5" }, "sections": [] },
+        { "key": "step_06", "title": { "ja": "ステップ6" }, "sections": [] },
+        { "key": "step_07", "title": { "ja": "ステップ7" }, "sections": [] },
+        { "key": "step_08", "title": { "ja": "ステップ8" }, "sections": [] },
+        { "key": "step_09", "title": { "ja": "ステップ9" }, "sections": [] },
+        { "key": "step_10", "title": { "ja": "ステップ10" }, "sections": [] },
+        { "key": "step_11", "title": { "ja": "ステップ11" }, "sections": [] },
+        { "key": "step_12", "title": { "ja": "ステップ12" }, "sections": [] },
+        { "key": "step_13", "title": { "ja": "ステップ13" }, "sections": [] },
+        { "key": "step_14", "title": { "ja": "ステップ14" }, "sections": [] },
+        { "key": "step_15", "title": { "ja": "ステップ15" }, "sections": [] },
+        { "key": "step_16", "title": { "ja": "ステップ16" }, "sections": [] },
+        { "key": "step_17", "title": { "ja": "ステップ17" }, "sections": [] },
+        { "key": "step_18", "title": { "ja": "ステップ18" }, "sections": [] },
+        { "key": "step_19", "title": { "ja": "ステップ19" }, "sections": [] },
+        { "key": "step_20", "title": { "ja": "ステップ20" }, "sections": [] },
+        { "key": "step_21", "title": { "ja": "ステップ21" }, "sections": [] }
+    ]
+}

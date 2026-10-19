@@ -1,0 +1,44 @@
+{
+  "description": "Textarea field with showCounter, placeholder, and maxLength 1500",
+  "expected": {
+    "codes": [],
+    "ok": true
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_area",
+        "sections": [
+          {
+            "fields": [
+              {
+                "defaultValue": "明るいリビングを希望します。",
+                "key": "field_area",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "maxLength": 1500,
+                "placeholder": {
+                  "ja": "ご要望をご記入ください"
+                },
+                "required": false,
+                "showCounter": true,
+                "type": "textarea"
+              }
+            ],
+            "key": "step_area_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Valid Textarea Field",
+  "structural": "valid"
+}

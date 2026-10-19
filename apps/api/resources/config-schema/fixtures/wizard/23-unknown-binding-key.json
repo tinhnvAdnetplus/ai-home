@@ -1,0 +1,50 @@
+{
+  "description": "Field specifies a binding key not present in the planner binding registry",
+  "expected": {
+    "codes": [
+      "UNKNOWN_BINDING"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "binding"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_unk_bind",
+        "sections": [
+          {
+            "fields": [
+              {
+                "binding": "custom.unsupportedKey",
+                "key": "field_unk_bind",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_unk_bind_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Unknown Planner Capability Binding Key",
+  "structural": "valid"
+}

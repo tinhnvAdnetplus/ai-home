@@ -1,0 +1,50 @@
+# ---- Dependencies ----
+node_modules/
+vendor/
+.pnpm-store/
+
+# ---- Build output ----
+dist/
+build/
+out/
+.turbo/
+*.tsbuildinfo
+apps/api/public/build/
+apps/api/public/hot
+apps/api/public/storage
+
+# ---- Laravel runtime ----
+apps/api/storage/*.key
+apps/api/storage/pail/
+apps/api/bootstrap/cache/*.php
+
+# ---- Environment ----
+.env
+.env.*
+!.env.example
+
+# ---- Caches & logs ----
+*.log
+logs/
+.phpunit.cache/
+.phpunit.result.cache
+.eslintcache
+coverage/
+.vite/
+.cache/
+
+# ---- Editors & OS ----
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+.fleet/
+.nova/
+.zed/
+*.swp
+
+# ---- Backups / temp ----
+*.bak
+*.orig
+*.tmp

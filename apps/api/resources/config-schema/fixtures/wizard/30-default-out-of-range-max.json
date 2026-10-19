@@ -1,0 +1,52 @@
+{
+  "description": "Numeric field defaultValue is strictly greater than max",
+  "expected": {
+    "codes": [
+      "DEFAULT_OUT_OF_RANGE"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "defaultValue"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_def_max",
+        "sections": [
+          {
+            "fields": [
+              {
+                "defaultValue": 75,
+                "key": "field_num_max",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "max": 50,
+                "min": 10,
+                "required": false,
+                "type": "number"
+              }
+            ],
+            "key": "step_def_max_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Number defaultValue Above Maximum",
+  "structural": "valid"
+}

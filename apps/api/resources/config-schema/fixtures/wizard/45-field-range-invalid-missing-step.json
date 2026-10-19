@@ -1,0 +1,51 @@
+{
+  "description": "Range slider field requires min, max, and step properties",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "step"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_rng_inv",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_rng_inv",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "max": 10,
+                "min": 1,
+                "required": false,
+                "type": "range"
+              }
+            ],
+            "key": "step_rng_inv_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Invalid Range Field Missing Required Step",
+  "structural": "invalid"
+}

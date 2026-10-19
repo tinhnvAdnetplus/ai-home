@@ -1,0 +1,53 @@
+{
+  "description": "Radio field with options and defaultValue",
+  "expected": {
+    "codes": [],
+    "ok": true
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_rad",
+        "sections": [
+          {
+            "fields": [
+              {
+                "defaultValue": "two_story",
+                "key": "field_rad",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "options": [
+                  {
+                    "label": {
+                      "ja": "平屋"
+                    },
+                    "value": "single_story"
+                  },
+                  {
+                    "label": {
+                      "ja": "2階建て"
+                    },
+                    "value": "two_story"
+                  }
+                ],
+                "required": false,
+                "type": "radio"
+              }
+            ],
+            "key": "step_rad_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Valid Radio Field",
+  "structural": "valid"
+}

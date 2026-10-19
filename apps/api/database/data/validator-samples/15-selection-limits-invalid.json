@@ -1,0 +1,34 @@
+{
+    "schemaVersion": 1,
+    "steps": [
+        {
+            "key": "step_one",
+            "title": { "ja": "ステップ1" },
+            "sections": [
+                {
+                    "key": "sec_one",
+                    "title": { "ja": "セクション1" },
+                    "fields": [
+                        {
+                            "type": "checkbox_group",
+                            "key": "features",
+                            "label": { "ja": "希望設備" },
+                            "minSelected": 3,
+                            "maxSelected": 1,
+                            "options": [
+                                {
+                                    "value": "pantry",
+                                    "label": { "ja": "パントリー" }
+                                },
+                                {
+                                    "value": "laundry",
+                                    "label": { "ja": "ランドリールーム" }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

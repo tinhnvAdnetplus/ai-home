@@ -1,0 +1,59 @@
+{
+  "description": "Condition AST with depth exactly 6",
+  "expected": {
+    "codes": [],
+    "ok": true
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_cond_d6",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_cond_d6",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text",
+                "visibleWhen": {
+                  "!": [
+                    {
+                      "!": [
+                        {
+                          "!": [
+                            {
+                              "!": [
+                                {
+                                  "!": [
+                                    true
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ],
+            "key": "step_cond_d6_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Condition Depth Boundary: Exactly Depth 6 (Valid)",
+  "structural": "valid"
+}

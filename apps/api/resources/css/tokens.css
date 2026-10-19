@@ -1,0 +1,128 @@
+/*
+ * Design tokens - single source of truth for colours, radius and typography.
+ * Palette follows the customer design (docs/design/*.jpg): blue primary, pink accent (STEP 4-5), navy headings.
+ * The accent is a touch darker than the mockup pink (#ec3064) so white text on it reaches WCAG AA (>= 4.5:1).
+ * Brand/accent scales live ONLY in @theme (real values); semantic tokens live in :root (light) and .dark.
+ */
+@theme {
+    --color-brand-50: #eef5ff;
+    --color-brand-100: #dbe9ff;
+    --color-brand-200: #bcd6fe;
+    --color-brand-300: #8dbbfc;
+    --color-brand-400: #5797f6;
+    --color-brand-500: #2d7ce8;
+    --color-brand-600: #0b6bdc;
+    --color-brand-700: #0a56b4;
+    --color-brand-800: #0d4690;
+    --color-brand-900: #10386f;
+    --color-brand-950: #0c243c;
+
+    --color-accent-50: #fff0f5;
+    --color-accent-100: #ffdce8;
+    --color-accent-200: #ffb8d0;
+    --color-accent-500: #ec3064;
+    --color-accent-600: #d6275a;
+    --color-accent-700: #b01d49;
+    --color-accent-800: #8c1a3c;
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-border: var(--border);
+    --color-ring: var(--ring);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-success: var(--success);
+    --color-success-foreground: var(--success-foreground);
+    --color-warning: var(--warning);
+    --color-warning-foreground: var(--warning-foreground);
+
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) + 4px);
+    --radius-2xl: calc(var(--radius) + 8px);
+    --radius-full: 9999px;
+
+    --font-sans:
+        'Noto Sans JP', ui-sans-serif, system-ui, sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+        'Noto Color Emoji';
+}
+
+:root {
+    /* Base geometry (mockups use ~12-16px rounded cards) */
+    --radius: 0.75rem;
+    --spacing-touch: 44px;
+
+    /* Semantic tokens (light mode default) */
+    --background: #f5f9ff;
+    --foreground: #0c243c;
+    --card: #ffffff;
+    --card-foreground: #0c243c;
+    --muted: #e8f0fb;
+    --muted-foreground: #3b4f66;
+    --border: #c5d3e6;
+    --ring: #0b6bdc;
+    --primary: #0b6bdc;
+    --primary-foreground: #ffffff;
+    --accent: #d6275a;
+    --accent-foreground: #ffffff;
+    --destructive: #991b1b;
+    --destructive-foreground: #ffffff;
+    --success: #0a5228;
+    --success-foreground: #ffffff;
+    --warning: #78350f;
+    --warning-foreground: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not(.light) {
+        --background: #0a1220;
+        --foreground: #f1f6fd;
+        --card: #101a2e;
+        --card-foreground: #f1f6fd;
+        --muted: #1b2a44;
+        --muted-foreground: #c3d0e4;
+        --border: #2c3e5e;
+        --ring: #5797f6;
+        --primary: #5797f6;
+        --primary-foreground: #0c243c;
+        --accent: #ff8fb0;
+        --accent-foreground: #3a0a1b;
+        --destructive: #fca5a5;
+        --destructive-foreground: #450a0a;
+        --success: #86efac;
+        --success-foreground: #052e16;
+        --warning: #fde047;
+        --warning-foreground: #422006;
+    }
+}
+
+.dark {
+    --background: #0a1220;
+    --foreground: #f1f6fd;
+    --card: #101a2e;
+    --card-foreground: #f1f6fd;
+    --muted: #1b2a44;
+    --muted-foreground: #c3d0e4;
+    --border: #2c3e5e;
+    --ring: #5797f6;
+    --primary: #5797f6;
+    --primary-foreground: #0c243c;
+    --accent: #ff8fb0;
+    --accent-foreground: #3a0a1b;
+    --destructive: #fca5a5;
+    --destructive-foreground: #450a0a;
+    --success: #86efac;
+    --success-foreground: #052e16;
+    --warning: #fde047;
+    --warning-foreground: #422006;
+}

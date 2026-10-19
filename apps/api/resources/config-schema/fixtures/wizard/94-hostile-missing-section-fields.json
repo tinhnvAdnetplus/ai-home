@@ -1,0 +1,37 @@
+{
+  "description": "Section object must contain fields array",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_no_fields",
+        "sections": [
+          {
+            "key": "sec_no_fields",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Section Missing Required Fields Array",
+  "structural": "invalid"
+}

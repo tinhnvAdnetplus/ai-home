@@ -1,0 +1,50 @@
+{
+  "description": "Text field with maxLength 501, exceeding max 500",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "maxLength"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_txt_inv",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_txt_inv",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "maxLength": 501,
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_txt_inv_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Invalid Text Field Exceeding Max Length Limit",
+  "structural": "invalid"
+}

@@ -1,0 +1,17 @@
+{
+  "description": "Root wizard configuration cannot contain unrecognized properties",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [],
+    "unexpectedField": "forbidden"
+  },
+  "name": "Strict Object Disallows Extra Property",
+  "structural": "invalid"
+}

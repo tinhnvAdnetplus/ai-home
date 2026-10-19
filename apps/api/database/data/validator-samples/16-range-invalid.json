@@ -1,0 +1,25 @@
+{
+    "schemaVersion": 1,
+    "steps": [
+        {
+            "key": "step_one",
+            "title": { "ja": "ステップ1" },
+            "sections": [
+                {
+                    "key": "sec_one",
+                    "title": { "ja": "セクション1" },
+                    "fields": [
+                        {
+                            "type": "range",
+                            "key": "area_range",
+                            "label": { "ja": "面積" },
+                            "min": 50,
+                            "max": 20,
+                            "step": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

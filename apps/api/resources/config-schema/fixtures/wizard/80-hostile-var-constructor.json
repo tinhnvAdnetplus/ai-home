@@ -1,0 +1,53 @@
+{
+  "description": "Deny-list rejects constructor as variable in condition AST",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "visibleWhen",
+      "var"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_hostile_var_2",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_v2",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text",
+                "visibleWhen": {
+                  "var": "constructor"
+                }
+              }
+            ],
+            "key": "step_hostile_var_2_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Prototype Var Denial in Condition: constructor",
+  "structural": "invalid"
+}

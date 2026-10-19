@@ -1,0 +1,45 @@
+{
+  "description": "Keys cannot contain Unicode fullwidth characters",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "key"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "ｓｔｅｐ",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_1",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "ｓｔｅｐ_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Fullwidth Characters Key Rejection",
+  "structural": "invalid"
+}

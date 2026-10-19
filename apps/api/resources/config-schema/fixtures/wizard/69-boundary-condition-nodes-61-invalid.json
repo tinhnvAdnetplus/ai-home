@@ -1,0 +1,132 @@
+{
+  "description": "Condition AST with 61 total nodes, exceeding MAX_CONDITION_NODES (60)",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "visibleWhen"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_cond_n61",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_cond_n61",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text",
+                "visibleWhen": {
+                  "and": [
+                    {
+                      "and": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                      ]
+                    },
+                    {
+                      "and": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                      ]
+                    },
+                    {
+                      "and": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                      ]
+                    },
+                    {
+                      "and": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                      ]
+                    },
+                    {
+                      "and": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                      ]
+                    },
+                    {
+                      "and": [
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true,
+                        true
+                      ]
+                    }
+                  ]
+                }
+              }
+            ],
+            "key": "step_cond_n61_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "knownDivergence": "JSON Schema draft-07 cannot count AST nodes; node count > 60 is rejected by Zod superRefine but structurally valid.",
+  "name": "Condition Nodes Boundary: 61 Nodes (Invalid Exceeded)",
+  "structural": "valid"
+}

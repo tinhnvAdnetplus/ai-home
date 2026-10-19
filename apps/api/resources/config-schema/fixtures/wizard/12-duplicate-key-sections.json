@@ -1,0 +1,63 @@
+{
+  "description": "Multiple sections within the same step share the identical key",
+  "expected": {
+    "codes": [
+      "DUPLICATE_KEY"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      1,
+      "key"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_dup_sec",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f1",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "dup_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          },
+          {
+            "fields": [
+              {
+                "key": "f2",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "dup_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Duplicate Section Keys in Step",
+  "structural": "valid"
+}

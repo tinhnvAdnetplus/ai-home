@@ -1,0 +1,50 @@
+{
+  "description": "Numeric property max provided as Infinity string",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "max"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_inf_str",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_inf_str",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "max": "Infinity",
+                "required": false,
+                "type": "number"
+              }
+            ],
+            "key": "step_inf_str_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Infinity String In Numeric Property Rejection",
+  "structural": "invalid"
+}

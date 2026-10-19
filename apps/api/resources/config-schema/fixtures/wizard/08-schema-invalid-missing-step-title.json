@@ -1,0 +1,25 @@
+{
+  "description": "Step object must contain a localized title with Japanese",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "title"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_no_title",
+        "sections": []
+      }
+    ]
+  },
+  "name": "Step Missing Required Title",
+  "structural": "invalid"
+}

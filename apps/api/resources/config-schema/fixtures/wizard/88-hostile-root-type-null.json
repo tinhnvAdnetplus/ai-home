@@ -1,0 +1,13 @@
+{
+  "description": "Input value is null instead of wizard object",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [],
+    "ok": false
+  },
+  "input": null,
+  "name": "Null Root Type Rejection",
+  "structural": "invalid"
+}

@@ -1,0 +1,62 @@
+{
+  "description": "Field A depends on Field B, and Field B depends on Field A",
+  "expected": {
+    "codes": [
+      "CONDITION_CYCLE"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      1
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_cycle_2",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_a",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text",
+                "visibleWhen": {
+                  "var": "field_b"
+                }
+              },
+              {
+                "key": "field_b",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text",
+                "visibleWhen": {
+                  "var": "field_a"
+                }
+              }
+            ],
+            "key": "step_cycle_2_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Two-field Condition Dependency Cycle",
+  "structural": "valid"
+}

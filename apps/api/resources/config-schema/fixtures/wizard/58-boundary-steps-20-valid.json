@@ -1,0 +1,494 @@
+{
+  "description": "Wizard config with exactly 20 steps, the maximum allowed",
+  "expected": {
+    "codes": [],
+    "ok": true
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_0",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f_step_0",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_0_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      },
+      {
+        "key": "step_1",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f_step_1",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_1_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      },
+      {
+        "key": "step_2",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f_step_2",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_2_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      },
+      {
+        "key": "step_3",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f_step_3",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_3_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      },
+      {
+        "key": "step_4",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f_step_4",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_4_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      },
+      {
+        "key": "step_5",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f_step_5",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_5_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      },
+      {
+        "key": "step_6",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f_step_6",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_6_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      },
+      {
+        "key": "step_7",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f_step_7",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_7_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      },
+      {
+        "key": "step_8",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f_step_8",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_8_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      },
+      {
+        "key": "step_9",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f_step_9",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_9_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      },
+      {
+        "key": "step_10",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f_step_10",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_10_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      },
+      {
+        "key": "step_11",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f_step_11",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_11_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      },
+      {
+        "key": "step_12",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f_step_12",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_12_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      },
+      {
+        "key": "step_13",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f_step_13",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_13_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      },
+      {
+        "key": "step_14",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f_step_14",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_14_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      },
+      {
+        "key": "step_15",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f_step_15",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_15_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      },
+      {
+        "key": "step_16",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f_step_16",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_16_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      },
+      {
+        "key": "step_17",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f_step_17",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_17_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      },
+      {
+        "key": "step_18",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f_step_18",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_18_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      },
+      {
+        "key": "step_19",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f_step_19",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_19_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Steps Boundary: Exactly 20 Steps (Valid)",
+  "structural": "valid"
+}

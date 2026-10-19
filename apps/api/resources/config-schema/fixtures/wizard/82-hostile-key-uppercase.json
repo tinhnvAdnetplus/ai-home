@@ -1,0 +1,45 @@
+{
+  "description": "Keys must consist strictly of lowercase letters, numbers, and underscores",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "key"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "StepOne",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_1",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "StepOne_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Uppercase Key Rejection",
+  "structural": "invalid"
+}

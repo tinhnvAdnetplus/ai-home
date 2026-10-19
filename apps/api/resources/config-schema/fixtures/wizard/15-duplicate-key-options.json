@@ -1,0 +1,65 @@
+{
+  "description": "Two options in a select field specify identical values",
+  "expected": {
+    "codes": [
+      "DUPLICATE_KEY"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "options",
+      1,
+      "value"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_dup_opt",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_dup_opt",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "options": [
+                  {
+                    "label": {
+                      "ja": "選択肢 1"
+                    },
+                    "value": "opt_dup"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 2"
+                    },
+                    "value": "opt_dup"
+                  }
+                ],
+                "required": false,
+                "type": "select"
+              }
+            ],
+            "key": "step_dup_opt_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Duplicate Option Values",
+  "structural": "valid"
+}

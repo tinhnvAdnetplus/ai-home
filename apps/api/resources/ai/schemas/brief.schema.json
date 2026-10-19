@@ -1,0 +1,35 @@
+{
+    "type": "object",
+    "required": [
+        "summary",
+        "reasoning",
+        "adjustments",
+        "suggestions",
+        "questions",
+        "isResolved"
+    ],
+    "properties": {
+        "summary": { "type": "string" },
+        "reasoning": { "type": "string" },
+        "adjustments": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": ["action", "field", "value", "wish", "reason"],
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "enum": ["set", "remove", "add"]
+                    },
+                    "field": { "type": "string" },
+                    "value": { "type": "string" },
+                    "wish": { "type": "string" },
+                    "reason": { "type": "string" }
+                }
+            }
+        },
+        "suggestions": { "type": "array", "items": { "type": "string" } },
+        "questions": { "type": "array", "items": { "type": "string" } },
+        "isResolved": { "type": "boolean" }
+    }
+}

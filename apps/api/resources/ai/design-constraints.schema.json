@@ -1,0 +1,237 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "DesignConstraints",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "schemaVersion",
+        "summary",
+        "priorities",
+        "mustHaveRooms",
+        "avoidRooms",
+        "roomHints",
+        "adjacency",
+        "orientation",
+        "accessibility",
+        "pets",
+        "workFromHome",
+        "notes",
+        "unmappedRequests"
+    ],
+    "properties": {
+        "schemaVersion": {
+            "type": "integer",
+            "enum": [1],
+            "description": "Schema version, strictly 1."
+        },
+        "summary": {
+            "type": "string",
+            "maxLength": 200,
+            "description": "Brief summary of constraints in Japanese (up to 200 characters)."
+        },
+        "priorities": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "housework",
+                "storage",
+                "daylight",
+                "budget",
+                "privacy",
+                "family"
+            ],
+            "properties": {
+                "housework": { "type": "integer", "minimum": 0, "maximum": 5 },
+                "storage": { "type": "integer", "minimum": 0, "maximum": 5 },
+                "daylight": { "type": "integer", "minimum": 0, "maximum": 5 },
+                "budget": { "type": "integer", "minimum": 0, "maximum": 5 },
+                "privacy": { "type": "integer", "minimum": 0, "maximum": 5 },
+                "family": { "type": "integer", "minimum": 0, "maximum": 5 }
+            }
+        },
+        "mustHaveRooms": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "ldk",
+                    "living",
+                    "dining",
+                    "kitchen",
+                    "bedroom",
+                    "childRoom",
+                    "washitsu",
+                    "tatami",
+                    "bath",
+                    "wash",
+                    "toilet",
+                    "entrance",
+                    "hall",
+                    "corridor",
+                    "stairs",
+                    "storage",
+                    "closet",
+                    "walkInCloset",
+                    "pantry",
+                    "laundry",
+                    "study",
+                    "balcony",
+                    "void",
+                    "guest",
+                    "hobby",
+                    "porch",
+                    "deck",
+                    "elevator"
+                ]
+            }
+        },
+        "avoidRooms": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "ldk",
+                    "living",
+                    "dining",
+                    "kitchen",
+                    "bedroom",
+                    "childRoom",
+                    "washitsu",
+                    "tatami",
+                    "bath",
+                    "wash",
+                    "toilet",
+                    "entrance",
+                    "hall",
+                    "corridor",
+                    "stairs",
+                    "storage",
+                    "closet",
+                    "walkInCloset",
+                    "pantry",
+                    "laundry",
+                    "study",
+                    "balcony",
+                    "void",
+                    "guest",
+                    "hobby",
+                    "porch",
+                    "deck",
+                    "elevator"
+                ]
+            }
+        },
+        "roomHints": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["room", "count", "sizeJo"],
+                "properties": {
+                    "room": {
+                        "type": "string",
+                        "enum": [
+                            "ldk",
+                            "living",
+                            "dining",
+                            "kitchen",
+                            "bedroom",
+                            "childRoom",
+                            "washitsu",
+                            "tatami",
+                            "bath",
+                            "wash",
+                            "toilet",
+                            "entrance",
+                            "hall",
+                            "corridor",
+                            "stairs",
+                            "storage",
+                            "closet",
+                            "walkInCloset",
+                            "pantry",
+                            "laundry",
+                            "study",
+                            "balcony",
+                            "void",
+                            "guest",
+                            "hobby",
+                            "porch",
+                            "deck",
+                            "elevator"
+                        ]
+                    },
+                    "count": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 6
+                    },
+                    "sizeJo": {
+                        "type": "number",
+                        "minimum": 3,
+                        "maximum": 40
+                    }
+                }
+            }
+        },
+        "adjacency": {
+            "type": "array",
+            "maxItems": 8,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["a", "b", "relation"],
+                "properties": {
+                    "a": { "type": "string" },
+                    "b": { "type": "string" },
+                    "relation": {
+                        "type": "string",
+                        "enum": ["near", "far", "adjacent"]
+                    }
+                }
+            }
+        },
+        "orientation": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["livingFacing", "entranceSide"],
+            "properties": {
+                "livingFacing": {
+                    "type": "string",
+                    "enum": ["north", "south", "east", "west", "any"]
+                },
+                "entranceSide": {
+                    "type": "string",
+                    "enum": ["north", "south", "east", "west", "any"]
+                }
+            }
+        },
+        "accessibility": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["oneLevelLiving", "wideCorridors"],
+            "properties": {
+                "oneLevelLiving": { "type": "boolean" },
+                "wideCorridors": { "type": "boolean" }
+            }
+        },
+        "pets": { "type": "boolean" },
+        "workFromHome": { "type": "boolean" },
+        "notes": {
+            "type": "array",
+            "maxItems": 6,
+            "items": {
+                "type": "string",
+                "maxLength": 80
+            }
+        },
+        "unmappedRequests": {
+            "type": "array",
+            "maxItems": 6,
+            "items": {
+                "type": "string",
+                "maxLength": 120
+            }
+        }
+    }
+}

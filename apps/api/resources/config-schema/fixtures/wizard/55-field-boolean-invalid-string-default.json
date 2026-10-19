@@ -1,0 +1,50 @@
+{
+  "description": "Boolean field defaultValue must be true or false, not a string",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "defaultValue"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_bool_inv",
+        "sections": [
+          {
+            "fields": [
+              {
+                "defaultValue": "true",
+                "key": "field_bool_inv",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "boolean"
+              }
+            ],
+            "key": "step_bool_inv_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Invalid Boolean Field String defaultValue",
+  "structural": "invalid"
+}

@@ -1,0 +1,75 @@
+{
+  "description": "Condition AST with depth 7, exceeding MAX_CONDITION_DEPTH (6)",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "visibleWhen"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_cond_d7",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_cond_d7",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text",
+                "visibleWhen": {
+                  "!": [
+                    {
+                      "!": [
+                        {
+                          "!": [
+                            {
+                              "!": [
+                                {
+                                  "!": [
+                                    {
+                                      "!": [
+                                        true
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ],
+            "key": "step_cond_d7_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "knownDivergence": "JSON Schema draft-07 cannot enforce AST recursion depth; condition depth > 6 is rejected by Zod superRefine but structurally valid.",
+  "name": "Condition Depth Boundary: Depth 7 (Invalid Exceeded)",
+  "structural": "valid"
+}

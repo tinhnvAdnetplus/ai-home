@@ -1,0 +1,3 @@
+packages:
+  - 'apps/api' # Laravel + React in one app: the React sources live in apps/api/resources/js
+  - 'packages/*'

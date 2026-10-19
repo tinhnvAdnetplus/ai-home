@@ -1,0 +1,18 @@
+{
+  "description": "steps must be an array of step objects",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": "invalid_steps"
+  },
+  "name": "Steps Property Not An Array",
+  "structural": "invalid"
+}

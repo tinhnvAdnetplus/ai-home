@@ -1,0 +1,50 @@
+{
+  "description": "Textarea field with maxLength 2001, exceeding max 2000",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "maxLength"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_area_inv",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_area_inv",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "maxLength": 2001,
+                "required": false,
+                "type": "textarea"
+              }
+            ],
+            "key": "step_area_inv_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Invalid Textarea Field Exceeding Max Length Limit",
+  "structural": "invalid"
+}

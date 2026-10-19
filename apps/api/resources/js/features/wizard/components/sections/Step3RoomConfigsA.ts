@@ -1,0 +1,70 @@
+import { Sofa, Bed, Baby } from 'lucide-react';
+import {
+    type RoomConfig,
+    ro,
+    c0,
+    c1,
+    c2,
+    c3,
+    c3p,
+    c4p,
+    consult,
+} from './Step3RoomConfigsTypes';
+
+export const ROOM_CONFIGS_A: readonly RoomConfig[] = [
+    {
+        id: 'ldk',
+        title: {
+            ja: 'リビング・ダイニング・キッチン (LDK)',
+            en: 'Living, Dining & Kitchen (LDK)',
+            vi: 'Phòng khách - bếp - ăn (LDK)',
+        },
+        photoName: 'room-ldk',
+        countKey: 'plan_ldk_count',
+        sizeKey: 'plan_ldk_size',
+        fallbackIcon: Sofa,
+        countOptions: [c1, c2, c3p],
+        sizeOptions: [
+            ro('size_14', '14畳程度', '~14 tatami', 'Khoảng 14 chiếu'),
+            ro('size_16', '16畳程度', '~16 tatami', 'Khoảng 16 chiếu'),
+            ro('size_18', '18畳程度', '~18 tatami', 'Khoảng 18 chiếu'),
+            ro('size_20', '20畳程度', '~20 tatami', 'Khoảng 20 chiếu'),
+            ro('size_22', '22畳程度', '~22 tatami', 'Khoảng 22 chiếu'),
+            ro('size_24_plus', '24畳以上', '24+ tatami', 'Từ 24 chiếu trở lên'),
+            consult,
+        ],
+    },
+    {
+        id: 'master',
+        title: { ja: '主寝室', en: 'Master bedroom', vi: 'Phòng ngủ chính' },
+        photoName: 'room-master',
+        countKey: 'plan_master_bedroom_count',
+        sizeKey: 'plan_master_bedroom_size',
+        fallbackIcon: Bed,
+        countOptions: [c1, c2],
+        sizeOptions: [
+            ro('size_6', '6畳程度', '~6 tatami', 'Khoảng 6 chiếu'),
+            ro('size_7', '7畳程度', '~7 tatami', 'Khoảng 7 chiếu'),
+            ro('size_8', '8畳程度', '~8 tatami', 'Khoảng 8 chiếu'),
+            ro('size_10', '10畳程度', '~10 tatami', 'Khoảng 10 chiếu'),
+            ro('size_12_plus', '12畳以上', '12+ tatami', 'Từ 12 chiếu trở lên'),
+            consult,
+        ],
+    },
+    {
+        id: 'kids',
+        title: { ja: '子ども部屋', en: "Children's room", vi: 'Phòng trẻ em' },
+        photoName: 'room-kids',
+        countKey: 'plan_kids_room_count',
+        sizeKey: 'plan_kids_room_size',
+        fallbackIcon: Baby,
+        countOptions: [c0, c1, c2, c3, c4p],
+        sizeOptions: [
+            ro('size_4_5', '4.5畳程度', '~4.5 tatami', 'Khoảng 4.5 chiếu'),
+            ro('size_5', '5畳程度', '~5 tatami', 'Khoảng 5 chiếu'),
+            ro('size_6', '6畳程度', '~6 tatami', 'Khoảng 6 chiếu'),
+            ro('size_8', '8畳程度', '~8 tatami', 'Khoảng 8 chiếu'),
+            consult,
+        ],
+    },
+];

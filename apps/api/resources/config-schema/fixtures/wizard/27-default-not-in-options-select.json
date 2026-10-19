@@ -1,0 +1,58 @@
+{
+  "description": "Single-select field specifies a defaultValue that is not one of its options",
+  "expected": {
+    "codes": [
+      "DEFAULT_NOT_IN_OPTIONS"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "defaultValue"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_def_opt",
+        "sections": [
+          {
+            "fields": [
+              {
+                "defaultValue": "opt_missing",
+                "key": "field_def_sel",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "options": [
+                  {
+                    "label": {
+                      "ja": "有効"
+                    },
+                    "value": "opt_valid"
+                  }
+                ],
+                "required": false,
+                "type": "select"
+              }
+            ],
+            "key": "step_def_opt_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Select defaultValue Not In Options",
+  "structural": "valid"
+}

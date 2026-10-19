@@ -1,0 +1,45 @@
+{
+  "description": "Keys cannot contain embedded or trailing NUL byte",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "key"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_nul\u0000",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_1",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_nul\u0000_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "NUL Byte Key Rejection",
+  "structural": "invalid"
+}

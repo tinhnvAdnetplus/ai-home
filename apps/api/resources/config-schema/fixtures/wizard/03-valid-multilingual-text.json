@@ -1,0 +1,40 @@
+{
+  "description": "Wizard titles and labels with Japanese Kanji, English, Vietnamese accents, and emoji",
+  "expected": {
+    "codes": [],
+    "ok": true
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_intl",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_intl",
+                "label": {
+                  "en": "Home building preferences 🏡",
+                  "ja": "家づくり希望 🏡",
+                  "vi": "Nguyện vọng xây nhà đẹp 🏡"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_intl_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Valid Multilingual Text with Emoji and Diacritics",
+  "structural": "valid"
+}

@@ -1,0 +1,61 @@
+{
+  "description": "Multi-select checkbox contains default value not present in available options",
+  "expected": {
+    "codes": [
+      "DEFAULT_NOT_IN_OPTIONS"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "defaultValue"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_def_chk",
+        "sections": [
+          {
+            "fields": [
+              {
+                "defaultValue": [
+                  "opt_a",
+                  "opt_nonexistent"
+                ],
+                "key": "field_def_chk",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "options": [
+                  {
+                    "label": {
+                      "ja": "A"
+                    },
+                    "value": "opt_a"
+                  }
+                ],
+                "required": false,
+                "type": "checkbox_group"
+              }
+            ],
+            "key": "step_def_chk_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Checkbox Group defaultValue Contains Unrecognized Value",
+  "structural": "valid"
+}

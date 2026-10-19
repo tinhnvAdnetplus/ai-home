@@ -1,0 +1,400 @@
+{
+  "description": "Select field with exactly 60 options, the maximum allowed",
+  "expected": {
+    "codes": [],
+    "ok": true
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_opt60",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_opt60",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "options": [
+                  {
+                    "label": {
+                      "ja": "選択肢 0"
+                    },
+                    "value": "opt_0"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 1"
+                    },
+                    "value": "opt_1"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 2"
+                    },
+                    "value": "opt_2"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 3"
+                    },
+                    "value": "opt_3"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 4"
+                    },
+                    "value": "opt_4"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 5"
+                    },
+                    "value": "opt_5"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 6"
+                    },
+                    "value": "opt_6"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 7"
+                    },
+                    "value": "opt_7"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 8"
+                    },
+                    "value": "opt_8"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 9"
+                    },
+                    "value": "opt_9"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 10"
+                    },
+                    "value": "opt_10"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 11"
+                    },
+                    "value": "opt_11"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 12"
+                    },
+                    "value": "opt_12"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 13"
+                    },
+                    "value": "opt_13"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 14"
+                    },
+                    "value": "opt_14"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 15"
+                    },
+                    "value": "opt_15"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 16"
+                    },
+                    "value": "opt_16"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 17"
+                    },
+                    "value": "opt_17"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 18"
+                    },
+                    "value": "opt_18"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 19"
+                    },
+                    "value": "opt_19"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 20"
+                    },
+                    "value": "opt_20"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 21"
+                    },
+                    "value": "opt_21"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 22"
+                    },
+                    "value": "opt_22"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 23"
+                    },
+                    "value": "opt_23"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 24"
+                    },
+                    "value": "opt_24"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 25"
+                    },
+                    "value": "opt_25"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 26"
+                    },
+                    "value": "opt_26"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 27"
+                    },
+                    "value": "opt_27"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 28"
+                    },
+                    "value": "opt_28"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 29"
+                    },
+                    "value": "opt_29"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 30"
+                    },
+                    "value": "opt_30"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 31"
+                    },
+                    "value": "opt_31"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 32"
+                    },
+                    "value": "opt_32"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 33"
+                    },
+                    "value": "opt_33"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 34"
+                    },
+                    "value": "opt_34"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 35"
+                    },
+                    "value": "opt_35"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 36"
+                    },
+                    "value": "opt_36"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 37"
+                    },
+                    "value": "opt_37"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 38"
+                    },
+                    "value": "opt_38"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 39"
+                    },
+                    "value": "opt_39"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 40"
+                    },
+                    "value": "opt_40"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 41"
+                    },
+                    "value": "opt_41"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 42"
+                    },
+                    "value": "opt_42"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 43"
+                    },
+                    "value": "opt_43"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 44"
+                    },
+                    "value": "opt_44"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 45"
+                    },
+                    "value": "opt_45"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 46"
+                    },
+                    "value": "opt_46"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 47"
+                    },
+                    "value": "opt_47"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 48"
+                    },
+                    "value": "opt_48"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 49"
+                    },
+                    "value": "opt_49"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 50"
+                    },
+                    "value": "opt_50"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 51"
+                    },
+                    "value": "opt_51"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 52"
+                    },
+                    "value": "opt_52"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 53"
+                    },
+                    "value": "opt_53"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 54"
+                    },
+                    "value": "opt_54"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 55"
+                    },
+                    "value": "opt_55"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 56"
+                    },
+                    "value": "opt_56"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 57"
+                    },
+                    "value": "opt_57"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 58"
+                    },
+                    "value": "opt_58"
+                  },
+                  {
+                    "label": {
+                      "ja": "選択肢 59"
+                    },
+                    "value": "opt_59"
+                  }
+                ],
+                "required": false,
+                "type": "select"
+              }
+            ],
+            "key": "step_opt60_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Options Boundary: Exactly 60 Options (Valid)",
+  "structural": "valid"
+}

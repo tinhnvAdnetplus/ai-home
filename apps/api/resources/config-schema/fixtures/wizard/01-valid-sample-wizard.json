@@ -1,0 +1,232 @@
+{
+  "description": "Complete canonical sample wizard with 2 steps and diverse field types",
+  "expected": {
+    "codes": [],
+    "ok": true
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "icon": "home",
+        "key": "site_and_structure",
+        "sections": [
+          {
+            "fields": [
+              {
+                "defaultValue": "山田 太郎",
+                "key": "applicant_name",
+                "label": {
+                  "ja": "お名前"
+                },
+                "maxLength": 100,
+                "required": false,
+                "type": "text"
+              },
+              {
+                "binding": "site.frontage",
+                "defaultValue": 10.5,
+                "key": "site_frontage",
+                "label": {
+                  "ja": "間口（m）"
+                },
+                "max": 40,
+                "min": 4,
+                "required": true,
+                "step": 0.1,
+                "type": "number"
+              },
+              {
+                "binding": "building.targetArea",
+                "defaultValue": 35,
+                "key": "desired_area",
+                "label": {
+                  "ja": "延床面積（坪）"
+                },
+                "max": 70,
+                "min": 18,
+                "required": true,
+                "step": 1,
+                "type": "range"
+              },
+              {
+                "defaultValue": "owned",
+                "key": "land_ownership",
+                "label": {
+                  "ja": "土地所有状況"
+                },
+                "options": [
+                  {
+                    "label": {
+                      "ja": "自己所有"
+                    },
+                    "value": "owned"
+                  },
+                  {
+                    "label": {
+                      "ja": "検討中"
+                    },
+                    "value": "searching"
+                  }
+                ],
+                "required": true,
+                "type": "select"
+              },
+              {
+                "defaultValue": "two_story",
+                "key": "floor_count",
+                "label": {
+                  "ja": "階数"
+                },
+                "options": [
+                  {
+                    "label": {
+                      "ja": "平屋"
+                    },
+                    "value": "single_story"
+                  },
+                  {
+                    "label": {
+                      "ja": "2階建て"
+                    },
+                    "value": "two_story"
+                  }
+                ],
+                "required": true,
+                "type": "radio"
+              }
+            ],
+            "key": "site_section",
+            "title": {
+              "ja": "敷地情報"
+            }
+          }
+        ],
+        "subtitle": {
+          "ja": "基本条件の入力"
+        },
+        "title": {
+          "ja": "敷地と建物"
+        }
+      },
+      {
+        "icon": "heart",
+        "key": "lifestyle_and_options",
+        "sections": [
+          {
+            "fields": [
+              {
+                "defaultValue": true,
+                "key": "has_solar",
+                "label": {
+                  "ja": "太陽光パネル希望"
+                },
+                "required": false,
+                "type": "boolean"
+              },
+              {
+                "defaultValue": [
+                  "pantry"
+                ],
+                "key": "features",
+                "label": {
+                  "ja": "希望設備"
+                },
+                "options": [
+                  {
+                    "label": {
+                      "ja": "パントリー"
+                    },
+                    "value": "pantry"
+                  },
+                  {
+                    "label": {
+                      "ja": "ランドリールーム"
+                    },
+                    "value": "laundry"
+                  }
+                ],
+                "required": false,
+                "type": "checkbox_group"
+              },
+              {
+                "defaultValue": "modern",
+                "key": "exterior_style",
+                "label": {
+                  "ja": "外観テイスト"
+                },
+                "multiple": false,
+                "options": [
+                  {
+                    "image": {
+                      "alt": {
+                        "ja": "モダン外観"
+                      },
+                      "mediaId": "img_modern_01"
+                    },
+                    "label": {
+                      "ja": "モダン"
+                    },
+                    "value": "modern"
+                  },
+                  {
+                    "image": {
+                      "alt": {
+                        "ja": "和モダン外観"
+                      },
+                      "mediaId": "img_wa_01"
+                    },
+                    "label": {
+                      "ja": "和モダン"
+                    },
+                    "value": "japanese_modern"
+                  }
+                ],
+                "required": true,
+                "type": "image_select"
+              },
+              {
+                "accept": [
+                  "application/pdf",
+                  "image/png"
+                ],
+                "key": "land_survey_file",
+                "label": {
+                  "ja": "敷地測量図"
+                },
+                "maxFiles": 2,
+                "maxSizeMb": 10,
+                "required": false,
+                "type": "upload"
+              },
+              {
+                "key": "solar_notes",
+                "label": {
+                  "ja": "太陽光・蓄電池の特記事項"
+                },
+                "maxLength": 1000,
+                "required": false,
+                "type": "textarea",
+                "visibleWhen": {
+                  "var": "has_solar"
+                }
+              }
+            ],
+            "key": "options_section",
+            "title": {
+              "ja": "設備・外観"
+            }
+          }
+        ],
+        "subtitle": {
+          "ja": "こだわり条件の入力"
+        },
+        "title": {
+          "ja": "暮らしと設備"
+        }
+      }
+    ]
+  },
+  "name": "Valid Sample Wizard",
+  "structural": "valid"
+}

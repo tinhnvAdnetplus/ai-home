@@ -1,0 +1,29 @@
+{
+    "schemaVersion": 1,
+    "steps": [
+        {
+            "key": "step_one",
+            "title": { "ja": "ステップ1" },
+            "sections": [
+                {
+                    "key": "sec_one",
+                    "title": { "ja": "セクション1" },
+                    "fields": [
+                        {
+                            "type": "number",
+                            "key": "frontage_1",
+                            "label": { "ja": "間口1" },
+                            "binding": "site.frontage"
+                        },
+                        {
+                            "type": "number",
+                            "key": "frontage_2",
+                            "label": { "ja": "間口2" },
+                            "binding": "site.frontage"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

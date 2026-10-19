@@ -1,0 +1,52 @@
+{
+  "description": "Field min boundary is strictly greater than max boundary",
+  "expected": {
+    "codes": [
+      "RANGE_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "min"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_rng_inv",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_rng_inv",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "max": 20,
+                "min": 100,
+                "required": false,
+                "step": 5,
+                "type": "range"
+              }
+            ],
+            "key": "step_rng_inv_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Numeric Range Invalid: Min Exceeds Max",
+  "structural": "valid"
+}

@@ -1,0 +1,39 @@
+{
+  "description": "Boolean switch field with boolean defaultValue",
+  "expected": {
+    "codes": [],
+    "ok": true
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_bool",
+        "sections": [
+          {
+            "fields": [
+              {
+                "defaultValue": true,
+                "key": "field_bool",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "boolean"
+              }
+            ],
+            "key": "step_bool_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Valid Boolean Field",
+  "structural": "valid"
+}

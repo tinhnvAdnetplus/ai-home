@@ -1,0 +1,23 @@
+{
+    "schemaVersion": 1,
+    "steps": [
+        {
+            "key": "step_one",
+            "title": { "ja": "ステップ1" },
+            "sections": [
+                {
+                    "key": "sec_one",
+                    "title": { "ja": "セクション1" },
+                    "fields": [
+                        {
+                            "type": "text",
+                            "key": "my_field",
+                            "label": { "ja": "フィールド" },
+                            "visibleWhen": { "var": "non_existent_field_key" }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,52 @@
+{
+  "description": "A field cannot condition its disabled state on its own answer",
+  "expected": {
+    "codes": [
+      "SELF_REFERENCE"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "disabledWhen"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_self_dis",
+        "sections": [
+          {
+            "fields": [
+              {
+                "disabledWhen": {
+                  "var": "self_field_dis"
+                },
+                "key": "self_field_dis",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_self_dis_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Self-referencing Field Condition in disabledWhen",
+  "structural": "valid"
+}

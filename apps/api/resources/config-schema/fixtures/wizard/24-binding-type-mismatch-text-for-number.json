@@ -1,0 +1,50 @@
+{
+  "description": "Text field bound to site.frontage which expects number",
+  "expected": {
+    "codes": [
+      "BINDING_TYPE_MISMATCH"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "binding"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_bind_mismatch",
+        "sections": [
+          {
+            "fields": [
+              {
+                "binding": "site.frontage",
+                "key": "field_mismatch_1",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_bind_mismatch_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Binding Type Mismatch: Text Field on Number Binding",
+  "structural": "valid"
+}

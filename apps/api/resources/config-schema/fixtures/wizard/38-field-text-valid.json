@@ -1,0 +1,43 @@
+{
+  "description": "Text field with maxLength, placeholder, and defaultValue",
+  "expected": {
+    "codes": [],
+    "ok": true
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_txt",
+        "sections": [
+          {
+            "fields": [
+              {
+                "defaultValue": "鈴木",
+                "key": "field_txt",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "maxLength": 250,
+                "placeholder": {
+                  "ja": "山田 太郎"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_txt_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Valid Text Field",
+  "structural": "valid"
+}

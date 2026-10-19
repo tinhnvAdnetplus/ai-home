@@ -1,0 +1,45 @@
+{
+  "description": "Upload field with valid accept MIME types, maxFiles, and maxSizeMb",
+  "expected": {
+    "codes": [],
+    "ok": true
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_upl",
+        "sections": [
+          {
+            "fields": [
+              {
+                "accept": [
+                  "image/jpeg",
+                  "image/png",
+                  "application/pdf"
+                ],
+                "key": "field_upl",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "maxFiles": 5,
+                "maxSizeMb": 10,
+                "required": false,
+                "type": "upload"
+              }
+            ],
+            "key": "step_upl_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Valid File Upload Field",
+  "structural": "valid"
+}

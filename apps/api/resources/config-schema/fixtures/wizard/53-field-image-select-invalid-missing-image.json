@@ -1,0 +1,59 @@
+{
+  "description": "Each option in image_select must define an image mediaRef",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "options",
+      0,
+      "image"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_img_inv",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_img_inv",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "options": [
+                  {
+                    "label": {
+                      "ja": "画像なし選択肢"
+                    },
+                    "value": "no_img_opt"
+                  }
+                ],
+                "required": false,
+                "type": "image_select"
+              }
+            ],
+            "key": "step_img_inv_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Invalid Image Select Option Missing Image Property",
+  "structural": "invalid"
+}

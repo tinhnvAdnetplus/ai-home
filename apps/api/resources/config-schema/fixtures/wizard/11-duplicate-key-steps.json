@@ -1,0 +1,69 @@
+{
+  "description": "Multiple steps share the identical key",
+  "expected": {
+    "codes": [
+      "DUPLICATE_KEY"
+    ],
+    "firstPath": [
+      "steps",
+      1,
+      "key"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "dup_step",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f1",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "dup_step_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      },
+      {
+        "key": "dup_step",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f2",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "dup_step_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Duplicate Step Keys",
+  "structural": "valid"
+}

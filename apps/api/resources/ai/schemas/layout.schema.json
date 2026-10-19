@@ -1,0 +1,292 @@
+{
+    "type": "object",
+    "required": ["reasoning", "gridW", "floors", "exterior"],
+    "properties": {
+        "reasoning": {
+            "type": "object",
+            "required": ["program", "zoning", "circulation", "exterior"],
+            "properties": {
+                "program": {
+                    "type": "string"
+                },
+                "zoning": {
+                    "type": "string"
+                },
+                "circulation": {
+                    "type": "string"
+                },
+                "exterior": {
+                    "type": "string"
+                }
+            }
+        },
+        "gridW": {
+            "type": "integer"
+        },
+        "floors": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": ["level", "gridD", "rooms", "doors", "windows"],
+                "properties": {
+                    "level": {
+                        "type": "integer"
+                    },
+                    "gridD": {
+                        "type": "integer"
+                    },
+                    "rooms": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "required": ["key", "name", "type", "rects"],
+                            "properties": {
+                                "key": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "type": "string",
+                                    "enum": [
+                                        "ldk",
+                                        "living",
+                                        "dining",
+                                        "kitchen",
+                                        "bedroom",
+                                        "childRoom",
+                                        "washitsu",
+                                        "bath",
+                                        "wash",
+                                        "toilet",
+                                        "entrance",
+                                        "hall",
+                                        "corridor",
+                                        "stairs",
+                                        "storage",
+                                        "closet",
+                                        "walkInCloset",
+                                        "pantry",
+                                        "laundry",
+                                        "study",
+                                        "balcony",
+                                        "void",
+                                        "guest",
+                                        "hobby",
+                                        "porch",
+                                        "deck",
+                                        "elevator"
+                                    ]
+                                },
+                                "rects": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "required": ["x", "y", "w", "h"],
+                                        "properties": {
+                                            "x": {
+                                                "type": "integer"
+                                            },
+                                            "y": {
+                                                "type": "integer"
+                                            },
+                                            "w": {
+                                                "type": "integer"
+                                            },
+                                            "h": {
+                                                "type": "integer"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "doors": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "required": ["room", "dir", "pos", "a", "b", "kind"],
+                            "properties": {
+                                "room": {
+                                    "type": "string"
+                                },
+                                "dir": {
+                                    "type": "string",
+                                    "enum": ["v", "h"]
+                                },
+                                "pos": {
+                                    "type": "integer"
+                                },
+                                "a": {
+                                    "type": "integer"
+                                },
+                                "b": {
+                                    "type": "integer"
+                                },
+                                "kind": {
+                                    "type": "string",
+                                    "enum": ["slide", "swing"]
+                                }
+                            }
+                        }
+                    },
+                    "fixtures": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "required": ["room", "kind", "x", "y", "rotation"],
+                            "properties": {
+                                "room": {
+                                    "type": "string"
+                                },
+                                "kind": {
+                                    "type": "string",
+                                    "enum": [
+                                        "kitchen_counter",
+                                        "kitchen_island",
+                                        "kitchen_l",
+                                        "fridge",
+                                        "dining_table_4",
+                                        "dining_table_6",
+                                        "sofa",
+                                        "sofa_l",
+                                        "low_table",
+                                        "tv_board",
+                                        "bathtub",
+                                        "vanity",
+                                        "washing_machine",
+                                        "toilet_bowl",
+                                        "bed_double",
+                                        "bed_single",
+                                        "nightstand",
+                                        "desk",
+                                        "wardrobe",
+                                        "shoe_box"
+                                    ]
+                                },
+                                "x": {
+                                    "type": "integer"
+                                },
+                                "y": {
+                                    "type": "integer"
+                                },
+                                "rotation": {
+                                    "type": "integer",
+                                    "enum": [0, 90, 180, 270]
+                                }
+                            }
+                        }
+                    },
+                    "windows": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "required": ["room", "dir", "pos", "a", "b", "kind"],
+                            "properties": {
+                                "room": {
+                                    "type": "string"
+                                },
+                                "dir": {
+                                    "type": "string",
+                                    "enum": ["v", "h"]
+                                },
+                                "pos": {
+                                    "type": "integer"
+                                },
+                                "a": {
+                                    "type": "number"
+                                },
+                                "b": {
+                                    "type": "number"
+                                },
+                                "kind": {
+                                    "type": "string",
+                                    "enum": ["sash", "window", "small"]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "exterior": {
+            "type": "object",
+            "required": [
+                "roofKind",
+                "roofPitch",
+                "overhangMm",
+                "wallColor",
+                "roofColor",
+                "accentColor",
+                "hasEntranceLattice",
+                "parkingSide"
+            ],
+            "properties": {
+                "roofKind": {
+                    "type": "string",
+                    "enum": ["gabled", "hipped", "shed", "flat"]
+                },
+                "roofPitch": {
+                    "type": "number"
+                },
+                "overhangMm": {
+                    "type": "integer"
+                },
+                "wallColor": {
+                    "type": "string",
+                    "enum": ["white", "beige", "gray", "brown", "black", "navy"]
+                },
+                "roofColor": {
+                    "type": "string",
+                    "enum": ["black", "gray", "brown", "navy", "green"]
+                },
+                "accentColor": {
+                    "type": "string",
+                    "enum": ["wood", "white", "beige", "gray", "brown", "black"]
+                },
+                "hasEntranceLattice": {
+                    "type": "boolean"
+                },
+                "parkingSide": {
+                    "type": "string",
+                    "enum": ["left", "right"]
+                },
+                "deck": {
+                    "type": "object",
+                    "required": ["x", "y", "w", "h"],
+                    "properties": {
+                        "x": {
+                            "type": "integer"
+                        },
+                        "y": {
+                            "type": "integer"
+                        },
+                        "w": {
+                            "type": "integer"
+                        },
+                        "h": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "trees": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": ["x", "y"],
+                        "properties": {
+                            "x": {
+                                "type": "number"
+                            },
+                            "y": {
+                                "type": "number"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

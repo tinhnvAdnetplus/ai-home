@@ -1,0 +1,71 @@
+{
+  "description": "minSelected cannot be strictly greater than maxSelected",
+  "expected": {
+    "codes": [
+      "SELECTION_LIMITS_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "minSelected"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_sel_inv",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_sel_inv",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "maxSelected": 1,
+                "minSelected": 3,
+                "options": [
+                  {
+                    "label": {
+                      "ja": "1"
+                    },
+                    "value": "opt_1"
+                  },
+                  {
+                    "label": {
+                      "ja": "2"
+                    },
+                    "value": "opt_2"
+                  },
+                  {
+                    "label": {
+                      "ja": "3"
+                    },
+                    "value": "opt_3"
+                  }
+                ],
+                "required": false,
+                "type": "checkbox_group"
+              }
+            ],
+            "key": "step_sel_inv_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Selection Limits Invalid: minSelected > maxSelected",
+  "structural": "valid"
+}

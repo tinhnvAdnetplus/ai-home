@@ -1,0 +1,52 @@
+{
+  "description": "visibleWhen references a field key not present anywhere in the wizard",
+  "expected": {
+    "codes": [
+      "UNKNOWN_FIELD_REF"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "visibleWhen"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_unknown_ref",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_target",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text",
+                "visibleWhen": {
+                  "var": "non_existent_field_key"
+                }
+              }
+            ],
+            "key": "step_unknown_ref_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Condition References Unknown Field in visibleWhen",
+  "structural": "valid"
+}

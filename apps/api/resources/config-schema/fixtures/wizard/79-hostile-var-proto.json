@@ -1,0 +1,53 @@
+{
+  "description": "Deny-list rejects __proto__ as variable in condition AST",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "visibleWhen",
+      "var"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_hostile_var_1",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_v1",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text",
+                "visibleWhen": {
+                  "var": "__proto__"
+                }
+              }
+            ],
+            "key": "step_hostile_var_1_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Prototype Var Denial in Condition: __proto__",
+  "structural": "invalid"
+}

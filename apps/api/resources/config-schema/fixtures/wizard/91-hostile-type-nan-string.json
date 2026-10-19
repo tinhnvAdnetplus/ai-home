@@ -1,0 +1,50 @@
+{
+  "description": "Numeric property min provided as NaN string",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "min"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_nan_str",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_nan_str",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "min": "NaN",
+                "required": false,
+                "type": "number"
+              }
+            ],
+            "key": "step_nan_str_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "NaN String In Numeric Property Rejection",
+  "structural": "invalid"
+}

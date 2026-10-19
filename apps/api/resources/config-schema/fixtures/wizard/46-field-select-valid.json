@@ -1,0 +1,56 @@
+{
+  "description": "Select field with options, placeholder, and defaultValue",
+  "expected": {
+    "codes": [],
+    "ok": true
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_sel",
+        "sections": [
+          {
+            "fields": [
+              {
+                "defaultValue": "opt_tokyo",
+                "key": "field_sel",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "options": [
+                  {
+                    "label": {
+                      "ja": "東京都"
+                    },
+                    "value": "opt_tokyo"
+                  },
+                  {
+                    "label": {
+                      "ja": "大阪府"
+                    },
+                    "value": "opt_osaka"
+                  }
+                ],
+                "placeholder": {
+                  "ja": "都道府県を選択"
+                },
+                "required": false,
+                "type": "select"
+              }
+            ],
+            "key": "step_sel_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Valid Select Field",
+  "structural": "valid"
+}

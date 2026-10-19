@@ -1,0 +1,56 @@
+{
+  "description": "Each option within a select field must define a localized label",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "options",
+      0,
+      "label"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_sel_inv",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_sel_inv",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "options": [
+                  {
+                    "value": "opt_no_label"
+                  }
+                ],
+                "required": false,
+                "type": "select"
+              }
+            ],
+            "key": "step_sel_inv_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Invalid Select Field Option Missing Label",
+  "structural": "invalid"
+}

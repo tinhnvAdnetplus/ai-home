@@ -1,0 +1,23 @@
+{
+    "schemaVersion": 1,
+    "steps": [
+        {
+            "key": "step_one",
+            "title": { "ja": "ステップ1" },
+            "sections": [
+                {
+                    "key": "sec_one",
+                    "title": { "ja": "セクション1" },
+                    "fields": [
+                        {
+                            "type": "boolean",
+                            "key": "field_self",
+                            "label": { "ja": "自己参照フィールド" },
+                            "visibleWhen": { "var": "field_self" }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

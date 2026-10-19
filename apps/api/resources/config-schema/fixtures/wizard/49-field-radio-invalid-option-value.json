@@ -1,0 +1,58 @@
+{
+  "description": "Each option within a radio field must define a key value",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "options",
+      0,
+      "value"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_rad_inv",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_rad_inv",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "options": [
+                  {
+                    "label": {
+                      "ja": "値のない選択肢"
+                    }
+                  }
+                ],
+                "required": false,
+                "type": "radio"
+              }
+            ],
+            "key": "step_rad_inv_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Invalid Radio Field Option Missing Value",
+  "structural": "invalid"
+}

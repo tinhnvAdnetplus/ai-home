@@ -1,0 +1,50 @@
+{
+  "description": "A select field must define at least one option",
+  "expected": {
+    "codes": [
+      "EMPTY_OPTIONS"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "options"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_empty_opts",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_empty_select",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "options": [],
+                "required": false,
+                "type": "select"
+              }
+            ],
+            "key": "step_empty_opts_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Select Field With Zero Options",
+  "structural": "valid"
+}

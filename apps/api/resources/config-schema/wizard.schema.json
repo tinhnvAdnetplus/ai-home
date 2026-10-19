@@ -1,0 +1,1052 @@
+{
+  "$id": "https://aihome.jp/schemas/wizard.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "definitions": {
+    "condition": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/scalarLiteral"
+        },
+        {
+          "$ref": "#/definitions/varNode"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "and": {
+              "items": {
+                "$ref": "#/definitions/condition"
+              },
+              "maxItems": 10,
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "and"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "or": {
+              "items": {
+                "$ref": "#/definitions/condition"
+              },
+              "maxItems": 10,
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "or"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "!": {
+              "items": [
+                {
+                  "$ref": "#/definitions/condition"
+                }
+              ],
+              "maxItems": 1,
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "!"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "==": {
+              "items": [
+                {
+                  "$ref": "#/definitions/condition"
+                },
+                {
+                  "$ref": "#/definitions/condition"
+                }
+              ],
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            }
+          },
+          "required": [
+            "=="
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "!=": {
+              "items": [
+                {
+                  "$ref": "#/definitions/condition"
+                },
+                {
+                  "$ref": "#/definitions/condition"
+                }
+              ],
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            }
+          },
+          "required": [
+            "!="
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "<": {
+              "items": [
+                {
+                  "$ref": "#/definitions/condition"
+                },
+                {
+                  "$ref": "#/definitions/condition"
+                }
+              ],
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            }
+          },
+          "required": [
+            "<"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "<=": {
+              "items": [
+                {
+                  "$ref": "#/definitions/condition"
+                },
+                {
+                  "$ref": "#/definitions/condition"
+                }
+              ],
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            }
+          },
+          "required": [
+            "<="
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            ">": {
+              "items": [
+                {
+                  "$ref": "#/definitions/condition"
+                },
+                {
+                  "$ref": "#/definitions/condition"
+                }
+              ],
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            }
+          },
+          "required": [
+            ">"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            ">=": {
+              "items": [
+                {
+                  "$ref": "#/definitions/condition"
+                },
+                {
+                  "$ref": "#/definitions/condition"
+                }
+              ],
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            }
+          },
+          "required": [
+            ">="
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "in": {
+              "items": [
+                {
+                  "$ref": "#/definitions/condition"
+                },
+                {
+                  "anyOf": [
+                    {
+                      "$ref": "#/definitions/varNode"
+                    },
+                    {
+                      "items": {
+                        "$ref": "#/definitions/scalarLiteral"
+                      },
+                      "maxItems": 50,
+                      "type": "array"
+                    }
+                  ]
+                }
+              ],
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            }
+          },
+          "required": [
+            "in"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "field": {
+      "anyOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "binding": {
+              "maxLength": 64,
+              "pattern": "^[a-z][a-zA-Z0-9]*(\\.[a-z][a-zA-Z0-9]*)*(?![\\r\\n])$",
+              "type": "string"
+            },
+            "defaultValue": {
+              "type": "string"
+            },
+            "disabledWhen": {
+              "$ref": "#/definitions/condition"
+            },
+            "help": {
+              "$ref": "#/definitions/localizedText"
+            },
+            "key": {
+              "$ref": "#/definitions/key"
+            },
+            "label": {
+              "$ref": "#/definitions/localizedText"
+            },
+            "maxLength": {
+              "maximum": 500,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "placeholder": {
+              "$ref": "#/definitions/localizedText"
+            },
+            "required": {
+              "default": false,
+              "type": "boolean"
+            },
+            "summaryLabel": {
+              "$ref": "#/definitions/localizedText"
+            },
+            "type": {
+              "const": "text",
+              "type": "string"
+            },
+            "visibleWhen": {
+              "$ref": "#/definitions/condition"
+            }
+          },
+          "required": [
+            "key",
+            "label",
+            "type"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "binding": {
+              "maxLength": 64,
+              "pattern": "^[a-z][a-zA-Z0-9]*(\\.[a-z][a-zA-Z0-9]*)*(?![\\r\\n])$",
+              "type": "string"
+            },
+            "defaultValue": {
+              "type": "string"
+            },
+            "disabledWhen": {
+              "$ref": "#/definitions/field/anyOf/0/properties/disabledWhen"
+            },
+            "help": {
+              "$ref": "#/definitions/field/anyOf/0/properties/help"
+            },
+            "key": {
+              "$ref": "#/definitions/key"
+            },
+            "label": {
+              "$ref": "#/definitions/localizedText"
+            },
+            "maxLength": {
+              "maximum": 2000,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "placeholder": {
+              "$ref": "#/definitions/localizedText"
+            },
+            "required": {
+              "$ref": "#/definitions/field/anyOf/0/properties/required"
+            },
+            "showCounter": {
+              "type": "boolean"
+            },
+            "summaryLabel": {
+              "$ref": "#/definitions/field/anyOf/0/properties/summaryLabel"
+            },
+            "type": {
+              "const": "textarea",
+              "type": "string"
+            },
+            "visibleWhen": {
+              "$ref": "#/definitions/field/anyOf/0/properties/visibleWhen"
+            }
+          },
+          "required": [
+            "key",
+            "label",
+            "type"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "allowedUnits": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "binding": {
+              "maxLength": 64,
+              "pattern": "^[a-z][a-zA-Z0-9]*(\\.[a-z][a-zA-Z0-9]*)*(?![\\r\\n])$",
+              "type": "string"
+            },
+            "defaultValue": {
+              "type": "number"
+            },
+            "disabledWhen": {
+              "$ref": "#/definitions/field/anyOf/0/properties/disabledWhen"
+            },
+            "help": {
+              "$ref": "#/definitions/field/anyOf/0/properties/help"
+            },
+            "key": {
+              "$ref": "#/definitions/key"
+            },
+            "label": {
+              "$ref": "#/definitions/localizedText"
+            },
+            "max": {
+              "type": "number"
+            },
+            "min": {
+              "type": "number"
+            },
+            "required": {
+              "$ref": "#/definitions/field/anyOf/0/properties/required"
+            },
+            "step": {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            "summaryLabel": {
+              "$ref": "#/definitions/field/anyOf/0/properties/summaryLabel"
+            },
+            "type": {
+              "const": "number",
+              "type": "string"
+            },
+            "unit": {
+              "type": "string"
+            },
+            "visibleWhen": {
+              "$ref": "#/definitions/field/anyOf/0/properties/visibleWhen"
+            }
+          },
+          "required": [
+            "key",
+            "label",
+            "type"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "binding": {
+              "maxLength": 64,
+              "pattern": "^[a-z][a-zA-Z0-9]*(\\.[a-z][a-zA-Z0-9]*)*(?![\\r\\n])$",
+              "type": "string"
+            },
+            "defaultValue": {
+              "type": "number"
+            },
+            "disabledWhen": {
+              "$ref": "#/definitions/field/anyOf/0/properties/disabledWhen"
+            },
+            "help": {
+              "$ref": "#/definitions/field/anyOf/0/properties/help"
+            },
+            "key": {
+              "$ref": "#/definitions/key"
+            },
+            "label": {
+              "$ref": "#/definitions/localizedText"
+            },
+            "max": {
+              "type": "number"
+            },
+            "min": {
+              "type": "number"
+            },
+            "required": {
+              "$ref": "#/definitions/field/anyOf/0/properties/required"
+            },
+            "step": {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            "summaryLabel": {
+              "$ref": "#/definitions/field/anyOf/0/properties/summaryLabel"
+            },
+            "type": {
+              "const": "range",
+              "type": "string"
+            },
+            "unit": {
+              "type": "string"
+            },
+            "visibleWhen": {
+              "$ref": "#/definitions/field/anyOf/0/properties/visibleWhen"
+            }
+          },
+          "required": [
+            "key",
+            "label",
+            "type",
+            "min",
+            "max",
+            "step"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "binding": {
+              "maxLength": 64,
+              "pattern": "^[a-z][a-zA-Z0-9]*(\\.[a-z][a-zA-Z0-9]*)*(?![\\r\\n])$",
+              "type": "string"
+            },
+            "defaultValue": {
+              "type": "string"
+            },
+            "disabledWhen": {
+              "$ref": "#/definitions/field/anyOf/0/properties/disabledWhen"
+            },
+            "help": {
+              "$ref": "#/definitions/field/anyOf/0/properties/help"
+            },
+            "key": {
+              "$ref": "#/definitions/key"
+            },
+            "label": {
+              "$ref": "#/definitions/localizedText"
+            },
+            "options": {
+              "items": {
+                "$ref": "#/definitions/option"
+              },
+              "maxItems": 60,
+              "type": "array"
+            },
+            "placeholder": {
+              "$ref": "#/definitions/localizedText"
+            },
+            "required": {
+              "$ref": "#/definitions/field/anyOf/0/properties/required"
+            },
+            "summaryLabel": {
+              "$ref": "#/definitions/field/anyOf/0/properties/summaryLabel"
+            },
+            "type": {
+              "const": "select",
+              "type": "string"
+            },
+            "visibleWhen": {
+              "$ref": "#/definitions/field/anyOf/0/properties/visibleWhen"
+            }
+          },
+          "required": [
+            "key",
+            "label",
+            "type",
+            "options"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "binding": {
+              "maxLength": 64,
+              "pattern": "^[a-z][a-zA-Z0-9]*(\\.[a-z][a-zA-Z0-9]*)*(?![\\r\\n])$",
+              "type": "string"
+            },
+            "defaultValue": {
+              "type": "string"
+            },
+            "disabledWhen": {
+              "$ref": "#/definitions/field/anyOf/0/properties/disabledWhen"
+            },
+            "help": {
+              "$ref": "#/definitions/field/anyOf/0/properties/help"
+            },
+            "key": {
+              "$ref": "#/definitions/key"
+            },
+            "label": {
+              "$ref": "#/definitions/localizedText"
+            },
+            "options": {
+              "items": {
+                "$ref": "#/definitions/option"
+              },
+              "maxItems": 60,
+              "type": "array"
+            },
+            "required": {
+              "$ref": "#/definitions/field/anyOf/0/properties/required"
+            },
+            "summaryLabel": {
+              "$ref": "#/definitions/field/anyOf/0/properties/summaryLabel"
+            },
+            "type": {
+              "const": "radio",
+              "type": "string"
+            },
+            "visibleWhen": {
+              "$ref": "#/definitions/field/anyOf/0/properties/visibleWhen"
+            }
+          },
+          "required": [
+            "key",
+            "label",
+            "type",
+            "options"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "binding": {
+              "maxLength": 64,
+              "pattern": "^[a-z][a-zA-Z0-9]*(\\.[a-z][a-zA-Z0-9]*)*(?![\\r\\n])$",
+              "type": "string"
+            },
+            "defaultValue": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "disabledWhen": {
+              "$ref": "#/definitions/field/anyOf/0/properties/disabledWhen"
+            },
+            "help": {
+              "$ref": "#/definitions/field/anyOf/0/properties/help"
+            },
+            "key": {
+              "$ref": "#/definitions/key"
+            },
+            "label": {
+              "$ref": "#/definitions/localizedText"
+            },
+            "maxSelected": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "minSelected": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "options": {
+              "items": {
+                "$ref": "#/definitions/option"
+              },
+              "maxItems": 60,
+              "type": "array"
+            },
+            "required": {
+              "$ref": "#/definitions/field/anyOf/0/properties/required"
+            },
+            "summaryLabel": {
+              "$ref": "#/definitions/field/anyOf/0/properties/summaryLabel"
+            },
+            "type": {
+              "const": "checkbox_group",
+              "type": "string"
+            },
+            "visibleWhen": {
+              "$ref": "#/definitions/field/anyOf/0/properties/visibleWhen"
+            }
+          },
+          "required": [
+            "key",
+            "label",
+            "type",
+            "options"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "binding": {
+              "maxLength": 64,
+              "pattern": "^[a-z][a-zA-Z0-9]*(\\.[a-z][a-zA-Z0-9]*)*(?![\\r\\n])$",
+              "type": "string"
+            },
+            "defaultValue": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              ]
+            },
+            "disabledWhen": {
+              "$ref": "#/definitions/field/anyOf/0/properties/disabledWhen"
+            },
+            "help": {
+              "$ref": "#/definitions/field/anyOf/0/properties/help"
+            },
+            "key": {
+              "$ref": "#/definitions/key"
+            },
+            "label": {
+              "$ref": "#/definitions/localizedText"
+            },
+            "maxSelected": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "minSelected": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "multiple": {
+              "default": false,
+              "type": "boolean"
+            },
+            "options": {
+              "items": {
+                "$ref": "#/definitions/imageSelectOption"
+              },
+              "maxItems": 60,
+              "type": "array"
+            },
+            "required": {
+              "$ref": "#/definitions/field/anyOf/0/properties/required"
+            },
+            "summaryLabel": {
+              "$ref": "#/definitions/field/anyOf/0/properties/summaryLabel"
+            },
+            "type": {
+              "const": "image_select",
+              "type": "string"
+            },
+            "visibleWhen": {
+              "$ref": "#/definitions/field/anyOf/0/properties/visibleWhen"
+            }
+          },
+          "required": [
+            "key",
+            "label",
+            "type",
+            "options"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "binding": {
+              "maxLength": 64,
+              "pattern": "^[a-z][a-zA-Z0-9]*(\\.[a-z][a-zA-Z0-9]*)*(?![\\r\\n])$",
+              "type": "string"
+            },
+            "defaultValue": {
+              "type": "boolean"
+            },
+            "disabledWhen": {
+              "$ref": "#/definitions/field/anyOf/0/properties/disabledWhen"
+            },
+            "help": {
+              "$ref": "#/definitions/field/anyOf/0/properties/help"
+            },
+            "key": {
+              "$ref": "#/definitions/key"
+            },
+            "label": {
+              "$ref": "#/definitions/localizedText"
+            },
+            "required": {
+              "$ref": "#/definitions/field/anyOf/0/properties/required"
+            },
+            "summaryLabel": {
+              "$ref": "#/definitions/field/anyOf/0/properties/summaryLabel"
+            },
+            "type": {
+              "const": "boolean",
+              "type": "string"
+            },
+            "visibleWhen": {
+              "$ref": "#/definitions/field/anyOf/0/properties/visibleWhen"
+            }
+          },
+          "required": [
+            "key",
+            "label",
+            "type"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "accept": {
+              "items": {
+                "enum": [
+                  "image/jpeg",
+                  "image/png",
+                  "image/webp",
+                  "image/svg+xml",
+                  "application/pdf",
+                  "application/dxf"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "binding": {
+              "maxLength": 64,
+              "pattern": "^[a-z][a-zA-Z0-9]*(\\.[a-z][a-zA-Z0-9]*)*(?![\\r\\n])$",
+              "type": "string"
+            },
+            "disabledWhen": {
+              "$ref": "#/definitions/field/anyOf/0/properties/disabledWhen"
+            },
+            "help": {
+              "$ref": "#/definitions/field/anyOf/0/properties/help"
+            },
+            "key": {
+              "$ref": "#/definitions/key"
+            },
+            "label": {
+              "$ref": "#/definitions/localizedText"
+            },
+            "maxFiles": {
+              "maximum": 10,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "maxSizeMb": {
+              "maximum": 20,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "required": {
+              "$ref": "#/definitions/field/anyOf/0/properties/required"
+            },
+            "summaryLabel": {
+              "$ref": "#/definitions/field/anyOf/0/properties/summaryLabel"
+            },
+            "type": {
+              "const": "upload",
+              "type": "string"
+            },
+            "visibleWhen": {
+              "$ref": "#/definitions/field/anyOf/0/properties/visibleWhen"
+            }
+          },
+          "required": [
+            "key",
+            "label",
+            "type",
+            "accept",
+            "maxFiles",
+            "maxSizeMb"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "imageSelectOption": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "$ref": "#/definitions/localizedText"
+        },
+        "disabledWhen": {
+          "$ref": "#/definitions/condition"
+        },
+        "image": {
+          "$ref": "#/definitions/mediaRef"
+        },
+        "label": {
+          "$ref": "#/definitions/localizedText"
+        },
+        "value": {
+          "$ref": "#/definitions/key"
+        }
+      },
+      "required": [
+        "value",
+        "label",
+        "image"
+      ],
+      "type": "object"
+    },
+    "key": {
+      "maxLength": 48,
+      "pattern": "^(?!(?:constructor|prototype|__proto__|proto|hasownproperty|tostring|valueof|isprototypeof|propertyisenumerable|tolocalestring)$)[a-z][a-z0-9_]{0,47}(?![\\r\\n])$",
+      "type": "string"
+    },
+    "localizedText": {
+      "additionalProperties": false,
+      "properties": {
+        "en": {
+          "maxLength": 500,
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        "ja": {
+          "maxLength": 500,
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        "vi": {
+          "maxLength": 500,
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ja"
+      ],
+      "type": "object"
+    },
+    "mediaRef": {
+      "additionalProperties": false,
+      "properties": {
+        "alt": {
+          "$ref": "#/definitions/localizedText"
+        },
+        "mediaId": {
+          "maxLength": 64,
+          "pattern": "^[A-Za-z0-9_-]{1,64}(?![\\r\\n])$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "mediaId",
+        "alt"
+      ],
+      "type": "object"
+    },
+    "option": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "$ref": "#/definitions/localizedText"
+        },
+        "disabledWhen": {
+          "$ref": "#/definitions/condition"
+        },
+        "image": {
+          "$ref": "#/definitions/mediaRef"
+        },
+        "label": {
+          "$ref": "#/definitions/localizedText"
+        },
+        "value": {
+          "$ref": "#/definitions/key"
+        }
+      },
+      "required": [
+        "value",
+        "label"
+      ],
+      "type": "object"
+    },
+    "scalarLiteral": {
+      "anyOf": [
+        {
+          "maxLength": 200,
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "section": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "$ref": "#/definitions/localizedText"
+        },
+        "fields": {
+          "items": {
+            "$ref": "#/definitions/field"
+          },
+          "maxItems": 150,
+          "type": "array"
+        },
+        "key": {
+          "$ref": "#/definitions/key"
+        },
+        "title": {
+          "$ref": "#/definitions/localizedText"
+        }
+      },
+      "required": [
+        "key",
+        "title",
+        "fields"
+      ],
+      "type": "object"
+    },
+    "step": {
+      "additionalProperties": false,
+      "properties": {
+        "icon": {
+          "enum": [
+            "home",
+            "map-pin",
+            "layout-grid",
+            "users",
+            "image",
+            "palette",
+            "heart",
+            "star",
+            "yen",
+            "shield",
+            "check",
+            "map",
+            "family",
+            "building",
+            "sofa",
+            "settings",
+            "file-text"
+          ],
+          "type": "string"
+        },
+        "key": {
+          "$ref": "#/definitions/key"
+        },
+        "sections": {
+          "items": {
+            "$ref": "#/definitions/section"
+          },
+          "maxItems": 20,
+          "type": "array"
+        },
+        "subtitle": {
+          "$ref": "#/definitions/localizedText"
+        },
+        "title": {
+          "$ref": "#/definitions/localizedText"
+        }
+      },
+      "required": [
+        "key",
+        "title",
+        "sections"
+      ],
+      "type": "object"
+    },
+    "varNode": {
+      "additionalProperties": false,
+      "properties": {
+        "var": {
+          "$ref": "#/definitions/key"
+        }
+      },
+      "required": [
+        "var"
+      ],
+      "type": "object"
+    }
+  },
+  "properties": {
+    "schemaVersion": {
+      "const": 1,
+      "type": "number"
+    },
+    "steps": {
+      "items": {
+        "$ref": "#/definitions/step"
+      },
+      "maxItems": 20,
+      "type": "array"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "steps"
+  ],
+  "title": "WizardConfig",
+  "type": "object",
+  "x-schemaVersion": 1
+}

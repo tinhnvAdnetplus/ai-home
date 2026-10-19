@@ -1,0 +1,59 @@
+{
+  "description": "Multiple fields in the wizard cannot map to the identical planner binding key",
+  "expected": {
+    "codes": [
+      "DUPLICATE_BINDING"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      1,
+      "binding"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_dup_bind",
+        "sections": [
+          {
+            "fields": [
+              {
+                "binding": "site.frontage",
+                "key": "field_bind_1",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "number"
+              },
+              {
+                "binding": "site.frontage",
+                "key": "field_bind_2",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "number"
+              }
+            ],
+            "key": "step_dup_bind_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Duplicate Planner Capability Binding",
+  "structural": "valid"
+}

@@ -1,0 +1,54 @@
+{
+  "description": "Upload field maxFiles cannot exceed 10",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "maxFiles"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_upl_inv",
+        "sections": [
+          {
+            "fields": [
+              {
+                "accept": [
+                  "image/jpeg"
+                ],
+                "key": "field_upl_inv",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "maxFiles": 15,
+                "maxSizeMb": 10,
+                "required": false,
+                "type": "upload"
+              }
+            ],
+            "key": "step_upl_inv_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Invalid Upload Field Exceeding maxFiles Limit",
+  "structural": "invalid"
+}

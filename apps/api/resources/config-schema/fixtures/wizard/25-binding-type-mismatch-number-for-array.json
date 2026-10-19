@@ -1,0 +1,50 @@
+{
+  "description": "Number field bound to rooms.roomTypes which expects string array",
+  "expected": {
+    "codes": [
+      "BINDING_TYPE_MISMATCH"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "binding"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_bind_mismatch_2",
+        "sections": [
+          {
+            "fields": [
+              {
+                "binding": "rooms.roomTypes",
+                "key": "field_mismatch_2",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "number"
+              }
+            ],
+            "key": "step_bind_mismatch_2_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Binding Type Mismatch: Number Field on String Array Binding",
+  "structural": "valid"
+}

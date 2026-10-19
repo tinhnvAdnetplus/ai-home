@@ -1,0 +1,47 @@
+{
+    "schemaVersion": 1,
+    "steps": [
+        {
+            "key": "step_one",
+            "title": { "ja": "ステップ1" },
+            "sections": [
+                {
+                    "key": "sec_one",
+                    "title": { "ja": "セクション1" },
+                    "fields": [
+                        {
+                            "type": "boolean",
+                            "key": "field_one",
+                            "label": { "ja": "真偽値" },
+                            "visibleWhen": {
+                                "and": [
+                                    {
+                                        "and": [
+                                            {
+                                                "and": [
+                                                    {
+                                                        "and": [
+                                                            {
+                                                                "and": [
+                                                                    {
+                                                                        "and": [
+                                                                            true
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

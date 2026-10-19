@@ -1,0 +1,13 @@
+@import 'tailwindcss';
+@import './tokens.css';
+
+/* `dark:` utilities follow the .dark class only; the customer design is light (see docs/design). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+    background: linear-gradient(135deg, #dcebfb 0%, #eaf3fd 45%, #f6faff 100%);
+    background-attachment: fixed;
+}
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';

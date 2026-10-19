@@ -1,0 +1,58 @@
+{
+  "description": "minSelected must be a non-negative integer >= 0",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "minSelected"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_chk_inv",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_chk_inv",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "minSelected": -1,
+                "options": [
+                  {
+                    "label": {
+                      "ja": "選択肢1"
+                    },
+                    "value": "opt_1"
+                  }
+                ],
+                "required": false,
+                "type": "checkbox_group"
+              }
+            ],
+            "key": "step_chk_inv_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Invalid Checkbox Group Negative minSelected",
+  "structural": "invalid"
+}

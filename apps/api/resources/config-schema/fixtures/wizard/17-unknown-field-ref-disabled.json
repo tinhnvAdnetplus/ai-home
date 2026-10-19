@@ -1,0 +1,52 @@
+{
+  "description": "disabledWhen references an unknown field key",
+  "expected": {
+    "codes": [
+      "UNKNOWN_FIELD_REF"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "disabledWhen"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_unknown_dis",
+        "sections": [
+          {
+            "fields": [
+              {
+                "disabledWhen": {
+                  "var": "ghost_field_key"
+                },
+                "key": "field_target_dis",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_unknown_dis_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Condition References Unknown Field in disabledWhen",
+  "structural": "valid"
+}

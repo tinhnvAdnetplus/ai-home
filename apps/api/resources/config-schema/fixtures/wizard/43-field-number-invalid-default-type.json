@@ -1,0 +1,50 @@
+{
+  "description": "Number field defaultValue must be a number, not a string",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "defaultValue"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_num_inv",
+        "sections": [
+          {
+            "fields": [
+              {
+                "defaultValue": "100",
+                "key": "field_num_inv",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "number"
+              }
+            ],
+            "key": "step_num_inv_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Invalid Number Field With String Default Value",
+  "structural": "invalid"
+}

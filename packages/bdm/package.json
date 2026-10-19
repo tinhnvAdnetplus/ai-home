@@ -1,0 +1,25 @@
+{
+    "name": "@aihome/bdm",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "exports": "./src/index.ts",
+    "scripts": {
+        "typecheck": "tsc --noEmit",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "format": "prettier --write .",
+        "format:check": "prettier --check ."
+    },
+    "dependencies": {
+        "zod": "3.24.2"
+    },
+    "devDependencies": {
+        "@eslint/js": "9.39.5",
+        "eslint": "9.39.5",
+        "eslint-plugin-check-file": "3.3.2",
+        "prettier": "3.9.10",
+        "typescript": "5.7.3",
+        "typescript-eslint": "8.71.1"
+    }
+}

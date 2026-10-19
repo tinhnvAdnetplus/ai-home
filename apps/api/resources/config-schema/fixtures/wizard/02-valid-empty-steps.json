@@ -1,0 +1,13 @@
+{
+  "description": "A minimal wizard with zero steps is structurally and semantically valid",
+  "expected": {
+    "codes": [],
+    "ok": true
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": []
+  },
+  "name": "Valid Empty Steps",
+  "structural": "valid"
+}

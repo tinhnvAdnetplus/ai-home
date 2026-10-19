@@ -1,0 +1,1360 @@
+[
+  {
+    "name": "sampleWizard with solar notes to drop",
+    "wizard": {
+      "schemaVersion": 1,
+      "steps": [
+        {
+          "key": "site_and_structure",
+          "title": {
+            "ja": "敷地と建物"
+          },
+          "subtitle": {
+            "ja": "基本条件の入力"
+          },
+          "icon": "home",
+          "sections": [
+            {
+              "key": "site_section",
+              "title": {
+                "ja": "敷地情報"
+              },
+              "fields": [
+                {
+                  "type": "text",
+                  "key": "applicant_name",
+                  "label": {
+                    "ja": "お名前"
+                  },
+                  "required": false,
+                  "maxLength": 100,
+                  "defaultValue": "山田 太郎"
+                },
+                {
+                  "type": "number",
+                  "key": "site_frontage",
+                  "label": {
+                    "ja": "間口（m）"
+                  },
+                  "required": true,
+                  "min": 4,
+                  "max": 40,
+                  "step": 0.1,
+                  "defaultValue": 10.5,
+                  "binding": "site.frontage"
+                },
+                {
+                  "type": "range",
+                  "key": "desired_area",
+                  "label": {
+                    "ja": "延床面積（坪）"
+                  },
+                  "required": true,
+                  "min": 18,
+                  "max": 70,
+                  "step": 1,
+                  "defaultValue": 35,
+                  "binding": "building.targetArea"
+                },
+                {
+                  "type": "select",
+                  "key": "land_ownership",
+                  "label": {
+                    "ja": "土地所有状況"
+                  },
+                  "required": true,
+                  "defaultValue": "owned",
+                  "options": [
+                    {
+                      "value": "owned",
+                      "label": {
+                        "ja": "自己所有"
+                      }
+                    },
+                    {
+                      "value": "searching",
+                      "label": {
+                        "ja": "検討中"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "radio",
+                  "key": "floor_count",
+                  "label": {
+                    "ja": "階数"
+                  },
+                  "required": true,
+                  "defaultValue": "two_story",
+                  "options": [
+                    {
+                      "value": "single_story",
+                      "label": {
+                        "ja": "平屋"
+                      }
+                    },
+                    {
+                      "value": "two_story",
+                      "label": {
+                        "ja": "2階建て"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "lifestyle_and_options",
+          "title": {
+            "ja": "暮らしと設備"
+          },
+          "subtitle": {
+            "ja": "こだわり条件の入力"
+          },
+          "icon": "heart",
+          "sections": [
+            {
+              "key": "options_section",
+              "title": {
+                "ja": "設備・外観"
+              },
+              "fields": [
+                {
+                  "type": "boolean",
+                  "key": "has_solar",
+                  "label": {
+                    "ja": "太陽光パネル希望"
+                  },
+                  "required": false,
+                  "defaultValue": true
+                },
+                {
+                  "type": "checkbox_group",
+                  "key": "features",
+                  "label": {
+                    "ja": "希望設備"
+                  },
+                  "required": false,
+                  "defaultValue": [
+                    "pantry"
+                  ],
+                  "options": [
+                    {
+                      "value": "pantry",
+                      "label": {
+                        "ja": "パントリー"
+                      }
+                    },
+                    {
+                      "value": "laundry",
+                      "label": {
+                        "ja": "ランドリールーム"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "image_select",
+                  "key": "exterior_style",
+                  "label": {
+                    "ja": "外観テイスト"
+                  },
+                  "required": true,
+                  "multiple": false,
+                  "defaultValue": "modern",
+                  "options": [
+                    {
+                      "value": "modern",
+                      "label": {
+                        "ja": "モダン"
+                      },
+                      "image": {
+                        "mediaId": "img_modern_01",
+                        "alt": {
+                          "ja": "モダン外観"
+                        }
+                      }
+                    },
+                    {
+                      "value": "japanese_modern",
+                      "label": {
+                        "ja": "和モダン"
+                      },
+                      "image": {
+                        "mediaId": "img_wa_01",
+                        "alt": {
+                          "ja": "和モダン外観"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "upload",
+                  "key": "land_survey_file",
+                  "label": {
+                    "ja": "敷地測量図"
+                  },
+                  "required": false,
+                  "accept": [
+                    "application/pdf",
+                    "image/png"
+                  ],
+                  "maxFiles": 2,
+                  "maxSizeMb": 10
+                },
+                {
+                  "type": "textarea",
+                  "key": "solar_notes",
+                  "label": {
+                    "ja": "太陽光・蓄電池の特記事項"
+                  },
+                  "required": false,
+                  "maxLength": 1000,
+                  "visibleWhen": {
+                    "var": "has_solar"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "answers": {
+      "has_solar": false,
+      "solar_notes": "Stale note that should be dropped",
+      "desired_area": 40,
+      "floor_count": "two_story"
+    },
+    "expectedState": {
+      "visible": {
+        "applicant_name": true,
+        "site_frontage": true,
+        "desired_area": true,
+        "land_ownership": true,
+        "floor_count": true,
+        "has_solar": true,
+        "features": true,
+        "exterior_style": true,
+        "land_survey_file": true,
+        "solar_notes": false
+      },
+      "disabled": {
+        "applicant_name": false,
+        "site_frontage": false,
+        "desired_area": false,
+        "land_ownership": false,
+        "floor_count": false,
+        "has_solar": false,
+        "features": false,
+        "exterior_style": false,
+        "land_survey_file": false,
+        "solar_notes": false
+      },
+      "disabledOptions": {
+        "applicant_name": [],
+        "site_frontage": [],
+        "desired_area": [],
+        "land_ownership": [],
+        "floor_count": [],
+        "has_solar": [],
+        "features": [],
+        "exterior_style": [],
+        "land_survey_file": [],
+        "solar_notes": []
+      },
+      "answers": {
+        "desired_area": 40,
+        "floor_count": "two_story",
+        "has_solar": false
+      },
+      "missingRequired": [
+        "site_frontage",
+        "land_ownership",
+        "exterior_style"
+      ]
+    }
+  },
+  {
+    "name": "sampleWizard with all valid answers",
+    "wizard": {
+      "schemaVersion": 1,
+      "steps": [
+        {
+          "key": "site_and_structure",
+          "title": {
+            "ja": "敷地と建物"
+          },
+          "subtitle": {
+            "ja": "基本条件の入力"
+          },
+          "icon": "home",
+          "sections": [
+            {
+              "key": "site_section",
+              "title": {
+                "ja": "敷地情報"
+              },
+              "fields": [
+                {
+                  "type": "text",
+                  "key": "applicant_name",
+                  "label": {
+                    "ja": "お名前"
+                  },
+                  "required": false,
+                  "maxLength": 100,
+                  "defaultValue": "山田 太郎"
+                },
+                {
+                  "type": "number",
+                  "key": "site_frontage",
+                  "label": {
+                    "ja": "間口（m）"
+                  },
+                  "required": true,
+                  "min": 4,
+                  "max": 40,
+                  "step": 0.1,
+                  "defaultValue": 10.5,
+                  "binding": "site.frontage"
+                },
+                {
+                  "type": "range",
+                  "key": "desired_area",
+                  "label": {
+                    "ja": "延床面積（坪）"
+                  },
+                  "required": true,
+                  "min": 18,
+                  "max": 70,
+                  "step": 1,
+                  "defaultValue": 35,
+                  "binding": "building.targetArea"
+                },
+                {
+                  "type": "select",
+                  "key": "land_ownership",
+                  "label": {
+                    "ja": "土地所有状況"
+                  },
+                  "required": true,
+                  "defaultValue": "owned",
+                  "options": [
+                    {
+                      "value": "owned",
+                      "label": {
+                        "ja": "自己所有"
+                      }
+                    },
+                    {
+                      "value": "searching",
+                      "label": {
+                        "ja": "検討中"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "radio",
+                  "key": "floor_count",
+                  "label": {
+                    "ja": "階数"
+                  },
+                  "required": true,
+                  "defaultValue": "two_story",
+                  "options": [
+                    {
+                      "value": "single_story",
+                      "label": {
+                        "ja": "平屋"
+                      }
+                    },
+                    {
+                      "value": "two_story",
+                      "label": {
+                        "ja": "2階建て"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "lifestyle_and_options",
+          "title": {
+            "ja": "暮らしと設備"
+          },
+          "subtitle": {
+            "ja": "こだわり条件の入力"
+          },
+          "icon": "heart",
+          "sections": [
+            {
+              "key": "options_section",
+              "title": {
+                "ja": "設備・外観"
+              },
+              "fields": [
+                {
+                  "type": "boolean",
+                  "key": "has_solar",
+                  "label": {
+                    "ja": "太陽光パネル希望"
+                  },
+                  "required": false,
+                  "defaultValue": true
+                },
+                {
+                  "type": "checkbox_group",
+                  "key": "features",
+                  "label": {
+                    "ja": "希望設備"
+                  },
+                  "required": false,
+                  "defaultValue": [
+                    "pantry"
+                  ],
+                  "options": [
+                    {
+                      "value": "pantry",
+                      "label": {
+                        "ja": "パントリー"
+                      }
+                    },
+                    {
+                      "value": "laundry",
+                      "label": {
+                        "ja": "ランドリールーム"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "image_select",
+                  "key": "exterior_style",
+                  "label": {
+                    "ja": "外観テイスト"
+                  },
+                  "required": true,
+                  "multiple": false,
+                  "defaultValue": "modern",
+                  "options": [
+                    {
+                      "value": "modern",
+                      "label": {
+                        "ja": "モダン"
+                      },
+                      "image": {
+                        "mediaId": "img_modern_01",
+                        "alt": {
+                          "ja": "モダン外観"
+                        }
+                      }
+                    },
+                    {
+                      "value": "japanese_modern",
+                      "label": {
+                        "ja": "和モダン"
+                      },
+                      "image": {
+                        "mediaId": "img_wa_01",
+                        "alt": {
+                          "ja": "和モダン外観"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "upload",
+                  "key": "land_survey_file",
+                  "label": {
+                    "ja": "敷地測量図"
+                  },
+                  "required": false,
+                  "accept": [
+                    "application/pdf",
+                    "image/png"
+                  ],
+                  "maxFiles": 2,
+                  "maxSizeMb": 10
+                },
+                {
+                  "type": "textarea",
+                  "key": "solar_notes",
+                  "label": {
+                    "ja": "太陽光・蓄電池の特記事項"
+                  },
+                  "required": false,
+                  "maxLength": 1000,
+                  "visibleWhen": {
+                    "var": "has_solar"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "answers": {
+      "applicant_name": "山田 太郎",
+      "site_frontage": 12.5,
+      "desired_area": 35,
+      "land_ownership": "owned",
+      "floor_count": "two_story",
+      "has_solar": true,
+      "features": [
+        "pantry",
+        "laundry"
+      ],
+      "exterior_style": "modern",
+      "solar_notes": "Specially noted"
+    },
+    "expectedState": {
+      "visible": {
+        "applicant_name": true,
+        "site_frontage": true,
+        "desired_area": true,
+        "land_ownership": true,
+        "floor_count": true,
+        "has_solar": true,
+        "features": true,
+        "exterior_style": true,
+        "land_survey_file": true,
+        "solar_notes": true
+      },
+      "disabled": {
+        "applicant_name": false,
+        "site_frontage": false,
+        "desired_area": false,
+        "land_ownership": false,
+        "floor_count": false,
+        "has_solar": false,
+        "features": false,
+        "exterior_style": false,
+        "land_survey_file": false,
+        "solar_notes": false
+      },
+      "disabledOptions": {
+        "applicant_name": [],
+        "site_frontage": [],
+        "desired_area": [],
+        "land_ownership": [],
+        "floor_count": [],
+        "has_solar": [],
+        "features": [],
+        "exterior_style": [],
+        "land_survey_file": [],
+        "solar_notes": []
+      },
+      "answers": {
+        "applicant_name": "山田 太郎",
+        "site_frontage": 12.5,
+        "desired_area": 35,
+        "land_ownership": "owned",
+        "floor_count": "two_story",
+        "has_solar": true,
+        "features": [
+          "pantry",
+          "laundry"
+        ],
+        "exterior_style": "modern",
+        "solar_notes": "Specially noted"
+      },
+      "missingRequired": []
+    }
+  },
+  {
+    "name": "sampleWizard with missing required fields",
+    "wizard": {
+      "schemaVersion": 1,
+      "steps": [
+        {
+          "key": "site_and_structure",
+          "title": {
+            "ja": "敷地と建物"
+          },
+          "subtitle": {
+            "ja": "基本条件の入力"
+          },
+          "icon": "home",
+          "sections": [
+            {
+              "key": "site_section",
+              "title": {
+                "ja": "敷地情報"
+              },
+              "fields": [
+                {
+                  "type": "text",
+                  "key": "applicant_name",
+                  "label": {
+                    "ja": "お名前"
+                  },
+                  "required": false,
+                  "maxLength": 100,
+                  "defaultValue": "山田 太郎"
+                },
+                {
+                  "type": "number",
+                  "key": "site_frontage",
+                  "label": {
+                    "ja": "間口（m）"
+                  },
+                  "required": true,
+                  "min": 4,
+                  "max": 40,
+                  "step": 0.1,
+                  "defaultValue": 10.5,
+                  "binding": "site.frontage"
+                },
+                {
+                  "type": "range",
+                  "key": "desired_area",
+                  "label": {
+                    "ja": "延床面積（坪）"
+                  },
+                  "required": true,
+                  "min": 18,
+                  "max": 70,
+                  "step": 1,
+                  "defaultValue": 35,
+                  "binding": "building.targetArea"
+                },
+                {
+                  "type": "select",
+                  "key": "land_ownership",
+                  "label": {
+                    "ja": "土地所有状況"
+                  },
+                  "required": true,
+                  "defaultValue": "owned",
+                  "options": [
+                    {
+                      "value": "owned",
+                      "label": {
+                        "ja": "自己所有"
+                      }
+                    },
+                    {
+                      "value": "searching",
+                      "label": {
+                        "ja": "検討中"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "radio",
+                  "key": "floor_count",
+                  "label": {
+                    "ja": "階数"
+                  },
+                  "required": true,
+                  "defaultValue": "two_story",
+                  "options": [
+                    {
+                      "value": "single_story",
+                      "label": {
+                        "ja": "平屋"
+                      }
+                    },
+                    {
+                      "value": "two_story",
+                      "label": {
+                        "ja": "2階建て"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "lifestyle_and_options",
+          "title": {
+            "ja": "暮らしと設備"
+          },
+          "subtitle": {
+            "ja": "こだわり条件の入力"
+          },
+          "icon": "heart",
+          "sections": [
+            {
+              "key": "options_section",
+              "title": {
+                "ja": "設備・外観"
+              },
+              "fields": [
+                {
+                  "type": "boolean",
+                  "key": "has_solar",
+                  "label": {
+                    "ja": "太陽光パネル希望"
+                  },
+                  "required": false,
+                  "defaultValue": true
+                },
+                {
+                  "type": "checkbox_group",
+                  "key": "features",
+                  "label": {
+                    "ja": "希望設備"
+                  },
+                  "required": false,
+                  "defaultValue": [
+                    "pantry"
+                  ],
+                  "options": [
+                    {
+                      "value": "pantry",
+                      "label": {
+                        "ja": "パントリー"
+                      }
+                    },
+                    {
+                      "value": "laundry",
+                      "label": {
+                        "ja": "ランドリールーム"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "image_select",
+                  "key": "exterior_style",
+                  "label": {
+                    "ja": "外観テイスト"
+                  },
+                  "required": true,
+                  "multiple": false,
+                  "defaultValue": "modern",
+                  "options": [
+                    {
+                      "value": "modern",
+                      "label": {
+                        "ja": "モダン"
+                      },
+                      "image": {
+                        "mediaId": "img_modern_01",
+                        "alt": {
+                          "ja": "モダン外観"
+                        }
+                      }
+                    },
+                    {
+                      "value": "japanese_modern",
+                      "label": {
+                        "ja": "和モダン"
+                      },
+                      "image": {
+                        "mediaId": "img_wa_01",
+                        "alt": {
+                          "ja": "和モダン外観"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "upload",
+                  "key": "land_survey_file",
+                  "label": {
+                    "ja": "敷地測量図"
+                  },
+                  "required": false,
+                  "accept": [
+                    "application/pdf",
+                    "image/png"
+                  ],
+                  "maxFiles": 2,
+                  "maxSizeMb": 10
+                },
+                {
+                  "type": "textarea",
+                  "key": "solar_notes",
+                  "label": {
+                    "ja": "太陽光・蓄電池の特記事項"
+                  },
+                  "required": false,
+                  "maxLength": 1000,
+                  "visibleWhen": {
+                    "var": "has_solar"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "answers": {
+      "applicant_name": "Yamada",
+      "site_frontage": null,
+      "desired_area": 30
+    },
+    "expectedState": {
+      "visible": {
+        "applicant_name": true,
+        "site_frontage": true,
+        "desired_area": true,
+        "land_ownership": true,
+        "floor_count": true,
+        "has_solar": true,
+        "features": true,
+        "exterior_style": true,
+        "land_survey_file": true,
+        "solar_notes": false
+      },
+      "disabled": {
+        "applicant_name": false,
+        "site_frontage": false,
+        "desired_area": false,
+        "land_ownership": false,
+        "floor_count": false,
+        "has_solar": false,
+        "features": false,
+        "exterior_style": false,
+        "land_survey_file": false,
+        "solar_notes": false
+      },
+      "disabledOptions": {
+        "applicant_name": [],
+        "site_frontage": [],
+        "desired_area": [],
+        "land_ownership": [],
+        "floor_count": [],
+        "has_solar": [],
+        "features": [],
+        "exterior_style": [],
+        "land_survey_file": [],
+        "solar_notes": []
+      },
+      "answers": {
+        "applicant_name": "Yamada",
+        "site_frontage": null,
+        "desired_area": 30
+      },
+      "missingRequired": [
+        "site_frontage",
+        "land_ownership",
+        "floor_count",
+        "exterior_style"
+      ]
+    }
+  },
+  {
+    "name": "sampleWizard with unknown keys",
+    "wizard": {
+      "schemaVersion": 1,
+      "steps": [
+        {
+          "key": "site_and_structure",
+          "title": {
+            "ja": "敷地と建物"
+          },
+          "subtitle": {
+            "ja": "基本条件の入力"
+          },
+          "icon": "home",
+          "sections": [
+            {
+              "key": "site_section",
+              "title": {
+                "ja": "敷地情報"
+              },
+              "fields": [
+                {
+                  "type": "text",
+                  "key": "applicant_name",
+                  "label": {
+                    "ja": "お名前"
+                  },
+                  "required": false,
+                  "maxLength": 100,
+                  "defaultValue": "山田 太郎"
+                },
+                {
+                  "type": "number",
+                  "key": "site_frontage",
+                  "label": {
+                    "ja": "間口（m）"
+                  },
+                  "required": true,
+                  "min": 4,
+                  "max": 40,
+                  "step": 0.1,
+                  "defaultValue": 10.5,
+                  "binding": "site.frontage"
+                },
+                {
+                  "type": "range",
+                  "key": "desired_area",
+                  "label": {
+                    "ja": "延床面積（坪）"
+                  },
+                  "required": true,
+                  "min": 18,
+                  "max": 70,
+                  "step": 1,
+                  "defaultValue": 35,
+                  "binding": "building.targetArea"
+                },
+                {
+                  "type": "select",
+                  "key": "land_ownership",
+                  "label": {
+                    "ja": "土地所有状況"
+                  },
+                  "required": true,
+                  "defaultValue": "owned",
+                  "options": [
+                    {
+                      "value": "owned",
+                      "label": {
+                        "ja": "自己所有"
+                      }
+                    },
+                    {
+                      "value": "searching",
+                      "label": {
+                        "ja": "検討中"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "radio",
+                  "key": "floor_count",
+                  "label": {
+                    "ja": "階数"
+                  },
+                  "required": true,
+                  "defaultValue": "two_story",
+                  "options": [
+                    {
+                      "value": "single_story",
+                      "label": {
+                        "ja": "平屋"
+                      }
+                    },
+                    {
+                      "value": "two_story",
+                      "label": {
+                        "ja": "2階建て"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "lifestyle_and_options",
+          "title": {
+            "ja": "暮らしと設備"
+          },
+          "subtitle": {
+            "ja": "こだわり条件の入力"
+          },
+          "icon": "heart",
+          "sections": [
+            {
+              "key": "options_section",
+              "title": {
+                "ja": "設備・外観"
+              },
+              "fields": [
+                {
+                  "type": "boolean",
+                  "key": "has_solar",
+                  "label": {
+                    "ja": "太陽光パネル希望"
+                  },
+                  "required": false,
+                  "defaultValue": true
+                },
+                {
+                  "type": "checkbox_group",
+                  "key": "features",
+                  "label": {
+                    "ja": "希望設備"
+                  },
+                  "required": false,
+                  "defaultValue": [
+                    "pantry"
+                  ],
+                  "options": [
+                    {
+                      "value": "pantry",
+                      "label": {
+                        "ja": "パントリー"
+                      }
+                    },
+                    {
+                      "value": "laundry",
+                      "label": {
+                        "ja": "ランドリールーム"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "image_select",
+                  "key": "exterior_style",
+                  "label": {
+                    "ja": "外観テイスト"
+                  },
+                  "required": true,
+                  "multiple": false,
+                  "defaultValue": "modern",
+                  "options": [
+                    {
+                      "value": "modern",
+                      "label": {
+                        "ja": "モダン"
+                      },
+                      "image": {
+                        "mediaId": "img_modern_01",
+                        "alt": {
+                          "ja": "モダン外観"
+                        }
+                      }
+                    },
+                    {
+                      "value": "japanese_modern",
+                      "label": {
+                        "ja": "和モダン"
+                      },
+                      "image": {
+                        "mediaId": "img_wa_01",
+                        "alt": {
+                          "ja": "和モダン外観"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "upload",
+                  "key": "land_survey_file",
+                  "label": {
+                    "ja": "敷地測量図"
+                  },
+                  "required": false,
+                  "accept": [
+                    "application/pdf",
+                    "image/png"
+                  ],
+                  "maxFiles": 2,
+                  "maxSizeMb": 10
+                },
+                {
+                  "type": "textarea",
+                  "key": "solar_notes",
+                  "label": {
+                    "ja": "太陽光・蓄電池の特記事項"
+                  },
+                  "required": false,
+                  "maxLength": 1000,
+                  "visibleWhen": {
+                    "var": "has_solar"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "answers": {
+      "has_solar": true,
+      "unknown_foo": "bar",
+      "malicious_injection": "<script>"
+    },
+    "expectedState": {
+      "visible": {
+        "applicant_name": true,
+        "site_frontage": true,
+        "desired_area": true,
+        "land_ownership": true,
+        "floor_count": true,
+        "has_solar": true,
+        "features": true,
+        "exterior_style": true,
+        "land_survey_file": true,
+        "solar_notes": true
+      },
+      "disabled": {
+        "applicant_name": false,
+        "site_frontage": false,
+        "desired_area": false,
+        "land_ownership": false,
+        "floor_count": false,
+        "has_solar": false,
+        "features": false,
+        "exterior_style": false,
+        "land_survey_file": false,
+        "solar_notes": false
+      },
+      "disabledOptions": {
+        "applicant_name": [],
+        "site_frontage": [],
+        "desired_area": [],
+        "land_ownership": [],
+        "floor_count": [],
+        "has_solar": [],
+        "features": [],
+        "exterior_style": [],
+        "land_survey_file": [],
+        "solar_notes": []
+      },
+      "answers": {
+        "has_solar": true
+      },
+      "missingRequired": [
+        "site_frontage",
+        "desired_area",
+        "land_ownership",
+        "floor_count",
+        "exterior_style"
+      ]
+    }
+  },
+  {
+    "name": "Floor count single_story drops second_floor_toilet and disables elevator",
+    "wizard": {
+      "schemaVersion": 1,
+      "steps": [
+        {
+          "key": "step1",
+          "title": {
+            "ja": "階数と設備"
+          },
+          "sections": [
+            {
+              "key": "sec1",
+              "title": {
+                "ja": "階数"
+              },
+              "fields": [
+                {
+                  "type": "radio",
+                  "key": "floor_count",
+                  "label": {
+                    "ja": "階数"
+                  },
+                  "required": true,
+                  "options": [
+                    {
+                      "value": "single_story",
+                      "label": {
+                        "ja": "平屋"
+                      }
+                    },
+                    {
+                      "value": "two_story",
+                      "label": {
+                        "ja": "2階建て"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "select",
+                  "key": "second_floor_toilet",
+                  "label": {
+                    "ja": "2階トイレ"
+                  },
+                  "required": false,
+                  "visibleWhen": {
+                    "==": [
+                      {
+                        "var": "floor_count"
+                      },
+                      "two_story"
+                    ]
+                  },
+                  "options": [
+                    {
+                      "value": "none",
+                      "label": {
+                        "ja": "なし"
+                      }
+                    },
+                    {
+                      "value": "washlet",
+                      "label": {
+                        "ja": "温水洗浄便座"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "select",
+                  "key": "elevator",
+                  "label": {
+                    "ja": "エレベーター"
+                  },
+                  "required": false,
+                  "options": [
+                    {
+                      "value": "none",
+                      "label": {
+                        "ja": "なし"
+                      }
+                    },
+                    {
+                      "value": "yes",
+                      "label": {
+                        "ja": "あり"
+                      },
+                      "disabledWhen": {
+                        "==": [
+                          {
+                            "var": "floor_count"
+                          },
+                          "single_story"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "answers": {
+      "floor_count": "single_story",
+      "second_floor_toilet": "washlet",
+      "elevator": "yes"
+    },
+    "expectedState": {
+      "visible": {
+        "floor_count": true,
+        "second_floor_toilet": false,
+        "elevator": true
+      },
+      "disabled": {
+        "floor_count": false,
+        "second_floor_toilet": false,
+        "elevator": false
+      },
+      "disabledOptions": {
+        "floor_count": [],
+        "second_floor_toilet": [],
+        "elevator": [
+          "yes"
+        ]
+      },
+      "answers": {
+        "floor_count": "single_story"
+      },
+      "missingRequired": []
+    }
+  },
+  {
+    "name": "Checkbox group removes disabled option battery when has_solar is false",
+    "wizard": {
+      "schemaVersion": 1,
+      "steps": [
+        {
+          "key": "step1",
+          "title": {
+            "ja": "オプション"
+          },
+          "sections": [
+            {
+              "key": "sec1",
+              "title": {
+                "ja": "設備"
+              },
+              "fields": [
+                {
+                  "type": "boolean",
+                  "key": "has_solar",
+                  "label": {
+                    "ja": "太陽光"
+                  },
+                  "required": false
+                },
+                {
+                  "type": "checkbox_group",
+                  "key": "features",
+                  "label": {
+                    "ja": "設備一覧"
+                  },
+                  "required": false,
+                  "options": [
+                    {
+                      "value": "pantry",
+                      "label": {
+                        "ja": "パントリー"
+                      }
+                    },
+                    {
+                      "value": "battery",
+                      "label": {
+                        "ja": "蓄電池"
+                      },
+                      "disabledWhen": {
+                        "==": [
+                          {
+                            "var": "has_solar"
+                          },
+                          false
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "answers": {
+      "has_solar": false,
+      "features": [
+        "pantry",
+        "battery"
+      ]
+    },
+    "expectedState": {
+      "visible": {
+        "has_solar": true,
+        "features": true
+      },
+      "disabled": {
+        "has_solar": false,
+        "features": false
+      },
+      "disabledOptions": {
+        "has_solar": [],
+        "features": [
+          "battery"
+        ]
+      },
+      "answers": {
+        "has_solar": false,
+        "features": [
+          "pantry"
+        ]
+      },
+      "missingRequired": []
+    }
+  }
+]

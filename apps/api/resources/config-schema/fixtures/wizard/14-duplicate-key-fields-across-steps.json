@@ -1,0 +1,73 @@
+{
+  "description": "Field keys must be globally unique across all steps of the wizard",
+  "expected": {
+    "codes": [
+      "DUPLICATE_KEY"
+    ],
+    "firstPath": [
+      "steps",
+      1,
+      "sections",
+      0,
+      "fields",
+      0,
+      "key"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_one",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "shared_field_key",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_one_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      },
+      {
+        "key": "step_two",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "shared_field_key",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_two_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Duplicate Field Keys Across Steps",
+  "structural": "valid"
+}

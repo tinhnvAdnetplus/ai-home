@@ -1,0 +1,46 @@
+{
+  "description": "Localized Japanese text cannot consist solely of whitespace characters",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "title",
+      "ja"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_ws",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_ws",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_ws_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "   "
+        }
+      }
+    ]
+  },
+  "name": "Whitespace Only Japanese Text",
+  "structural": "invalid"
+}

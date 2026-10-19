@@ -1,0 +1,47 @@
+{
+  "description": "Number field with min, max, step, unit, and allowedUnits",
+  "expected": {
+    "codes": [],
+    "ok": true
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_num",
+        "sections": [
+          {
+            "fields": [
+              {
+                "allowedUnits": [
+                  "坪",
+                  "㎡"
+                ],
+                "defaultValue": 35,
+                "key": "field_num",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "max": 100,
+                "min": 0,
+                "required": false,
+                "step": 0.5,
+                "type": "number",
+                "unit": "坪"
+              }
+            ],
+            "key": "step_num_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Valid Number Field",
+  "structural": "valid"
+}

@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "steps": [
+        {
+            "key": "step_one",
+            "title": { "ja": "ステップ1" },
+            "sections": [
+                {
+                    "key": "sec_one",
+                    "title": { "ja": "セクション1" },
+                    "fields": [
+                        {
+                            "type": "select",
+                            "key": "color_choice",
+                            "label": { "ja": "色" },
+                            "defaultValue": "purple",
+                            "options": [
+                                { "value": "red", "label": { "ja": "赤" } },
+                                { "value": "blue", "label": { "ja": "青" } }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

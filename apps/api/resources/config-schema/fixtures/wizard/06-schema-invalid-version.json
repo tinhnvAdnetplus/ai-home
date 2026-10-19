@@ -1,0 +1,18 @@
+{
+  "description": "schemaVersion must be the literal 1",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "schemaVersion"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 2,
+    "steps": []
+  },
+  "name": "Invalid Schema Version",
+  "structural": "invalid"
+}

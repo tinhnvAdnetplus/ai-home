@@ -1,0 +1,64 @@
+{
+  "description": "Checkbox group with options, minSelected, maxSelected, and defaultValue",
+  "expected": {
+    "codes": [],
+    "ok": true
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_chk",
+        "sections": [
+          {
+            "fields": [
+              {
+                "defaultValue": [
+                  "solar",
+                  "storage"
+                ],
+                "key": "field_chk",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "maxSelected": 2,
+                "minSelected": 1,
+                "options": [
+                  {
+                    "label": {
+                      "ja": "太陽光発電"
+                    },
+                    "value": "solar"
+                  },
+                  {
+                    "label": {
+                      "ja": "蓄電池"
+                    },
+                    "value": "storage"
+                  },
+                  {
+                    "label": {
+                      "ja": "EV充電"
+                    },
+                    "value": "ev"
+                  }
+                ],
+                "required": false,
+                "type": "checkbox_group"
+              }
+            ],
+            "key": "step_chk_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Valid Checkbox Group Field",
+  "structural": "valid"
+}

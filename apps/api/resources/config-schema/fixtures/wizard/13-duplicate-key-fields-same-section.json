@@ -1,0 +1,57 @@
+{
+  "description": "Two fields in the same section have identical keys",
+  "expected": {
+    "codes": [
+      "DUPLICATE_KEY"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      1,
+      "key"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_dup_fields",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "dup_field",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              },
+              {
+                "key": "dup_field",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_dup_fields_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Duplicate Field Keys in Same Section",
+  "structural": "valid"
+}

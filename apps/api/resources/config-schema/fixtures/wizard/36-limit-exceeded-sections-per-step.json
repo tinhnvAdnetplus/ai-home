@@ -1,0 +1,365 @@
+{
+  "description": "A single step contains 21 sections, exceeding MAX_SECTIONS_PER_STEP (20)",
+  "expected": {
+    "codes": [
+      "LIMIT_EXCEEDED"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_many_sec",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "f_s_0",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "sec_0",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          },
+          {
+            "fields": [
+              {
+                "key": "f_s_1",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "sec_1",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          },
+          {
+            "fields": [
+              {
+                "key": "f_s_2",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "sec_2",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          },
+          {
+            "fields": [
+              {
+                "key": "f_s_3",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "sec_3",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          },
+          {
+            "fields": [
+              {
+                "key": "f_s_4",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "sec_4",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          },
+          {
+            "fields": [
+              {
+                "key": "f_s_5",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "sec_5",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          },
+          {
+            "fields": [
+              {
+                "key": "f_s_6",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "sec_6",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          },
+          {
+            "fields": [
+              {
+                "key": "f_s_7",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "sec_7",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          },
+          {
+            "fields": [
+              {
+                "key": "f_s_8",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "sec_8",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          },
+          {
+            "fields": [
+              {
+                "key": "f_s_9",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "sec_9",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          },
+          {
+            "fields": [
+              {
+                "key": "f_s_10",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "sec_10",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          },
+          {
+            "fields": [
+              {
+                "key": "f_s_11",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "sec_11",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          },
+          {
+            "fields": [
+              {
+                "key": "f_s_12",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "sec_12",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          },
+          {
+            "fields": [
+              {
+                "key": "f_s_13",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "sec_13",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          },
+          {
+            "fields": [
+              {
+                "key": "f_s_14",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "sec_14",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          },
+          {
+            "fields": [
+              {
+                "key": "f_s_15",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "sec_15",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          },
+          {
+            "fields": [
+              {
+                "key": "f_s_16",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "sec_16",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          },
+          {
+            "fields": [
+              {
+                "key": "f_s_17",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "sec_17",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          },
+          {
+            "fields": [
+              {
+                "key": "f_s_18",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "sec_18",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          },
+          {
+            "fields": [
+              {
+                "key": "f_s_19",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "sec_19",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          },
+          {
+            "fields": [
+              {
+                "key": "f_s_20",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "sec_20",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Sections Count Exceeds Step Limit (21 sections)",
+  "structural": "invalid"
+}

@@ -1,0 +1,52 @@
+{
+  "description": "Numeric field defaultValue is strictly less than min",
+  "expected": {
+    "codes": [
+      "DEFAULT_OUT_OF_RANGE"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "defaultValue"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_def_min",
+        "sections": [
+          {
+            "fields": [
+              {
+                "defaultValue": 5,
+                "key": "field_num_min",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "max": 100,
+                "min": 10,
+                "required": false,
+                "type": "number"
+              }
+            ],
+            "key": "step_def_min_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Number defaultValue Below Minimum",
+  "structural": "valid"
+}

@@ -1,0 +1,52 @@
+{
+  "description": "A field cannot condition its own visibility on its own answer",
+  "expected": {
+    "codes": [
+      "SELF_REFERENCE"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "visibleWhen"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_self_ref",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "self_field_vis",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text",
+                "visibleWhen": {
+                  "var": "self_field_vis"
+                }
+              }
+            ],
+            "key": "step_self_ref_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Self-referencing Field Condition in visibleWhen",
+  "structural": "valid"
+}

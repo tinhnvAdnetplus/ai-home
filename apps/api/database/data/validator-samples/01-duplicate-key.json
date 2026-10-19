@@ -1,0 +1,39 @@
+{
+    "schemaVersion": 1,
+    "steps": [
+        {
+            "key": "step_one",
+            "title": { "ja": "ステップ1" },
+            "sections": [
+                {
+                    "key": "sec_one",
+                    "title": { "ja": "セクション1" },
+                    "fields": [
+                        {
+                            "type": "text",
+                            "key": "common_field_key",
+                            "label": { "ja": "フィールド1" }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "step_two",
+            "title": { "ja": "ステップ2" },
+            "sections": [
+                {
+                    "key": "sec_two",
+                    "title": { "ja": "セクション2" },
+                    "fields": [
+                        {
+                            "type": "text",
+                            "key": "common_field_key",
+                            "label": { "ja": "重複フィールド" }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,73 @@
+{
+  "description": "Field A -> Field B -> Field C -> Field A cyclic dependency",
+  "expected": {
+    "codes": [
+      "CONDITION_CYCLE"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      2
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_cycle_3",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_c1",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text",
+                "visibleWhen": {
+                  "var": "field_c2"
+                }
+              },
+              {
+                "key": "field_c2",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text",
+                "visibleWhen": {
+                  "var": "field_c3"
+                }
+              },
+              {
+                "key": "field_c3",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "required": false,
+                "type": "text",
+                "visibleWhen": {
+                  "var": "field_c1"
+                }
+              }
+            ],
+            "key": "step_cycle_3_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Three-field Condition Dependency Cycle",
+  "structural": "valid"
+}

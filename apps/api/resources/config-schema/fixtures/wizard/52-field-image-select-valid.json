@@ -1,0 +1,66 @@
+{
+  "description": "Image select field with mediaRef images and multiple: false",
+  "expected": {
+    "codes": [],
+    "ok": true
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_img",
+        "sections": [
+          {
+            "fields": [
+              {
+                "defaultValue": "modern",
+                "key": "field_img",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "multiple": false,
+                "options": [
+                  {
+                    "image": {
+                      "alt": {
+                        "ja": "モダンデザインの外観"
+                      },
+                      "mediaId": "media_modern_01"
+                    },
+                    "label": {
+                      "ja": "モダン"
+                    },
+                    "value": "modern"
+                  },
+                  {
+                    "image": {
+                      "alt": {
+                        "ja": "和モダン外観"
+                      },
+                      "mediaId": "media_wa_01"
+                    },
+                    "label": {
+                      "ja": "和モダン"
+                    },
+                    "value": "japanese_modern"
+                  }
+                ],
+                "required": false,
+                "type": "image_select"
+              }
+            ],
+            "key": "step_img_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Valid Image Select Field",
+  "structural": "valid"
+}

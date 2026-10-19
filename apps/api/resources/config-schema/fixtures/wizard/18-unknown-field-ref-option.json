@@ -1,0 +1,60 @@
+{
+  "description": "Option disabledWhen condition references an unresolvable field key",
+  "expected": {
+    "codes": [
+      "UNKNOWN_FIELD_REF"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "options.0.disabledWhen"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_unknown_opt_cond",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_with_opt_cond",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "options": [
+                  {
+                    "disabledWhen": {
+                      "var": "missing_var"
+                    },
+                    "label": {
+                      "ja": "選択肢1"
+                    },
+                    "value": "opt_1"
+                  }
+                ],
+                "required": false,
+                "type": "radio"
+              }
+            ],
+            "key": "step_unknown_opt_cond_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Option disabledWhen References Unknown Field",
+  "structural": "valid"
+}

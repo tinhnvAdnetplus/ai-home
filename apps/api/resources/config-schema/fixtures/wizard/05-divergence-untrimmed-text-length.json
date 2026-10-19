@@ -1,0 +1,39 @@
+{
+  "description": "Localized text with surrounding whitespace that trims to 500 chars but is 504 chars raw",
+  "expected": {
+    "codes": [],
+    "ok": true
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_div",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_div",
+                "label": {
+                  "ja": "  ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ  "
+                },
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_div_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "knownDivergence": "Zod trims strings before validating length; raw JSON Schema validates untrimmed length unless normalized by server trimming.",
+  "name": "Untrimmed Localized Text Boundary",
+  "structural": "invalid"
+}

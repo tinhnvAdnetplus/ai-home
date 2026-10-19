@@ -1,0 +1,81 @@
+resources/js/features/plan/components/PlanCostBreakdown.tsx(31,48): error TS2345: Argument of type '[string]' is not assignable to parameter of type '[key: string | string[], options: TOptionsBase & $Dictionary & { defaultValue: string; }] | [key: string | str
+resources/js/features/plan/components/PlanCostDonut.tsx(87,36): error TS2345: Argument of type '[string]' is not assignable to parameter of type '[key: string | string[], options: TOptionsBase & $Dictionary & { defaultValue: string; }] | [key: string | string[
+resources/js/features/plan/components/PlanCostTab.tsx(3,16): error TS6133: 'AlertCircle' is declared but its value is never read.
+resources/js/features/plan/components/PlanInputSummaryTab.tsx(91,83): error TS2345: Argument of type 'TFunction<readonly ["common", "health", "errors", "wizard", "plan", "plan3d", "auth", "projects", "admin", "ai"], undefined>' is not assignable to parameter o
+resources/js/features/plan/components/PlanMiniThumb.tsx(33,40): error TS2345: Argument of type 'ViewportBounds | { minX: number; minY: number; maxX: number; maxY: number; widthMm: number; depthMm: number; }' is not assignable to parameter of type 'ViewportBoun
+resources/js/features/plan/components/PlanRefineBlock.tsx(81,28): error TS2345: Argument of type '[string]' is not assignable to parameter of type '[key: string | string[], options: TOptionsBase & $Dictionary & { defaultValue: string; }] | [key: string | strin
+resources/js/features/plan/components/PlanRefineBlock.tsx(101,25): error TS2322: Type '"primary"' is not assignable to type '"link" | "default" | "destructive" | "outline" | "secondary" | "ghost" | null | undefined'.
+resources/js/features/plan/components/PlanSpecRoomTable.tsx(10,9): error TS2367: This comparison appears to be unintentional because the types '"ldk" | "living" | "dining" | "kitchen" | "bedroom" | "childRoom" | "washitsu" | "bath" | "wash" | "toilet" | "entra
+resources/js/features/plan/components/PlanSpecRoomTable.tsx(78,56): error TS2345: Argument of type '[string]' is not assignable to parameter of type '[key: string | string[], options: TOptionsBase & $Dictionary & { defaultValue: string; }] | [key: string | str
+resources/js/features/plan/components/PlanSpecTable.tsx(36,96): error TS2345: Argument of type '["plan:areaApproxM2", { m2: number; }]' is not assignable to parameter of type '[key: "retry" | TemplateStringsArray | "appName" | "appSubtitle" | "sameOriginNote" 
+====ESLINT
+/app/apps/api/resources/js/features/plan/components/Plan2dDimensionsLayer.tsx
+  94:79   error  disallow literal string: <text x={titleBlockX + 160} y={titleBlockY + 320} fontSize={260} fontWeight="bold" fill="#2f3a34">
+                    {planLabel ? `${planLabel} ` : ''}{floor.level.toString()}F {t('plan:viewerTitle')}
+                </text>  i18next/no-literal-string
+  97:43   error  Irregular whitespace not allowed                                                                                                                                                                                     
+  97:127  error  Irregular whitespace not allowed                                                                                                                                                                                     
+/app/apps/api/resources/js/features/plan/components/Plan2dHatches.tsx
+  127:32  error  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+/app/apps/api/resources/js/features/plan/components/Plan2dLabelsLayer.tsx
+  25:35  error  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  25:67  error  disallow literal string: ROOM_LABEL_COLORS[room.type] ?? '#2f3a34'                                  i18next/no-literal-string
+/app/apps/api/resources/js/features/plan/components/PlanCostBreakdown.tsx
+  47:41  error  Inline style is forbidden. Use Tailwind utility classes instead  react/forbid-dom-props
+/app/apps/api/resources/js/features/plan/components/PlanCostDonut.tsx
+  43:25  error  Error: Cannot reassign variable after render completes
+Reassigning `accumulatedPercent` after render has completed can cause inconsistent behavior on subsequent renders. Consider using state instead.
+/app/apps/api/resources/js/features/plan/components/PlanCostDonut.tsx:43:25
+  41 |                         const strokeDasharray = `${((item.value / total) * circumference).toString()} ${circumference.toString()}`;
+  42 |                         const strokeDashoffset = (-accumulatedPercent * circumference).toString();
+> 43 |                         accumulatedPercent += item.value / total;
+     |                         ^^^^^^^^^^^^^^^^^^ Cannot reassign `accumulatedPercent` after render completes
+  44 |
+  45 |                         return (
+  46 |                             <circle  react-hooks/immutability
+  82:29  error  Inline style is forbidden. Use Tailwind utility classes instead                                                                                                                                                       
+/app/apps/api/resources/js/features/plan/components/PlanCostLoanSim.tsx
+  49:46  error  Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  70:46  error  Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  89:46  error  Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+/app/apps/api/resources/js/features/plan/components/PlanCostTab.tsx
+   3:16  error  'AlertCircle' is defined but never used                                                                @typescript-eslint/no-unused-vars
+  26:11  error  Variable name `diffPositive` must have one of the following prefixes: is, has, can, should, will, did  @typescript-eslint/naming-convention
+/app/apps/api/resources/js/features/plan/components/PlanInputSummaryTab.tsx
+  14:36  error  Unnecessary conditional, the types have no overlap                                           @typescript-eslint/no-unnecessary-condition
+  15:21  error  Do not use any type assertions                                                               @typescript-eslint/consistent-type-assertions
+  28:19  error  'val' will use Object's default stringification format ('[object Object]') when stringified  @typescript-eslint/no-base-to-string
+/app/apps/api/resources/js/features/plan/components/PlanRefineBlock.tsx
+  90:38  error  Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+/app/apps/api/resources/js/features/plan/components/PlanResults.tsx
+   88:116  error  Async arrow function has no 'await' expression                             @typescript-eslint/require-await
+   95:33   error  Unnecessary conditional, comparison is always true, since `3 > 0` is true  @typescript-eslint/no-unnecessary-condition
+  163:1    error  File has too many lines (153). Maximum allowed is 150                      max-lines
+/app/apps/api/resources/js/features/plan/components/PlanSpecRoomTable.tsx
+  36:62  error  disallow literal string: <span className="font-normal text-slate-500 text-xs">
+                                    ({floorAreaM2.toFixed(1)} m² / {floorTsubo} {t('plan:tsubo')})
+                                </span>              i18next/no-literal-string
+  75:77  error  disallow literal string: <td className="py-2 px-3 text-right text-slate-600 whitespace-nowrap">
+                                                    {room.areaM2.toFixed(1)} m²
+                                                </td>  i18next/no-literal-string
+  93:69  error  disallow literal string: <td className="py-2.5 px-3 text-right whitespace-nowrap">
+                                            {floorAreaM2.toFixed(1)} m²
+                                        </td>                               i18next/no-literal-string
+/app/apps/api/resources/js/features/plan/components/PlanSpecTable.tsx
+  26:11  error  Variable name `coverageOk` must have one of the following prefixes: is, has, can, should, will, did    @typescript-eslint/naming-convention
+  27:11  error  Variable name `floorRatioOk` must have one of the following prefixes: is, has, can, should, will, did  @typescript-eslint/naming-convention
+/app/apps/api/resources/js/features/plan/components/PlanViewSwitcher.tsx
+  51:45  error  Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression
+  51:58  error  Do not use any type assertions                                                                                      @typescript-eslint/consistent-type-assertions
+/app/apps/api/resources/js/features/plan/lib/plan-refine-chips.ts
+  27:40  error  Unsafe spread of an `any` value in an array  @typescript-eslint/no-unsafe-assignment
+  29:5   error  Unsafe return of a value of type `any[]`     @typescript-eslint/no-unsafe-return
+  87:55  error  Do not use any type assertions               @typescript-eslint/consistent-type-assertions
+/app/apps/api/resources/js/features/plan/lib/room-styles.ts
+  6:33  error  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+  7:23  error  Unnecessary conditional, expected left-hand side of `??` operator to be possibly null or undefined  @typescript-eslint/no-unnecessary-condition
+/app/apps/api/resources/js/features/plan3d/debug-inspect.test.ts
+  24:5  error  Unexpected console statement  no-console
+  27:9  error  Unexpected console statement  no-console
+✖ 35 problems (35 errors, 0 warnings)
+  5 errors and 0 warnings potentially fixable with the `--fix` option.

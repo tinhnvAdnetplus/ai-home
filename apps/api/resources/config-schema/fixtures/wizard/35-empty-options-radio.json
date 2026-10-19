@@ -1,0 +1,50 @@
+{
+  "description": "A radio field must define at least one option",
+  "expected": {
+    "codes": [
+      "EMPTY_OPTIONS"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0,
+      "options"
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_empty_radio",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_empty_radio",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "options": [],
+                "required": false,
+                "type": "radio"
+              }
+            ],
+            "key": "step_empty_radio_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Radio Field With Zero Options",
+  "structural": "valid"
+}

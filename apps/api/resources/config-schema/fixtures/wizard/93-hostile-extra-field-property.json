@@ -1,0 +1,49 @@
+{
+  "description": "Field objects are strict and disallow unrecognized properties",
+  "expected": {
+    "codes": [
+      "SCHEMA_INVALID"
+    ],
+    "firstPath": [
+      "steps",
+      0,
+      "sections",
+      0,
+      "fields",
+      0
+    ],
+    "ok": false
+  },
+  "input": {
+    "schemaVersion": 1,
+    "steps": [
+      {
+        "key": "step_extra_prop",
+        "sections": [
+          {
+            "fields": [
+              {
+                "key": "field_extra_prop",
+                "label": {
+                  "ja": "テスト項目"
+                },
+                "maliciousPayload": true,
+                "required": false,
+                "type": "text"
+              }
+            ],
+            "key": "step_extra_prop_sec",
+            "title": {
+              "ja": "セクションタイトル"
+            }
+          }
+        ],
+        "title": {
+          "ja": "ステップタイトル"
+        }
+      }
+    ]
+  },
+  "name": "Unknown Extra Property In Field Object",
+  "structural": "invalid"
+}
