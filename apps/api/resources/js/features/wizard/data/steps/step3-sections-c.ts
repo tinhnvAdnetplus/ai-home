@@ -120,7 +120,10 @@ export const step3SectionsC: readonly Section[] = [
                             '2 vị trí (tầng 1 & 2)',
                         ),
                         disabledWhen: {
-                            '==': [{ var: 'floors' }, 'one_story'],
+                            or: [
+                                { '==': [{ var: 'floors' }, 'one_story'] },
+                                { '==': [{ var: 'plan_type' }, 'one_story'] },
+                            ],
                         },
                     },
                     {
@@ -131,7 +134,10 @@ export const step3SectionsC: readonly Section[] = [
                             'Từ 3 vị trí trở lên',
                         ),
                         disabledWhen: {
-                            '==': [{ var: 'floors' }, 'one_story'],
+                            or: [
+                                { '==': [{ var: 'floors' }, 'one_story'] },
+                                { '==': [{ var: 'plan_type' }, 'one_story'] },
+                            ],
                         },
                     },
                     opt('other', 'その他', 'Other', 'Khác'),

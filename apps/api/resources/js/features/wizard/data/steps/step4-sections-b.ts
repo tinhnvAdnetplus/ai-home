@@ -20,29 +20,47 @@ export const step4SectionsB: readonly Section[] = [
                 ),
                 required: false,
                 multiple: true,
-                defaultValue: ['workspace', 'deck_garden'],
+                defaultValue: ['deck_garden'],
                 options: [
-                    imgOpt(
-                        'workspace',
-                        'life-space-workspace',
-                        '書斎・ワーク\nスペース',
-                        'Study / workspace',
-                        'Góc làm việc / phòng đọc sách',
-                    ),
-                    imgOpt(
-                        'tatami',
-                        'life-space-tatami',
-                        '和室',
-                        'Japanese tatami room',
-                        'Phòng chiếu tatami',
-                    ),
-                    imgOpt(
-                        'fukinuke',
-                        'life-space-atrium',
-                        '吹き抜け',
-                        'Open ceiling / atrium',
-                        'Khoảng thông tầng',
-                    ),
+                    {
+                        ...imgOpt(
+                            'workspace',
+                            'life-space-workspace',
+                            '書斎・ワーク\nスペース',
+                            'Study / workspace',
+                            'Góc làm việc / phòng đọc sách',
+                        ),
+                        disabledWhen: {
+                            '==': [{ var: 'plan_study_count' }, 'count_0'],
+                        },
+                    },
+                    {
+                        ...imgOpt(
+                            'tatami',
+                            'life-space-tatami',
+                            '和室',
+                            'Japanese tatami room',
+                            'Phòng chiếu tatami',
+                        ),
+                        disabledWhen: {
+                            '==': [{ var: 'plan_tatami_count' }, 'count_0'],
+                        },
+                    },
+                    {
+                        ...imgOpt(
+                            'fukinuke',
+                            'life-space-atrium',
+                            '吹き抜け',
+                            'Open ceiling / atrium',
+                            'Khoảng thông tầng',
+                        ),
+                        disabledWhen: {
+                            or: [
+                                { '==': [{ var: 'floors' }, 'one_story'] },
+                                { '==': [{ var: 'plan_type' }, 'one_story'] },
+                            ],
+                        },
+                    },
                     imgOpt(
                         'deck_garden',
                         'life-space-deck-garden',

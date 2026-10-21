@@ -3,7 +3,7 @@
 // bundle (dev routes, dev login hint). `pnpm build` forces NODE_ENV=production and then runs this check.
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
-import { URL } from 'node:url';
+import { fileURLToPath, URL } from 'node:url';
 import console from 'node:console';
 import process from 'node:process';
 
@@ -14,7 +14,7 @@ const FORBIDDEN = [
     'Component Showcase',
     'user@aihome.local',
 ];
-const root = new URL('../public/build/assets/', import.meta.url).pathname;
+const root = fileURLToPath(new URL('../public/build/assets/', import.meta.url));
 
 function* walk(dir) {
     for (const name of readdirSync(dir)) {

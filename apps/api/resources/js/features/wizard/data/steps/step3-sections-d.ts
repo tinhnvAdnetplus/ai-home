@@ -52,7 +52,10 @@ export const step3SectionsD: readonly Section[] = [
                             'Gầm cầu thang',
                         ),
                         disabledWhen: {
-                            '==': [{ var: 'floors' }, 'one_story'],
+                            or: [
+                                { '==': [{ var: 'floors' }, 'one_story'] },
+                                { '==': [{ var: 'plan_type' }, 'one_story'] },
+                            ],
                         },
                     },
                     imgOpt(

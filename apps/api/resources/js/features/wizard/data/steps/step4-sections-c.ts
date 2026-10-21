@@ -22,15 +22,42 @@ export const step4SectionsC: readonly Section[] = [
                 multiple: true,
                 defaultValue: ['cars_2'],
                 options: [
-                    imgOpt('cars_1', 'life-parking-1', '1台', '1 car', '1 xe'),
-                    imgOpt('cars_2', 'life-parking-2', '2台', '2 cars', '2 xe'),
-                    imgOpt(
-                        'cars_3_plus',
-                        'life-parking-3',
-                        '3台以上',
-                        '3 or more cars',
-                        'Từ 3 xe trở lên',
-                    ),
+                    {
+                        ...imgOpt(
+                            'cars_1',
+                            'life-parking-1',
+                            '1台',
+                            '1 car',
+                            '1 xe',
+                        ),
+                        disabledWhen: {
+                            '==': [{ var: 'plan_parking_count' }, 'none'],
+                        },
+                    },
+                    {
+                        ...imgOpt(
+                            'cars_2',
+                            'life-parking-2',
+                            '2台',
+                            '2 cars',
+                            '2 xe',
+                        ),
+                        disabledWhen: {
+                            '==': [{ var: 'plan_parking_count' }, 'none'],
+                        },
+                    },
+                    {
+                        ...imgOpt(
+                            'cars_3_plus',
+                            'life-parking-3',
+                            '3台以上',
+                            '3 or more cars',
+                            'Từ 3 xe trở lên',
+                        ),
+                        disabledWhen: {
+                            '==': [{ var: 'plan_parking_count' }, 'none'],
+                        },
+                    },
                     imgOpt(
                         'bicycle_space',
                         'life-parking-bicycle',
@@ -59,14 +86,22 @@ export const step4SectionsC: readonly Section[] = [
                     'Nguyện vọng làm việc tại nhà',
                 ),
                 required: false,
-                defaultValue: 'dedicated_room',
+                defaultValue: 'not_needed',
+                disabledWhen: {
+                    '==': [{ var: 'plan_study_count' }, 'count_0'],
+                },
                 options: [
-                    opt(
-                        'dedicated_room',
-                        '必要（専用の書斎が欲しい）',
-                        'Needed (dedicated study / office)',
-                        'Cần thiết (muốn có phòng làm việc riêng)',
-                    ),
+                    {
+                        ...opt(
+                            'dedicated_room',
+                            '必要（専用の書斎が欲しい）',
+                            'Needed (dedicated study / office)',
+                            'Cần thiết (muốn có phòng làm việc riêng)',
+                        ),
+                        disabledWhen: {
+                            '==': [{ var: 'plan_study_count' }, 'count_0'],
+                        },
+                    },
                     opt(
                         'living_corner',
                         'リビングの一角で対応',

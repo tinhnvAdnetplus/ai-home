@@ -36,13 +36,21 @@ export const step5SectionsC: readonly Section[] = [
                         'Wood deck',
                         'Sàn gỗ ngoài trời',
                     ),
-                    imgOpt(
-                        'fukinuke',
-                        'design-feature-atrium',
-                        '吹き抜け',
-                        'Open ceiling / atrium',
-                        'Thông tầng',
-                    ),
+                    {
+                        ...imgOpt(
+                            'fukinuke',
+                            'design-feature-atrium',
+                            '吹き抜け',
+                            'Open ceiling / atrium',
+                            'Thông tầng',
+                        ),
+                        disabledWhen: {
+                            or: [
+                                { '==': [{ var: 'floors' }, 'one_story'] },
+                                { '==': [{ var: 'plan_type' }, 'one_story'] },
+                            ],
+                        },
+                    },
                     imgOpt(
                         'simple_facade',
                         'design-feature-facade',
@@ -57,13 +65,18 @@ export const step5SectionsC: readonly Section[] = [
                         'Green landscaping',
                         'Sân vườn nhiều cây xanh',
                     ),
-                    imgOpt(
-                        'garage',
-                        'design-feature-garage',
-                        'ガレージ',
-                        'Garage',
-                        'Gara để xe',
-                    ),
+                    {
+                        ...imgOpt(
+                            'garage',
+                            'design-feature-garage',
+                            'ガレージ',
+                            'Garage',
+                            'Gara để xe',
+                        ),
+                        disabledWhen: {
+                            '==': [{ var: 'plan_parking_count' }, 'none'],
+                        },
+                    },
                 ],
             },
         ],
