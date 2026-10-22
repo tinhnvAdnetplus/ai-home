@@ -7,11 +7,11 @@ import { FieldHeader } from './FieldHeader';
 import { type CommonFieldProps } from '../../lib/field-helpers';
 
 type UploadField = Extract<Field, { type: 'upload' }>;
-type UploadedFileItem = {
-    readonly name: string;
-    readonly size: number;
-};
-type Props = CommonFieldProps<UploadField, readonly UploadedFileItem[]>;
+/**
+ * An upload answer is a list of media references (strings), per AnswerValue;
+ * storing {name, size} objects made every draft save fail with HTTP 422.
+ */
+type Props = CommonFieldProps<UploadField, readonly string[]>;
 
 export function UploadRenderer({
     field,
@@ -29,14 +29,14 @@ export function UploadRenderer({
 
     const handleFiles = (fileList: FileList | null): void => {
         if (!fileList || fileList.length === 0) return;
-        const newFiles: UploadedFileItem[] = [];
+        const newNames: string[] = [];
         for (let i = 0; i < fileList.length; i += 1) {
             const f = fileList.item(i);
             if (f) {
-                newFiles.push({ name: f.name, size: f.size });
+                newNames.push(f.name);
             }
         }
-        const merged = [...value, ...newFiles].slice(0, field.maxFiles);
+        const merged = [...value, ...newNames].slice(0, field.maxFiles);
         onChange(merged);
     };
 
@@ -106,9 +106,9 @@ export function UploadRenderer({
 
             {value.length > 0 ? (
                 <div className="mt-3 flex flex-col gap-2">
-                    {value.map((f, idx) => (
+                    {value.map((name, idx) => (
                         <div
-                            key={`${f.name}-${idx.toString()}`}
+                            key={`${name}-${idx.toString()}`}
                             className="flex items-center justify-between p-2 rounded-lg bg-muted text-sm"
                         >
                             <div className="flex items-center gap-2 truncate">
@@ -117,10 +117,7 @@ export function UploadRenderer({
                                     aria-hidden="true"
                                 />
                                 <span className="truncate font-medium">
-                                    {f.name}
-                                </span>
-                                <span className="text-xs text-muted-foreground shrink-0">
-                                    {`(${Math.round(f.size / 1024).toString()} KB)`}
+                                    {name}
                                 </span>
                             </div>
                             <Button

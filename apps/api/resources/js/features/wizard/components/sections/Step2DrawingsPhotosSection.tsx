@@ -2,21 +2,7 @@ import { useRef, useState, type ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { UploadCloud } from 'lucide-react';
 import { Step2DrawingsPhotosThumbnails } from './Step2DrawingsPhotosThumbnails';
-import {
-    Step2DrawingsPhotosFileList,
-    type UploadedFileItem,
-} from './Step2DrawingsPhotosFileList';
-
-function isFileItem(item: unknown): item is UploadedFileItem {
-    return (
-        typeof item === 'object' &&
-        item !== null &&
-        'name' in item &&
-        typeof Reflect.get(item, 'name') === 'string' &&
-        'size' in item &&
-        typeof Reflect.get(item, 'size') === 'number'
-    );
-}
+import { Step2DrawingsPhotosFileList } from './Step2DrawingsPhotosFileList';
 
 type Props = {
     readonly answers: Record<string, unknown>;
@@ -34,21 +20,25 @@ export function Step2DrawingsPhotosSection({
     const inputRef = useRef<HTMLInputElement>(null);
     const [isDragging, setIsDragging] = useState(false);
 
+    // An upload answer is a list of media references (strings), per AnswerValue:
+    // storing {name, size} objects made every draft save fail with HTTP 422.
     const rawFiles = answers.land_survey_file;
-    const uploadedFiles: readonly UploadedFileItem[] = Array.isArray(rawFiles)
-        ? rawFiles.filter(isFileItem)
-        : [];
+    const fileNames: readonly string[] = Array.isArray(rawFiles)
+        ? rawFiles.filter((item): item is string => typeof item === 'string')
+        : typeof rawFiles === 'string'
+          ? [rawFiles]
+          : [];
 
     const handleFiles = (fileList: FileList | null): void => {
         if (!fileList || fileList.length === 0) return;
-        const newFiles: UploadedFileItem[] = [];
+        const newNames: string[] = [];
         for (let i = 0; i < fileList.length; i += 1) {
             const f = fileList.item(i);
-            if (f) newFiles.push({ name: f.name, size: f.size });
+            if (f) newNames.push(f.name);
         }
         onAnswerChange(
             'land_survey_file',
-            [...uploadedFiles, ...newFiles].slice(0, 3),
+            [...fileNames, ...newNames].slice(0, 3),
         );
     };
 
@@ -60,7 +50,7 @@ export function Step2DrawingsPhotosSection({
     const removeFile = (index: number): void => {
         onAnswerChange(
             'land_survey_file',
-            uploadedFiles.filter((_, idx) => idx !== index),
+            fileNames.filter((_, idx) => idx !== index),
         );
     };
 
@@ -115,7 +105,7 @@ export function Step2DrawingsPhotosSection({
             </div>
 
             <Step2DrawingsPhotosFileList
-                files={uploadedFiles}
+                files={fileNames}
                 onRemove={removeFile}
             />
         </div>

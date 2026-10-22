@@ -63,7 +63,7 @@ export const FloorPlanView = forwardRef<FloorPlanViewHandle, FloorPlanViewProps>
             return computeFloorBuildingViewBox(currentFloor, FLOOR_VIEWBOX_PADDING, extraPoints);
         }, [currentFloor, model.site, model.parking, model.exterior]);
 
-        const panZoom = usePanZoom(1.0);
+        const panZoom = usePanZoom(1.0, svgRef);
         const handleSelectLevel = (level: number): void => {
             setActiveLevel(level);
             panZoom.resetZoom();

@@ -10,6 +10,7 @@ import {
     saveStoredDraft,
 } from '../lib/wizard-storage';
 import { extractDefaults } from '../lib/default-answers';
+import { normalizeLegacyAnswers } from '../lib/legacy-answers';
 
 type State = {
     readonly currentStepIndex: number;
@@ -47,19 +48,21 @@ function initWizardState(wizard: WizardConfig, configHash: string): State {
     const defaults = extractDefaults(wizard);
     const devStep = readDevStep(wizard.steps.length);
     const draft = loadStoredDraft(configHash);
+    const draftAnswers =
+        draft === null ? null : normalizeLegacyAnswers(wizard, draft.answers);
     if (devStep !== null) {
         return {
             currentStepIndex: devStep,
-            answers: { ...defaults, ...(draft?.answers ?? {}) },
+            answers: { ...defaults, ...(draftAnswers ?? {}) },
         };
     }
-    if (draft !== null) {
+    if (draft !== null && draftAnswers !== null) {
         return {
             currentStepIndex: Math.min(
                 Math.max(0, draft.stepIndex),
                 wizard.steps.length - 1,
             ),
-            answers: { ...defaults, ...draft.answers },
+            answers: { ...defaults, ...draftAnswers },
         };
     }
     return { currentStepIndex: 0, answers: defaults };

@@ -24,18 +24,23 @@ export function Step3PlanAreaSection({
     const rawArea =
         typeof answers.plan_target_area === 'number'
             ? answers.plan_target_area
-            : 30;
+            : undefined;
 
     const displayValue =
-        currentUnit === 'm²'
-            ? (Math.round(rawArea * TSUBO_TO_M2 * 10) / 10).toString()
-            : rawArea.toString();
+        rawArea === undefined
+            ? ''
+            : currentUnit === 'm²'
+              ? (Math.round(rawArea * TSUBO_TO_M2 * 10) / 10).toString()
+              : rawArea.toString();
 
-    const approxM2 = Math.round(rawArea * TSUBO_TO_M2);
+    const approxM2 =
+        rawArea === undefined ? 0 : Math.round(rawArea * TSUBO_TO_M2);
 
     const handleInputChange = (raw: string): void => {
         if (raw === '') {
-            onAnswerChange('plan_target_area', 0);
+            // Clearing the field unsets the answer; 0 would be saved as an
+            // out-of-range value and the API rejects the whole draft.
+            onAnswerChange('plan_target_area', undefined);
             return;
         }
         const parsed = Number(raw);

@@ -1,9 +1,10 @@
 import {
     useState,
     useCallback,
+    useEffect,
     type PointerEvent,
-    type WheelEvent,
     type KeyboardEvent,
+    type RefObject,
 } from 'react';
 import { type PanZoomState } from '../types/plan-view-types';
 
@@ -21,18 +22,26 @@ export type PanZoomControls = {
     readonly handlePointerDown: (e: PointerEvent<SVGSVGElement>) => void;
     readonly handlePointerMove: (e: PointerEvent<SVGSVGElement>) => void;
     readonly handlePointerUp: () => void;
-    readonly handleWheel: (e: WheelEvent<SVGSVGElement>) => void;
     readonly handleKeyDown: (e: KeyboardEvent<HTMLElement>) => void;
     readonly svgProps: {
         readonly onPointerDown: (e: PointerEvent<SVGSVGElement>) => void;
         readonly onPointerMove: (e: PointerEvent<SVGSVGElement>) => void;
         readonly onPointerUp: () => void;
         readonly onPointerCancel: () => void;
-        readonly onWheel: (e: WheelEvent<SVGSVGElement>) => void;
     };
 };
 
-export function usePanZoom(initialZoom = 1.0): PanZoomControls {
+/**
+ * Pan/zoom state for the SVG plan view.
+ *
+ * `wheelTargetRef` gets a native, non-passive `wheel` listener: React attaches
+ * its own wheel handlers passively, where preventDefault() is ignored and logs
+ * "Unable to preventDefault inside passive event listener invocation."
+ */
+export function usePanZoom(
+    initialZoom = 1.0,
+    wheelTargetRef?: RefObject<SVGSVGElement | null>,
+): PanZoomControls {
     const [state, setState] = useState<PanZoomState>({
         zoom: initialZoom,
         panX: 0,
@@ -87,14 +96,27 @@ export function usePanZoom(initialZoom = 1.0): PanZoomControls {
         setIsDragging(false);
     }, []);
 
-    const handleWheel = useCallback((e: WheelEvent<SVGSVGElement>) => {
-        e.preventDefault();
-        const factor = e.deltaY < 0 ? ZOOM_STEP : 1 / ZOOM_STEP;
-        setState((prev) => ({
-            ...prev,
-            zoom: Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, prev.zoom * factor)),
-        }));
-    }, []);
+    useEffect(() => {
+        const el = wheelTargetRef?.current;
+        if (!el) {
+            return;
+        }
+        const onWheel = (e: globalThis.WheelEvent): void => {
+            e.preventDefault();
+            const factor = e.deltaY < 0 ? ZOOM_STEP : 1 / ZOOM_STEP;
+            setState((prev) => ({
+                ...prev,
+                zoom: Math.min(
+                    MAX_ZOOM,
+                    Math.max(MIN_ZOOM, prev.zoom * factor),
+                ),
+            }));
+        };
+        el.addEventListener('wheel', onWheel, { passive: false });
+        return () => {
+            el.removeEventListener('wheel', onWheel);
+        };
+    }, [wheelTargetRef]);
 
     const handleKeyDown = useCallback(
         (e: KeyboardEvent<HTMLElement>) => {
@@ -130,14 +152,12 @@ export function usePanZoom(initialZoom = 1.0): PanZoomControls {
         handlePointerDown,
         handlePointerMove,
         handlePointerUp,
-        handleWheel,
         handleKeyDown,
         svgProps: {
             onPointerDown: handlePointerDown,
             onPointerMove: handlePointerMove,
             onPointerUp: handlePointerUp,
             onPointerCancel: handlePointerUp,
-            onWheel: handleWheel,
         },
     };
 }

@@ -33,7 +33,9 @@ export function Step2LandAreaSection({
 
     const handleInputChange = (raw: string): void => {
         if (raw === '') {
-            onAnswerChange('land_area', 0);
+            // Clearing the field unsets the answer; 0 would be saved as an
+            // out-of-range value and the API rejects the whole draft.
+            onAnswerChange('land_area', undefined);
             return;
         }
         const parsed = Number(raw);

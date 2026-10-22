@@ -33,7 +33,9 @@ export function Step2FrontageDepthSection({
 
     const handleNumberChange = (key: string, raw: string): void => {
         if (raw === '') {
-            onAnswerChange(key, 0);
+            // Clearing the field unsets the answer; 0 would be saved as an
+            // out-of-range value and the API rejects the whole draft.
+            onAnswerChange(key, undefined);
             return;
         }
         const parsed = Number(raw);

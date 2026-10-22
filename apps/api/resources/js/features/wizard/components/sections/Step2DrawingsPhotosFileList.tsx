@@ -2,13 +2,9 @@ import { useTranslation } from 'react-i18next';
 import { FileText, X } from 'lucide-react';
 import { Button } from '@/shared/ui/Button';
 
-export type UploadedFileItem = {
-    readonly name: string;
-    readonly size: number;
-};
-
 type Props = {
-    readonly files: readonly UploadedFileItem[];
+    /** Media references, as stored in the upload answer. */
+    readonly files: readonly string[];
     readonly onRemove: (index: number) => void;
 };
 
@@ -22,9 +18,9 @@ export function Step2DrawingsPhotosFileList({
 
     return (
         <div className="mt-1 flex flex-col gap-1.5">
-            {files.map((f, idx) => (
+            {files.map((name, idx) => (
                 <div
-                    key={`${f.name}-${idx.toString()}`}
+                    key={`${name}-${idx.toString()}`}
                     className="flex items-center justify-between p-1.5 rounded-lg bg-slate-50 border border-slate-200 text-xs"
                 >
                     <div className="flex items-center gap-2 truncate">
@@ -33,10 +29,7 @@ export function Step2DrawingsPhotosFileList({
                             aria-hidden="true"
                         />
                         <span className="truncate font-medium text-slate-800">
-                            {f.name}
-                        </span>
-                        <span className="text-[10px] text-slate-400 shrink-0">
-                            {`(${Math.round(f.size / 1024).toString()} KB)`}
+                            {name}
                         </span>
                     </div>
                     <Button
