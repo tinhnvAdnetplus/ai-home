@@ -14,6 +14,7 @@ Thư mục này lưu trữ các bản ghi quyết định kiến trúc quan tr�
 | [ADR 0004](0004-llm-validated-constraints-only.md) | **LLM chỉ sinh ràng buộc đã kiểm thực, tuyệt đối không sinh hình học** | Accepted | 2026-10-12 | LLM chỉ trích xuất mong muốn người dùng thành danh sách ràng buộc Zod (`aiConstraintSchema`). Bộ sinh mặt bằng hình học xử lý việc đặt phòng trên lưới 910mm. |
 | [ADR 0005](0005-config-documents-draft-publish.md) | **Quản lý cấu hình động bằng tài liệu phiên bản nháp / xuất bản** | Accepted | 2026-10-12 | Vòng đời Nháp (draft) sửa đổi tự do -> Xuất bản (published) sinh phiên bản bất biến (`v1, v2`) kèm ETag. Cung cấp rollback tức thì và fallback an toàn ở client. |
 | [ADR 0006](0006-i18n-ja-en-vi.md) | **Hỗ trợ đa ngôn ngữ (i18n) với Tiếng Nhật là mặc định** | Accepted | 2026-10-12 | Tiếng Nhật (`ja`) là ngôn ngữ mặc định và fallback gốc cho toàn bộ UI và API. Hỗ trợ song song Tiếng Anh (`en`) và Tiếng Việt (`vi`). Cấm hard-code chuỗi ký tự. |
+| [ADR 0007](0007-canonical-coordinates-solid-validation-materials.md) | **Hệ tọa độ chuẩn, kiểm tra va chạm khối đặc và bảng màu vật liệu theo ngữ nghĩa** | Accepted | 2026-10-22 | Gốc trước-trái mặt đất, +X rộng, +Y sâu, +Z lên (mm); một ranh giới duy nhất sang Three.js; mối nối tường xác định; `validateSolids` phân biệt tiếp xúc/va chạm/thiếu dữ liệu; bảng màu theo phong cách, màu người dùng được giữ nguyên. |
 
 ---
 

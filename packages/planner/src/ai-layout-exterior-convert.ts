@@ -1,6 +1,7 @@
 import {
     type Exterior, type Parking, type ParkingKind, type Polygon, type Roof, type RoofKind, type SiteTree,
 } from '@aihome/bdm';
+import { keepTreeOffBuilding } from './site-clearance.js';
 import { type AiLayoutExterior, type AiLayoutWindow } from './ai-layout-schema.js';
 import { type WindowSpec } from './openings.js';
 import { type GridRoom, type PlanInput } from './types.js';
@@ -73,9 +74,9 @@ function adjustTreeForDeck(t: SiteTree, deck: Polygon | undefined, maxY: number)
     if (!deck || deck.length === 0) return t;
     const xs = deck.map((p) => p.x);
     const ys = deck.map((p) => p.y);
-    const overlapsX = t.pos.x + t.radiusMm > Math.min(...xs) && t.pos.x - t.radiusMm < Math.max(...xs);
+    const isOverlappingX = t.pos.x + t.radiusMm > Math.min(...xs) && t.pos.x - t.radiusMm < Math.max(...xs);
     const deckMaxY = Math.max(...ys);
-    if (!overlapsX || t.pos.y - t.radiusMm >= deckMaxY) return t;
+    if (!isOverlappingX || t.pos.y - t.radiusMm >= deckMaxY) return t;
     const shiftedY = deckMaxY + t.radiusMm + 150;
     return shiftedY + t.radiusMm <= maxY ? { pos: { x: t.pos.x, y: shiftedY }, radiusMm: t.radiusMm } : null;
 }
@@ -127,7 +128,10 @@ export function assembleExteriorBdm(args: {
                     { pos: { x: 600, y: houseDmm + 850 }, radiusMm: 750 },
                 ]
               : [];
+    const lotBox = { minX: -500, maxX: frontageMm - 500, minY: -frontMm, maxY };
     const trees = rawTrees
+        .map((t) => keepTreeOffBuilding(t, { widthMm: houseWmm, depthMm: houseDmm }, lotBox))
+        .filter((t): t is SiteTree => t !== null)
         .map((t) => adjustTreeForDeck(t, deckPolygon, maxY))
         .filter((t): t is SiteTree => t !== null);
 

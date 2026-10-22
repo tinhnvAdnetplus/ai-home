@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { type RoofBounds } from './roof-types.js';
+import { type RoofBounds, roofWallFaces } from './roof-types.js';
 import { type MaterialRegistry } from './types.js';
 
 export function buildHippedRoofMesh(
@@ -90,12 +90,33 @@ export function buildHippedRoofMesh(
     ridgeCap.position.set((rx1 + rx2) / 2, yRidge + 0.02, cz);
     group.add(ridgeCap);
 
-    // Fascia perimeter trim band
-    const fGeo = new THREE.BoxGeometry(width + 0.1, 0.16, depth + 0.1);
-    reg.trackGeometry(fGeo);
-    const fascia = new THREE.Mesh(fGeo, reg.fascia);
-    fascia.position.set((b.x1 + b.x2) / 2, b.yBase - 0.08, cz);
-    group.add(fascia);
+    // Fascia + soffit as a perimeter ring from the eave edge to just inside the outer wall
+    // faces. (A solid box over the whole footprint used to sit inside the top storey and hide
+    // its ceiling in walk mode.)
+    const f = roofWallFaces(b);
+    const ox1 = b.x1 - 0.05;
+    const ox2 = b.x2 + 0.05;
+    const oz1 = b.z1 - 0.05;
+    const oz2 = b.z2 + 0.05;
+    const ix1 = f.x1 + 0.02;
+    const ix2 = f.x2 - 0.02;
+    const iz1 = f.z1 + 0.02;
+    const iz2 = f.z2 - 0.02;
+    const ring: [number, number, number, number][] = [
+        [ox1, ox2, iz2, oz2],
+        [ox1, ox2, oz1, iz1],
+        [ox1, ix1, iz1, iz2],
+        [ix2, ox2, iz1, iz2],
+    ];
+    for (const [x1, x2, z1, z2] of ring) {
+        if (x2 - x1 < 0.01 || z2 - z1 < 0.01) continue;
+        const fGeo = new THREE.BoxGeometry(x2 - x1, 0.16, z2 - z1);
+        reg.trackGeometry(fGeo);
+        const fascia = new THREE.Mesh(fGeo, reg.fascia);
+        fascia.name = 'roof-soffit';
+        fascia.position.set((x1 + x2) / 2, b.yBase - 0.08, (z1 + z2) / 2);
+        group.add(fascia);
+    }
 
     return group;
 }

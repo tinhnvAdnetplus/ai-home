@@ -5,6 +5,8 @@ import {
     type Stair,
     type BdmIssue,
     type Fixture,
+    stackStoreyElevations,
+    storeyHeightForLevel,
 } from '@aihome/bdm';
 import { type GridRoom, type PlanInput } from './types.js';
 import { type DoorSpec } from './circulation.js';
@@ -15,6 +17,7 @@ import { splitConnectedRects } from './room-components.js';
 import { frontDistanceM, rearSetbackM } from './site-layout.js';
 import { rectsToPolygon } from './polygon-builder.js';
 import { generateFloorFixtures } from './fixtures-generator.js';
+import { doorClearZone, isDoorKind } from './solid-validator.js';
 import { type AiLayoutExterior } from './ai-layout-schema.js';
 import { assembleExteriorBdm } from './ai-layout-exterior-convert.js';
 
@@ -49,7 +52,11 @@ export function convertToBdm(
     const depthMm = Math.round(v.landDepth * 1000);
     const frontMm = Math.round(frontDistanceM(v) * 1000);
 
-    const bdmFloors: Floor[] = floorData.map((f) => {
+    // Canonical Z: each storey starts where the one below ends (see bdm coordinates.ts).
+    const storeyHeights = floorData.map((f) => storeyHeightForLevel(f.level));
+    const elevations = stackStoreyElevations(storeyHeights);
+
+    const bdmFloors: Floor[] = floorData.map((f, floorIndex) => {
         const { walls, openings } = buildWallsAndOpenings(
             f.level,
             W,
@@ -81,14 +88,20 @@ export function convertToBdm(
             if (stairElem) stairs.push(stairElem);
         }
 
+        const doorZones = openings.filter(isDoorKind).flatMap((op) => {
+            const wall = walls.find((w) => w.id === op.wallId);
+            const zone = wall ? doorClearZone(wall, op, { rooms }) : null;
+            return zone ? [zone] : [];
+        });
         const fixtures =
             f.fixturesOverride ??
-            generateFloorFixtures(f.level, f.rooms, v, gridMm);
+            generateFloorFixtures(f.level, f.rooms, v, gridMm, doorZones);
 
         return {
             level: f.level,
-            elevationMm: f.level === 1 ? 0 : 2900,
-            heightMm: f.level === 1 ? 2900 : 2800,
+            elevationMm: elevations[floorIndex] ?? 0,
+            heightMm:
+                storeyHeights[floorIndex] ?? storeyHeightForLevel(f.level),
             rooms,
             walls: [...walls],
             openings: [...openings],

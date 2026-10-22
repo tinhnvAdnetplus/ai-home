@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import { type BuildingModel, type Floor } from '@aihome/bdm';
-import { toThreeX, toThreeY, toThreeZ } from './coords.js';
+import { type BuildingModel } from '@aihome/bdm';
+import { type FloorWallBox, computeFloorWallBox } from './roof-wall-box.js';
 import {
     type RoofBounds,
     buildFlatRoofMesh,
@@ -9,35 +9,6 @@ import {
 } from './roof-shapes.js';
 import { buildShedRoofMesh } from './roof-shed.js';
 import { type MaterialRegistry } from './types.js';
-
-type FloorWallBox = {
-    readonly minX: number;
-    readonly maxX: number;
-    readonly minZ: number;
-    readonly maxZ: number;
-    readonly yTop: number;
-};
-
-function computeFloorWallBox(floor: Floor): FloorWallBox | null {
-    let minX = Infinity;
-    let maxX = -Infinity;
-    let minY = Infinity;
-    let maxY = -Infinity;
-    for (const w of floor.walls) {
-        minX = Math.min(minX, w.a.x, w.b.x);
-        maxX = Math.max(maxX, w.a.x, w.b.x);
-        minY = Math.min(minY, w.a.y, w.b.y);
-        maxY = Math.max(maxY, w.a.y, w.b.y);
-    }
-    if (!Number.isFinite(minX)) return null;
-    return {
-        minX: toThreeX(minX),
-        maxX: toThreeX(maxX),
-        minZ: toThreeZ(maxY),
-        maxZ: toThreeZ(minY),
-        yTop: toThreeY(floor.elevationMm + floor.heightMm),
-    };
-}
 
 function addLowerRoofExtensions(
     group: THREE.Group,
@@ -52,6 +23,7 @@ function addLowerRoofExtensions(
             buildFlatRoofMesh(
                 { x1: b1.minX - ov, x2: b1.maxX + ov, z1: b1.minZ - ov, z2: b2.minZ + 0.05, yBase },
                 reg,
+                false,
             ),
         );
     }
@@ -60,6 +32,7 @@ function addLowerRoofExtensions(
             buildFlatRoofMesh(
                 { x1: b1.minX - ov, x2: b1.maxX + ov, z1: b2.maxZ - 0.05, z2: b1.maxZ + ov, yBase },
                 reg,
+                false,
             ),
         );
     }
@@ -70,6 +43,7 @@ function addLowerRoofExtensions(
             buildFlatRoofMesh(
                 { x1: b1.minX - ov, x2: b2.minX + 0.05, z1: z1Clamp, z2: z2Clamp, yBase },
                 reg,
+                false,
             ),
         );
     }
@@ -78,6 +52,7 @@ function addLowerRoofExtensions(
             buildFlatRoofMesh(
                 { x1: b2.maxX - 0.05, x2: b1.maxX + ov, z1: z1Clamp, z2: z2Clamp, yBase },
                 reg,
+                false,
             ),
         );
     }
@@ -103,6 +78,7 @@ export function buildRoof(
         z2: topBox.maxZ + overhangM,
         yBase: topBox.yTop,
         overhang: overhangM,
+        wall: topBox.faces,
     };
 
     const pitch = model.roof.pitch > 0 ? model.roof.pitch : 4;

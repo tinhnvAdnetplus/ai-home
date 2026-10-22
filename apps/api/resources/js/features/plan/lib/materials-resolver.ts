@@ -1,5 +1,5 @@
 import { type Exterior } from '@aihome/bdm';
-import { type MaterialOptions } from '@aihome/render3d';
+import { type MaterialOptions, styleFromLabel } from '@aihome/render3d';
 
 const WALL_COLORS: Readonly<Record<string, string>> = {
     white: '#f4f3ef',
@@ -44,6 +44,18 @@ function extractFirstString(val: unknown): string | undefined {
     return undefined;
 }
 
+/** Same answer keys the planner reads for `exteriorStyle` (answers-sub-design.ts). */
+const STYLE_KEYS = [
+    'design.exteriorStyle',
+    'house_style',
+    'design_exterior_style',
+    'exteriorStyle',
+] as const;
+
+/**
+ * Explicit colour answers / AI exterior colours -> hex overrides; the exterior style picks the
+ * fallback palette (render3d `palette.ts`) for every slot that has no explicit choice.
+ */
 export function resolveMaterialsFromAnswers(
     answers: Record<string, unknown>,
     exterior?: Exterior,
@@ -61,5 +73,10 @@ export function resolveMaterialsFromAnswers(
     const floor = rawFloor ? (FLOOR_COLORS[rawFloor] ?? '#c9a678') : undefined;
     const accent = rawAccent ? ACCENT_COLORS[rawAccent] : undefined;
 
-    return { wall, roof, floor, accent };
+    const rawStyle = STYLE_KEYS.map((k) => extractFirstString(answers[k])).find(
+        (v) => v !== undefined,
+    );
+    const style = styleFromLabel(rawStyle);
+
+    return { wall, roof, floor, accent, style };
 }

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { type SceneBounds } from '@aihome/render3d';
 import { type LightPreset } from '../types.js';
 import { createSkyClouds } from './sky-clouds.js';
 import { createSkyDome } from './sky-dome.js';
@@ -8,8 +9,16 @@ export type LightingRig = {
     readonly sun: THREE.DirectionalLight;
     readonly fill: THREE.DirectionalLight;
     readonly setPreset: (preset: LightPreset) => void;
+    /** Aim the sun and size its shadow frustum on the building (keeps the preset's direction). */
+    readonly fitToBounds: (bounds: SceneBounds) => void;
     readonly dispose: () => void;
 };
+
+const DAY_SUN_OFFSET = new THREE.Vector3(22, 28, 18);
+const SUNSET_SUN_OFFSET = new THREE.Vector3(26, 9, 14);
+/** Shadow frustum half-size: the building plus a margin for site objects, never below the old fixed 26 m. */
+const MIN_SHADOW_HALF_M = 26;
+const SHADOW_MARGIN_M = 12;
 
 export function setupLighting(
     scene: THREE.Scene,
@@ -19,7 +28,10 @@ export function setupLighting(
     scene.add(ambient);
 
     const sun = new THREE.DirectionalLight(0xfffaee, 1.65);
-    sun.position.set(22, 28, 18);
+    sun.position.copy(DAY_SUN_OFFSET);
+    scene.add(sun.target);
+    const aim = new THREE.Vector3();
+    let sunOffset = DAY_SUN_OFFSET;
 
     if (isShadowEnabled) {
         sun.castShadow = true;
@@ -84,7 +96,7 @@ export function setupLighting(
             ambient.intensity = 0.75;
             sun.color.setHex(0xff7838);
             sun.intensity = 1.6;
-            sun.position.set(26, 9, 14);
+            sunOffset = SUNSET_SUN_OFFSET;
             fill.color.setHex(0x5c4d66);
             fill.intensity = 0.3;
         } else {
@@ -93,10 +105,28 @@ export function setupLighting(
             ambient.intensity = 1.15;
             sun.color.setHex(0xfffaee);
             sun.intensity = 1.65;
-            sun.position.set(22, 28, 18);
+            sunOffset = DAY_SUN_OFFSET;
             fill.color.setHex(0xe4effb);
             fill.intensity = 0.45;
         }
+        sun.position.copy(aim).add(sunOffset);
+    }
+
+    function fitToBounds(bounds: SceneBounds): void {
+        aim.set(bounds.center.x, 0, bounds.center.z);
+        sun.target.position.copy(aim);
+        sun.position.copy(aim).add(sunOffset);
+        const half = Math.max(
+            MIN_SHADOW_HALF_M,
+            Math.max(bounds.size.x, bounds.size.z) / 2 + SHADOW_MARGIN_M,
+        );
+        const cam = sun.shadow.camera;
+        cam.left = -half;
+        cam.right = half;
+        cam.top = half;
+        cam.bottom = -half;
+        cam.far = sunOffset.length() + half * 2;
+        cam.updateProjectionMatrix();
     }
 
     return {
@@ -104,10 +134,11 @@ export function setupLighting(
         sun,
         fill,
         setPreset,
+        fitToBounds,
         dispose: () => {
             cleanupSky();
             scene.fog = null;
-            scene.remove(ambient, sun, fill);
+            scene.remove(ambient, sun, sun.target, fill);
         },
     };
 }

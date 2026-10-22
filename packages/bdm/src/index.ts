@@ -71,4 +71,41 @@ export {
 } from './orientation.js';
 export type { Compass, ModelFace } from './orientation.js';
 export { migrateBuildingModel } from './migrate.js';
+export {
+    GEOMETRY_TOLERANCE_MM,
+    DEFAULT_GRID_MM,
+    EXTERIOR_WALL_THICKNESS_MM,
+    INTERIOR_WALL_THICKNESS_MM,
+    GROUND_STOREY_HEIGHT_MM,
+    UPPER_STOREY_HEIGHT_MM,
+    gridToCanonical,
+    stackStoreyElevations,
+    storeyHeightForLevel,
+    storeyZRange,
+    liftToFloor,
+    faceOutwardNormal,
+} from './coordinates.js';
+export type { CanonicalPoint3 } from './coordinates.js';
+export { resolveWallSpans } from './wall-joints.js';
+export {
+    wallSolidRect,
+    wallLengthMm,
+    wallThicknessMm,
+    isAxisAlignedWall,
+} from './wall-geometry.js';
+export type { WallSpan } from './wall-joints.js';
+export {
+    classifyRects,
+    classifyBoxes,
+    rectOverlapDepth,
+    rectOverlapArea,
+} from './solids.js';
+export {
+    rectOfPolygon,
+    isPointInPolygon,
+    isRectilinear,
+    rectAreaOutsidePolygon,
+    polygonOverlapArea,
+} from './polygon-ops.js';
+export type { Rect2, Box3, SolidRelation, RelationResult } from './solids.js';
 

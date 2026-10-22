@@ -5,6 +5,15 @@ import { type MaterialRegistry } from './types.js';
 
 export { buildFenceLine };
 
+/** Horizontal canopy reach (m) of `addTree` at scale 1 (largest blob offset + radius). */
+export const TREE_CANOPY_REACH_M = 1.28;
+
+/** Deterministic 0..1 value per position, so repeated trees vary but never between renders. */
+function positionHash(x: number, z: number): number {
+    const v = Math.sin(x * 12.9898 + z * 78.233) * 43758.5453;
+    return v - Math.floor(v);
+}
+
 export type FoliageContext = {
     readonly addTree: (
         group: THREE.Group,
@@ -26,22 +35,22 @@ export function createFoliageContext(reg: MaterialRegistry): FoliageContext {
     const shadowCtx = createContactShadowContext();
 
     const lightGreenMat = new THREE.MeshStandardMaterial({
-        color: '#a6dc7e',
+        color: '#86ab64',
         flatShading: true,
         roughness: 0.82,
     });
     const midGreenMat = new THREE.MeshStandardMaterial({
-        color: '#8ccf6b',
+        color: '#6f9752',
         flatShading: true,
         roughness: 0.82,
     });
     const darkGreenMat = new THREE.MeshStandardMaterial({
-        color: '#6fb85a',
+        color: '#5a8243',
         flatShading: true,
         roughness: 0.82,
     });
     const berryMat = new THREE.MeshStandardMaterial({
-        color: '#d62828',
+        color: '#a8322d',
         roughness: 0.35,
         metalness: 0.15,
     });
@@ -83,23 +92,24 @@ export function createFoliageContext(reg: MaterialRegistry): FoliageContext {
 
         const f2Geo = new THREE.IcosahedronGeometry(0.95 * scale, 2);
         reg.trackGeometry(f2Geo);
+        // The secondary blobs are turned by a per-position angle so a row of trees does not
+        // repeat the exact same silhouette (reach stays within TREE_CANOPY_REACH_M).
+        const turn = positionHash(x, z) * Math.PI * 2;
+        const off = (dx: number, dz: number): [number, number] => [
+            x + (dx * Math.cos(turn) - dz * Math.sin(turn)) * scale,
+            z + (dx * Math.sin(turn) + dz * Math.cos(turn)) * scale,
+        ];
         const f2 = new THREE.Mesh(f2Geo, lightGreenMat);
-        f2.position.set(
-            x + 0.25 * scale,
-            trunkH + 1.45 * scale,
-            z - 0.15 * scale,
-        );
+        const [f2x, f2z] = off(0.25, -0.15);
+        f2.position.set(f2x, trunkH + 1.45 * scale, f2z);
         f2.castShadow = true;
         group.add(f2);
 
         const f3Geo = new THREE.IcosahedronGeometry(0.85 * scale, 2);
         reg.trackGeometry(f3Geo);
         const f3 = new THREE.Mesh(f3Geo, darkGreenMat);
-        f3.position.set(
-            x - 0.35 * scale,
-            trunkH + 0.95 * scale,
-            z + 0.25 * scale,
-        );
+        const [f3x, f3z] = off(-0.35, 0.25);
+        f3.position.set(f3x, trunkH + 0.95 * scale, f3z);
         f3.castShadow = true;
         group.add(f3);
     }

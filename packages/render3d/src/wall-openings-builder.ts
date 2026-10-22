@@ -1,5 +1,10 @@
 import * as THREE from 'three';
-import { type Floor, type Opening, type Wall } from '@aihome/bdm';
+import {
+    type Floor,
+    type Opening,
+    type Wall,
+    type WallSpan,
+} from '@aihome/bdm';
 import { computeSegmentAngle, toThreeY } from './coords.js';
 import { buildOpeningElement } from './opening-builder.js';
 import { type MaterialRegistry } from './types.js';
@@ -15,6 +20,7 @@ export function buildWallOpenings(
     baseMat: THREE.Material,
     reg: MaterialRegistry,
     accentMat?: THREE.Material,
+    span: WallSpan = { startMm: 0, endMm: lenMm },
 ): void {
     const thickM = (wall.thicknessMm > 0 ? wall.thicknessMm : 150) * 0.001;
     const floorHM = (floor.heightMm > 0 ? floor.heightMm : 2800) * 0.001;
@@ -39,12 +45,16 @@ export function buildWallOpenings(
             : baseMat;
     };
 
-    let cursorMm = 0;
+    // The solid runs over the junction-resolved span; an opening can only exist in the part of
+    // it that is not inside a crossing wall (the validator reports any opening clipped here).
+    const clearStart = Math.max(0, span.startMm);
+    const clearEnd = Math.min(lenMm, span.endMm);
+    let cursorMm = span.startMm;
     for (const op of openings) {
-        const opStart = Math.max(0, Math.min(op.offsetMm, lenMm));
+        const opStart = Math.max(clearStart, Math.min(op.offsetMm, clearEnd));
         const opEnd = Math.max(
             opStart,
-            Math.min(op.offsetMm + op.widthMm, lenMm),
+            Math.min(op.offsetMm + op.widthMm, clearEnd),
         );
 
         if (opStart > cursorMm) {
@@ -107,17 +117,17 @@ export function buildWallOpenings(
         if (opElem) group.add(opElem);
         cursorMm = Math.max(cursorMm, opEnd);
     }
-    if (cursorMm < lenMm) {
+    if (cursorMm < span.endMm) {
         const endS = createSegmentMesh(
             cursorMm,
-            lenMm,
+            span.endMm,
             elevM,
             floorHM,
             thickM,
             wall,
             rotY,
             lenMm,
-            matFor(cursorMm, lenMm),
+            matFor(cursorMm, span.endMm),
             reg,
         );
         if (endS) group.add(endS);

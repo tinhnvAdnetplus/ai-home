@@ -1,4 +1,8 @@
-import { type Opening, type Wall } from '@aihome/bdm';
+import {
+    type Opening,
+    type Wall,
+    INTERIOR_WALL_THICKNESS_MM,
+} from '@aihome/bdm';
 import { type DoorSpec } from './circulation.js';
 import { type GridRoom } from './types.js';
 import { OPEN_ROOM_TYPES } from './room-kinds.js';
@@ -108,7 +112,7 @@ export function buildInteriorWalls(
             id,
             a: pt(run.a),
             b: pt(run.b),
-            thicknessMm: 100,
+            thicknessMm: INTERIOR_WALL_THICKNESS_MM,
             kind: 'interior',
         });
         if (run.isStairsWall) continue;

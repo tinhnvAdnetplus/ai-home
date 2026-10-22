@@ -3,6 +3,7 @@ import { type PlannerConfig } from './config.js';
 import { type Plan, type PlanInput } from './types.js';
 import { type VariantDefinition } from './variants.js';
 import { validateLayout } from './plan-validator.js';
+import { validateSolids } from './solid-validator.js';
 import { generateVariantPlan } from './variant-generator.js';
 import { solvePlan } from './solver-plan.js';
 
@@ -35,6 +36,14 @@ function alternatives(v: VariantDefinition): VariantDefinition[] {
         { ...v, aspect: v.aspect * 1.14 },
     );
     return list;
+}
+
+/** 3D solid findings are reported as warnings only; they never steer variant selection. */
+function withSolidIssues(plan: Plan): Plan {
+    return {
+        ...plan,
+        warnings: [...plan.warnings, ...validateSolids(plan.model).issues],
+    };
 }
 
 function countErrors(issues: readonly BdmIssue[]): number {
@@ -104,7 +113,7 @@ export function generateValidatedVariant(
     if (best.issues.some((i) => i.code === 'LAYOUT_OUTSIDE_LOT')) {
         const solved = solvePlan(input, variant, config, seed);
         if (solved && countErrors(validateLayout(solved.model)) === 0)
-            return solved;
+            return withSolidIssues(solved);
     }
     const notes: BdmIssue[] =
         best.attempt > 0
@@ -118,8 +127,8 @@ export function generateValidatedVariant(
                   },
               ]
             : [];
-    return {
+    return withSolidIssues({
         ...best.plan,
         warnings: [...best.plan.warnings, ...notes, ...best.issues],
-    };
+    });
 }

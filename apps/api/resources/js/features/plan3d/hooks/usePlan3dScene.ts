@@ -81,6 +81,7 @@ export function usePlan3dScene(options: UsePlan3dSceneOptions): {
             isCeilingVisible: options.cameraPreset === 'walk',
         });
         scene.add(sceneResult.scene);
+        lighting.fitToBounds(sceneResult.bounds);
         if (options.cameraPreset === 'walk') {
             controls.enabled = false;
             walkRef.current = createWalkController({

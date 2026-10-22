@@ -20,9 +20,28 @@ export {
     toThreeY,
     toThreeZ,
     toThreePoint,
+    canonicalToThree,
+    threeToCanonical,
     computeSegmentAngle,
     MM_TO_M,
 } from './coords.js';
+export {
+    resolvePalette,
+    styleFromLabel,
+    lightness,
+    shade,
+    ARCHITECTURAL_STYLES,
+    DEFAULT_ARCHITECTURAL_STYLE,
+    type ArchitecturalStyle,
+    type ArchitecturalPalette,
+    type SurfaceSpec,
+    type WallFinish,
+    type RoofFinish,
+} from './palette.js';
+export { buildRoof } from './roof-builder.js';
+export { buildFloorWalls } from './wall-builder.js';
+export { buildFloorSlabs } from './floor-builder.js';
+export { skinSpan } from './wall-segment.js';
 export type {
     MaterialOptions,
     Render3dOptions,

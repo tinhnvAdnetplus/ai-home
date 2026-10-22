@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-function createFallbackTexture(): THREE.Texture {
+export function createFallbackTexture(): THREE.Texture {
     const data = new Uint8Array([220, 220, 220, 255]);
     const tex = new THREE.DataTexture(data, 1, 1);
     tex.needsUpdate = true;

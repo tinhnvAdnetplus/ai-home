@@ -125,3 +125,4 @@ bash scripts/check-fast.sh
 - [ADR 0004: LLM chỉ sinh ràng buộc đã kiểm thực, tuyệt đối không sinh hình học](docs/adr/0004-llm-validated-constraints-only.md)
 - [ADR 0005: Quản lý cấu hình động bằng tài liệu phiên bản nháp / xuất bản](docs/adr/0005-config-documents-draft-publish.md)
 - [ADR 0006: Hỗ trợ đa ngôn ngữ (i18n) với Tiếng Nhật là mặc định](docs/adr/0006-i18n-ja-en-vi.md)
+- [ADR 0007: Hệ tọa độ chuẩn, kiểm tra va chạm khối đặc và bảng màu vật liệu](docs/adr/0007-canonical-coordinates-solid-validation-materials.md)

@@ -1,4 +1,8 @@
-import { type Wall, type Opening } from '@aihome/bdm';
+import {
+    type Wall,
+    type Opening,
+    EXTERIOR_WALL_THICKNESS_MM,
+} from '@aihome/bdm';
 import { type DoorSpec } from './circulation.js';
 import { type WindowSpec } from './openings.js';
 import { buildInteriorWalls } from './interior-walls.js';
@@ -31,28 +35,28 @@ export function buildWallsAndOpenings(
             id: wallFrontId,
             a: { x: 0, y: 0 },
             b: { x: W * gridMm, y: 0 },
-            thicknessMm: 150,
+            thicknessMm: EXTERIOR_WALL_THICKNESS_MM,
             kind: 'exterior',
         },
         {
             id: wallRightId,
             a: { x: W * gridMm, y: 0 },
             b: { x: W * gridMm, y: D * gridMm },
-            thicknessMm: 150,
+            thicknessMm: EXTERIOR_WALL_THICKNESS_MM,
             kind: 'exterior',
         },
         {
             id: wallBackId,
             a: { x: 0, y: D * gridMm },
             b: { x: W * gridMm, y: D * gridMm },
-            thicknessMm: 150,
+            thicknessMm: EXTERIOR_WALL_THICKNESS_MM,
             kind: 'exterior',
         },
         {
             id: wallLeftId,
             a: { x: 0, y: 0 },
             b: { x: 0, y: D * gridMm },
-            thicknessMm: 150,
+            thicknessMm: EXTERIOR_WALL_THICKNESS_MM,
             kind: 'exterior',
         },
     );

@@ -1,9 +1,11 @@
 import * as THREE from 'three';
-import { type RoofBounds } from './roof-types.js';
+import { type RoofBounds, roofWallFaces } from './roof-types.js';
 import { type MaterialRegistry } from './types.js';
+import { buildInfillMesh } from './roof-infill.js';
 
 export type { RoofBounds };
 export { buildHippedRoofMesh } from './roof-hipped.js';
+export { buildInfillMesh };
 
 function adjustRoofUVs(
     geo: THREE.BoxGeometry,
@@ -90,23 +92,26 @@ export function buildGableRoofMesh(
         group.add(bSouth, bNorth);
     }
 
-    // Gable walls flush with exterior walls (inset by overhang)
-    const ov = b.overhang ?? 0;
-    const wx1 = b.x1 + ov;
-    const wx2 = b.x2 - ov;
-    const wz1 = b.z1 + ov;
-    const wz2 = b.z2 - ov;
-    const yEave = b.yBase + ov * slope;
-    const gableGeo = new THREE.BufferGeometry();
+    // Infill between the wall plate (yBase) and the roof, on the OUTER wall faces so it is flush
+    // with the walls below: gable triangles at both ends and a frieze along both eaves (the roof
+    // slab only reaches yBase at the eave tip, so without the frieze there is an open slot
+    // between wall top and roof at the wall line).
+    const f = roofWallFaces(b);
+    const yFront = b.yBase + (b.z2 - f.z2) * slope;
+    const yBack = b.yBase + (f.z1 - b.z1) * slope;
     const gablePos = [
-        wx1, b.yBase, wz2, wx1, yEave, wz2, wx1, yRidge, cz, wx1, yEave, wz1, wx1, b.yBase, wz1,
-        wx2, b.yBase, wz1, wx2, yEave, wz1, wx2, yRidge, cz, wx2, yEave, wz2, wx2, b.yBase, wz2,
+        f.x1, b.yBase, f.z2, f.x1, yFront, f.z2, f.x1, yRidge, cz, f.x1, yBack, f.z1, f.x1, b.yBase, f.z1,
+        f.x2, b.yBase, f.z1, f.x2, yBack, f.z1, f.x2, yRidge, cz, f.x2, yFront, f.z2, f.x2, b.yBase, f.z2,
+        f.x1, b.yBase, f.z2, f.x2, b.yBase, f.z2, f.x2, yFront, f.z2, f.x1, yFront, f.z2,
+        f.x2, b.yBase, f.z1, f.x1, b.yBase, f.z1, f.x1, yBack, f.z1, f.x2, yBack, f.z1,
     ];
-    gableGeo.setAttribute('position', new THREE.Float32BufferAttribute(gablePos, 3));
-    gableGeo.setIndex([0, 1, 2, 0, 2, 3, 0, 3, 4, 5, 6, 7, 5, 7, 8, 5, 8, 9]);
-    gableGeo.computeVertexNormals();
-    reg.trackGeometry(gableGeo);
-    group.add(new THREE.Mesh(gableGeo, reg.wallExteriorAlt));
+    group.add(
+        buildInfillMesh(
+            gablePos,
+            [0, 1, 2, 0, 2, 3, 0, 3, 4, 5, 6, 7, 5, 7, 8, 5, 8, 9, 10, 11, 12, 10, 12, 13, 14, 15, 16, 14, 16, 17],
+            reg,
+        ),
+    );
 
     return group;
 }
@@ -114,6 +119,7 @@ export function buildGableRoofMesh(
 export function buildFlatRoofMesh(
     b: RoofBounds,
     reg: MaterialRegistry,
+    hasParapet = true,
 ): THREE.Group {
     const group = new THREE.Group();
     const w = b.x2 - b.x1;
@@ -121,16 +127,36 @@ export function buildFlatRoofMesh(
     const slabGeo = new THREE.BoxGeometry(w, 0.22, d);
     reg.trackGeometry(slabGeo);
     const slab = new THREE.Mesh(slabGeo, reg.roof);
+    slab.name = 'roof-slab';
     slab.position.set((b.x1 + b.x2) / 2, b.yBase + 0.11, (b.z1 + b.z2) / 2);
     slab.castShadow = true;
     slab.receiveShadow = true;
     group.add(slab);
+    if (!hasParapet) return group;
 
-    const parapetGeo = new THREE.BoxGeometry(w + 0.08, 0.25, d + 0.08);
-    reg.trackGeometry(parapetGeo);
-    const parapet = new THREE.Mesh(parapetGeo, reg.fascia);
-    parapet.position.set((b.x1 + b.x2) / 2, b.yBase + 0.12, (b.z1 + b.z2) / 2);
-    group.add(parapet);
+    // Parapet as a perimeter ring (a solid box would swallow the slab and hide the roof finish).
+    const t = 0.12;
+    const h = 0.35;
+    const ox1 = b.x1 - 0.04;
+    const ox2 = b.x2 + 0.04;
+    const oz1 = b.z1 - 0.04;
+    const oz2 = b.z2 + 0.04;
+    const ring: [number, number, number, number][] = [
+        [ox1, ox2, oz2 - t, oz2],
+        [ox1, ox2, oz1, oz1 + t],
+        [ox1, ox1 + t, oz1 + t, oz2 - t],
+        [ox2 - t, ox2, oz1 + t, oz2 - t],
+    ];
+    for (const [x1, x2, z1, z2] of ring) {
+        const geo = new THREE.BoxGeometry(x2 - x1, h, z2 - z1);
+        reg.trackGeometry(geo);
+        const part = new THREE.Mesh(geo, reg.fascia);
+        part.name = 'roof-parapet';
+        part.position.set((x1 + x2) / 2, b.yBase + h / 2, (z1 + z2) / 2);
+        part.castShadow = true;
+        part.receiveShadow = true;
+        group.add(part);
+    }
 
     return group;
 }

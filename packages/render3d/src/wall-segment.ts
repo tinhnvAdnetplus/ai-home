@@ -1,7 +1,10 @@
 import * as THREE from 'three';
-import { type Wall } from '@aihome/bdm';
+import { type Wall, type WallSpan } from '@aihome/bdm';
 import { toThreeX, toThreeZ } from './coords.js';
 import { type MaterialRegistry } from './types.js';
+
+/** Height (m) covered by one vertical repeat of an exterior wall finish texture. */
+export const WALL_TEXTURE_V_REPEAT_M = 0.25;
 
 function adjustWallSidingUVs(
     geo: THREE.BoxGeometry,
@@ -10,7 +13,7 @@ function adjustWallSidingUVs(
 ): void {
     const uvAttr = geo.getAttribute('uv');
     const uRepeat = Math.max(0.1, lenM);
-    const vRepeat = Math.max(0.1, heightM / 0.25);
+    const vRepeat = Math.max(0.1, heightM / WALL_TEXTURE_V_REPEAT_M);
     for (let i = 16; i < 24; i += 1) {
         const u = uvAttr.getX(i);
         const v = uvAttr.getY(i);
@@ -61,6 +64,24 @@ export function createSegmentMesh(
     return mesh;
 }
 
+/**
+ * Span of a band that is `extraMm` proud of the wall on each side (plinth, skirt, belt line).
+ * At a junction it must grow/shrink by the same amount as its own extra thickness, or the bands
+ * of two meeting walls leave a notch (extended end) or overlap with coplanar faces (trimmed end).
+ */
+export function skinSpan(
+    span: WallSpan,
+    lenMm: number,
+    extraMm: number,
+): WallSpan {
+    const adjust = (delta: number): number =>
+        delta > 0.5 ? extraMm : delta < -0.5 ? -extraMm : 0;
+    return {
+        startMm: span.startMm - adjust(-span.startMm),
+        endMm: span.endMm + adjust(span.endMm - lenMm),
+    };
+}
+
 export function addWallPlinth(
     wall: Wall,
     rotY: number,
@@ -68,11 +89,13 @@ export function addWallPlinth(
     thickM: number,
     group: THREE.Group,
     reg: MaterialRegistry,
+    span: WallSpan = { startMm: 0, endMm: lenMm },
 ): void {
     // Visible ground-level foundation band (light grey 0.3 m)
+    const plinthSpan = skinSpan(span, lenMm, 20);
     const plinth = createSegmentMesh(
-        0,
-        lenMm,
+        plinthSpan.startMm,
+        plinthSpan.endMm,
         0,
         0.3,
         thickM + 0.04,
@@ -85,9 +108,10 @@ export function addWallPlinth(
     if (plinth) group.add(plinth);
 
     // Thin dark base
+    const baseSpan = skinSpan(span, lenMm, 25);
     const base = createSegmentMesh(
-        0,
-        lenMm,
+        baseSpan.startMm,
+        baseSpan.endMm,
         -0.01,
         0.04,
         thickM + 0.05,

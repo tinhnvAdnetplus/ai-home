@@ -64,6 +64,14 @@ export const FIXTURE_CATALOG: Record<
 
 export type FixtureRotation = 0 | 90 | 180 | 270;
 
+const FIXTURE_ROTATIONS: readonly FixtureRotation[] = [0, 90, 180, 270];
+
+/** BDM `Fixture.rotation` is a plain number: snap it to the nearest quarter turn. */
+export function normalizeFixtureRotation(deg: number): FixtureRotation {
+    const step = ((Math.round(deg / 90) % 4) + 4) % 4;
+    return FIXTURE_ROTATIONS[step] ?? 0;
+}
+
 /** The item's axis-aligned footprint once rotated (90/270 swap width and height). */
 export function fixtureFootprintMm(
     kind: FixtureKind,

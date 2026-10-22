@@ -5,7 +5,7 @@ import { toThreeX, toThreeZ } from './coords.js';
 import { buildWoodDeck } from './deck-builder.js';
 import { buildEntranceElements } from './entrance-builder.js';
 import { buildFenceLine } from './fence-builder.js';
-import { createFoliageContext } from './foliage-builder.js';
+import { createFoliageContext, TREE_CANOPY_REACH_M } from './foliage-builder.js';
 import { buildHorizon } from './horizon-builder.js';
 import { buildLawn } from './lawn-builder.js';
 import { buildNeighbours } from './neighbour-builder.js';
@@ -84,7 +84,12 @@ export function buildSite(
     const planted = [...plan.keepClear, ...(deckBox ? [deckBox] : []), houseGround(house)];
     if (model.exterior?.trees !== undefined) {
         for (const t of model.exterior.trees) {
-            const size = Math.max(0.85, Math.min(1.25, t.radiusMm / 750));
+            // BDM radiusMm is the canopy radius the validator checks against the building, so
+            // the rendered canopy is sized from it (not enlarged beyond it).
+            const size = Math.max(
+                0.6,
+                Math.min(1.25, t.radiusMm / 1000 / TREE_CANOPY_REACH_M),
+            );
             foliage.addTree(group, toThreeX(t.pos.x), toThreeZ(t.pos.y), size);
         }
     } else {

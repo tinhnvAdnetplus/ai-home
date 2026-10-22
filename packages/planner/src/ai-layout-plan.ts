@@ -12,6 +12,7 @@ import {
     createPlanSummary,
 } from './variant-floors.js';
 import { validateLayout } from './plan-validator.js';
+import { validateSolids } from './solid-validator.js';
 import { convertAiDoors } from './ai-layout-doors-convert.js';
 import { convertAiFixtures } from './ai-layout-fixtures-convert.js';
 import { convertAiWindows } from './ai-layout-exterior-convert.js';
@@ -47,7 +48,11 @@ export function planFromAiLayout(
             ? convertAiDoors(fl.rooms, fl.doors)
             : undefined;
         const fixturesOverride: readonly Fixture[] | undefined = fl.fixtures
-            ? convertAiFixtures(fl.level, fl.fixtures, config.gridMm)
+            ? convertAiFixtures(fl.level, fl.fixtures, config.gridMm, {
+                  rooms: fl.rooms,
+                  gridW: layout.gridW,
+                  gridD: fl.gridD,
+              })
             : undefined;
         const windowsOverride = fl.windows
             ? convertAiWindows(fl.windows)
@@ -118,7 +123,11 @@ export function planFromAiLayout(
         score,
         model,
         summary,
-        warnings: [...warnings, ...validateLayout(model)],
+        warnings: [
+            ...warnings,
+            ...validateLayout(model),
+            ...validateSolids(model).issues,
+        ],
         source: 'ai',
     };
 }

@@ -1,11 +1,17 @@
-import { type Fixture, type Point } from '@aihome/bdm';
+import { type Fixture } from '@aihome/bdm';
 import { type GridRoom, type PlanInput } from './types.js';
 import { generateLdkFixtures } from './fixtures-ldk.js';
+import {
+    type Box,
+    type RoomCtx,
+    WALL_CLEAR_MM,
+    clearBoxes,
+    fitIntoRoom,
+    placeFirstFree,
+    pt,
+} from './fixtures-placement.js';
 
-function getRoomBox(
-    r: GridRoom,
-    gridMm: number,
-): { minX: number; maxX: number; minY: number; maxY: number } {
+function getRoomBox(r: GridRoom, gridMm: number): Box {
     let minX = Infinity;
     let maxX = -Infinity;
     let minY = Infinity;
@@ -19,86 +25,126 @@ function getRoomBox(
     return { minX, maxX, minY, maxY };
 }
 
-function pt(x: number, y: number): Point {
-    return { x: Math.round(x), y: Math.round(y) };
-}
-
 export function generateFloorFixtures(
     level: number,
     rooms: readonly GridRoom[],
     v: PlanInput,
     gridMm: number,
+    doorZones: readonly Box[] = [],
 ): readonly Fixture[] {
     const fixtures: Fixture[] = [];
     const pfx = `fix-${level.toString()}`;
+    const push = (f: Fixture | null): void => {
+        if (f) fixtures.push(f);
+    };
 
     for (const r of rooms) {
         const b = getRoomBox(r, gridMm);
-        const rmW = b.maxX - b.minX;
-        const rmH = b.maxY - b.minY;
+        const room: RoomCtx = {
+            clear: clearBoxes(r, gridMm),
+            placed: [],
+            keepClear: doorZones,
+        };
 
         if (r.type === 'ldk') {
-            fixtures.push(...generateLdkFixtures(pfx, b, v, pt));
-        } else if (r.type === 'bath') {
-            fixtures.push({
-                id: `${pfx}-bath-${r.id}`,
-                kind: 'bathtub',
-                pos: pt(b.minX + 100, b.minY + 100),
-                rotation: 0,
-            });
-        } else if (r.type === 'wash') {
-            fixtures.push({
-                id: `${pfx}-vanity-${r.id}`,
-                kind: 'vanity',
-                pos: pt(b.minX + 100, b.minY + 100),
-                rotation: 0,
-            });
-            if (rmW >= 1800) {
-                fixtures.push({
-                    id: `${pfx}-wm-${r.id}`,
-                    kind: 'washing_machine',
-                    pos: pt(b.minX + 1050, b.minY + 100),
-                    rotation: 0,
-                });
+            for (const f of generateLdkFixtures(pfx, b, v, pt)) {
+                push(fitIntoRoom(f, room));
             }
+        } else if (r.type === 'bath') {
+            push(
+                placeFirstFree(
+                    { id: `${pfx}-bath-${r.id}`, kind: 'bathtub', rotation: 0 },
+                    [{ x: b.minX + 100, y: b.minY + 100 }],
+                    room,
+                ),
+            );
+        } else if (r.type === 'wash') {
+            push(
+                placeFirstFree(
+                    {
+                        id: `${pfx}-vanity-${r.id}`,
+                        kind: 'vanity',
+                        rotation: 0,
+                    },
+                    [{ x: b.minX + 100, y: b.minY + 100 }],
+                    room,
+                ),
+            );
+            // Beside the vanity when the room is wide enough, else in the opposite corner.
+            if (b.maxX - b.minX >= 1800)
+                push(
+                    placeFirstFree(
+                        {
+                            id: `${pfx}-wm-${r.id}`,
+                            kind: 'washing_machine',
+                            rotation: 0,
+                        },
+                        [
+                            { x: b.minX + 100 + 1100 + 60, y: b.minY + 100 },
+                            {
+                                x: b.maxX - WALL_CLEAR_MM - 680,
+                                y: b.maxY - WALL_CLEAR_MM - 680,
+                            },
+                        ],
+                        room,
+                    ),
+                );
         } else if (r.type === 'toilet') {
             const midX = (b.minX + b.maxX) / 2;
-            fixtures.push({
-                id: `${pfx}-wc-${r.id}`,
-                kind: 'toilet_bowl',
-                pos: pt(midX - 225, b.minY + 150),
-                rotation: 0,
-            });
+            push(
+                placeFirstFree(
+                    {
+                        id: `${pfx}-wc-${r.id}`,
+                        kind: 'toilet_bowl',
+                        rotation: 0,
+                    },
+                    [{ x: midX - 225, y: b.minY + 150 }],
+                    room,
+                ),
+            );
         } else if (r.type === 'bedroom' && r.key === 'master') {
-            const bedX = b.minX + 150;
-            const bedY = b.minY + 150;
-            fixtures.push({
-                id: `${pfx}-bed-master`,
-                kind: 'bed_double',
-                pos: pt(bedX, bedY),
-                rotation: 0,
-            });
+            push(
+                placeFirstFree(
+                    {
+                        id: `${pfx}-bed-master`,
+                        kind: 'bed_double',
+                        rotation: 0,
+                    },
+                    [{ x: b.minX + 150, y: b.minY + 150 }],
+                    room,
+                ),
+            );
         } else if (r.type === 'childRoom') {
-            const bedX = b.minX + 150;
-            const bedY = b.minY + 150;
-            fixtures.push({
-                id: `${pfx}-bed-${r.id}`,
-                kind: 'bed_single',
-                pos: pt(bedX, bedY),
-                rotation: 0,
-            });
-            if (rmH >= 2700) {
-                const deskY = Math.min(
-                    b.maxY - 700,
-                    Math.max(b.minY + 2150, b.maxY - 700),
+            push(
+                placeFirstFree(
+                    {
+                        id: `${pfx}-bed-${r.id}`,
+                        kind: 'bed_single',
+                        rotation: 0,
+                    },
+                    [{ x: b.minX + 150, y: b.minY + 150 }],
+                    room,
+                ),
+            );
+            // Beside the bed against the far wall, else at the foot of the bed.
+            if (b.maxY - b.minY >= 2700)
+                push(
+                    placeFirstFree(
+                        {
+                            id: `${pfx}-desk-${r.id}`,
+                            kind: 'desk',
+                            rotation: 0,
+                        },
+                        [
+                            {
+                                x: b.maxX - WALL_CLEAR_MM - 1100,
+                                y: b.minY + 150,
+                            },
+                            { x: b.minX + 150, y: b.minY + 150 + 1950 + 60 },
+                        ],
+                        room,
+                    ),
                 );
-                fixtures.push({
-                    id: `${pfx}-desk-${r.id}`,
-                    kind: 'desk',
-                    pos: pt(b.minX + 150, deskY),
-                    rotation: 0,
-                });
-            }
         }
     }
     return fixtures;

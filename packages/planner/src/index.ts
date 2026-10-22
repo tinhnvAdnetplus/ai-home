@@ -105,6 +105,22 @@ export {
     type FixtureRotation,
 } from './fixture-catalog.js';
 export { validateLayout } from './plan-validator.js';
+export {
+    validateSolids,
+    SLIDING_DOOR_CLEAR_DEPTH_MM,
+    MAX_SWING_DEPTH_MM,
+    type SolidFinding,
+    type SolidValidationReport,
+} from './solid-validator.js';
+export {
+    convertAiFixtures,
+    FIXTURE_WALL_GAP_MM,
+    type AiFixtureWallContext,
+} from './ai-layout-fixtures-convert.js';
+export {
+    keepTreeOffBuilding,
+    TREE_WALL_CLEARANCE_MM,
+} from './site-clearance.js';
 export { lotOverflow, type LotOverflow } from './lot-fit.js';
 export {
     assessFeasibility,

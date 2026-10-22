@@ -1,10 +1,17 @@
 import type * as THREE from 'three';
+import {
+    type ArchitecturalPalette,
+    type ArchitecturalStyle,
+} from './palette.js';
 
+/** Explicit colour choices (hex) override the style preset of `palette.ts` slot by slot. */
 export type MaterialOptions = {
     readonly wall?: string | undefined;
     readonly roof?: string | undefined;
     readonly floor?: string | undefined;
     readonly accent?: string | undefined;
+    /** Exterior style; selects the fallback palette and wall/roof finishes. */
+    readonly style?: ArchitecturalStyle | undefined;
 };
 
 export type Render3dOptions = {
@@ -31,6 +38,8 @@ export type SceneBounds = {
 };
 
 export type MaterialRegistry = {
+    /** The resolved semantic palette every material below was created from. */
+    readonly palette: ArchitecturalPalette;
     readonly wallExterior: THREE.Material;
     readonly wallExteriorAlt: THREE.Material;
     readonly wallInterior: THREE.Material;

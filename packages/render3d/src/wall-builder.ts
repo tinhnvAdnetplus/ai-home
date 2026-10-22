@@ -1,10 +1,10 @@
 import * as THREE from 'three';
-import { type Floor } from '@aihome/bdm';
+import { type Floor, resolveWallSpans, wallThicknessMm } from '@aihome/bdm';
 import { computeSegmentAngle, toThreeY } from './coords.js';
 import { buildEntranceLattice } from './entrance-accent-builder.js';
 import { type MaterialRegistry } from './types.js';
 import { buildWallOpenings } from './wall-openings-builder.js';
-import { addWallPlinth, createSegmentMesh } from './wall-segment.js';
+import { addWallPlinth, createSegmentMesh, skinSpan } from './wall-segment.js';
 
 export function buildFloorWalls(
     floor: Floor,
@@ -12,12 +12,15 @@ export function buildFloorWalls(
     hasEntranceLattice = true,
 ): THREE.Group {
     const group = new THREE.Group();
+    const spans = resolveWallSpans(floor.walls);
 
     for (const wall of floor.walls) {
         const dx = wall.b.x - wall.a.x;
         const dy = wall.b.y - wall.a.y;
         const lenMm = Math.hypot(dx, dy);
         if (lenMm < 1) continue;
+        const span = spans.get(wall.id) ?? { startMm: 0, endMm: lenMm };
+        const beltSpan = skinSpan(span, lenMm, 15);
 
         const ops = floor.openings
             .filter((o) => o.wallId === wall.id)
@@ -33,10 +36,10 @@ export function buildFloorWalls(
             wall.kind === 'exterior' ? reg.wallExteriorAlt : undefined;
 
         const rotY = computeSegmentAngle(dx * 0.001, -dy * 0.001);
-        const thickM = (wall.thicknessMm > 0 ? wall.thicknessMm : 150) * 0.001;
+        const thickM = wallThicknessMm(wall) * 0.001;
 
         if (wall.kind === 'exterior' && floor.level === 1) {
-            addWallPlinth(wall, rotY, lenMm, thickM, group, reg);
+            addWallPlinth(wall, rotY, lenMm, thickM, group, reg, span);
             if (hasEntranceLattice && entranceOp) {
                 const lattice = buildEntranceLattice({
                     wallStart: wall.a,
@@ -57,8 +60,8 @@ export function buildFloorWalls(
         if (wall.kind === 'exterior' && floor.level > 1) {
             const elevM = toThreeY(floor.elevationMm);
             const belt = createSegmentMesh(
-                0,
-                lenMm,
+                beltSpan.startMm,
+                beltSpan.endMm,
                 elevM - 0.05,
                 0.1,
                 thickM + 0.03,
@@ -80,6 +83,7 @@ export function buildFloorWalls(
             wallMat,
             reg,
             accentMat,
+            span,
         );
     }
 

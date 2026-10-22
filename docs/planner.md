@@ -60,6 +60,12 @@ BDM is the standard exchange format between the procedural planner, the 2D SVG c
   - `+X`: Left to right across the building frontage.
   - `+Y`: Front to back across building depth.
   - `+Z` (Elevation): Ground level `0mm` up to roof.
+- **Right-handed**, with the road side always on `y = 0` (`front` face). Compass orientation is resolved separately (`orientation.ts`: `compassToFace`, `sunFace`); `lot.sunEdge` in the AI layout context is the face returned by `sunFace`.
+- **Plan geometry is on wall centrelines**: a room polygon edge is the centreline of its bounding wall; the clear room interior is the polygon inset by half of each wall's thickness.
+- **Grid -> canonical**: AI/rule-based layouts use 910 mm cells; cell corner `(cx, cy)` maps to `(cx·910, cy·910)` mm (`gridToCanonical`).
+- **Z is derived, never stored per point**: floor `n` starts at `Σ heightMm` of the floors below (`stackStoreyElevations`; GF 2900 mm, upper 2800 mm). Openings use `elevationMm + sillMm .. + heightMm`; the roof bears on the top storey's wall plate (`elevationMm + heightMm`).
+- **Single renderer boundary** (`render3d/src/coords.ts`, `canonicalToThree`): Three.js `x = X/1000`, `y = Z/1000`, `z = -Y/1000` (metres, Y-up, still right-handed). Builders never swap axes themselves; the camera never feeds back into model coordinates.
+- **Wall solids at junctions** (`bdm/src/wall-joints.ts`, `resolveWallSpans`): L corners — the dominant wall (exterior > interior, thicker, then X-direction) extends by half the other's thickness and the other is trimmed to its face; T joints — the stem is trimmed to the through wall's face; + joints — the dominant pair runs through. Junctions become face contacts: no notch, no overlapping/coplanar solids.
 
 ### 2.2 Core Schema Entities
 - **`BuildingModel`**: Top-level model containing `schemaVersion` (1), `meta`, `site`, `floors`, `roof`, and `warnings`.
@@ -80,6 +86,15 @@ Validation is performed via `parseBuildingModel(raw: unknown)`:
    - Opening bounds: `offsetMm >= 0` and `offsetMm + widthMm <= wallLengthMm`.
    - Polygons: Every room polygon is closed and contains >= 3 vertices.
    - Fixture boundary checks.
+
+### 2.4 3D Solid Consistency (`validateSolids`, `planner/src/solid-validator.ts`)
+
+Runs on every generated plan (AI and rule-based); findings are appended to `Plan.warnings` grouped per code and floor. They are `warn` (or `info` when they rest on an assumption) and **never `error`**, so they do not steer variant selection or the AI retry loop. Representation: axis-aligned wall solids over their junction-resolved span × storey height; catalog fixture footprints standing on their floor; opening slots `[offset, offset+width] × [sill, sill+height]` in the host wall; room/stair footprints × storey Z range. Tolerance: `GEOMETRY_TOLERANCE_MM` (1 mm) everywhere.
+
+- **Allowed contacts** (counted in `allowedContacts`, never reported): wall on slab, wall-to-wall junction faces, opening inside its host wall, stair foot on its floor and head in the upper stairwell, upper slab on lower walls, roof on the top wall plate, deck/approach fixed to the outer half of an exterior wall.
+- **Exact verdicts without heights**: two floor-standing objects on the same storey always share Z from the floor up, so a plan overlap of fixture/wall or fixture/fixture is a volumetric collision.
+- **Unknown data -> `incomplete`**, never a pass: fixture heights (ceiling/sill/wall-mounted clearance), tree heights vs eaves, unknown fixture kinds, non-axis-aligned walls. The report is always flagged `isApproximate: true` (footprints + Z ranges, not mesh intersection).
+- **Deterministic repairs at conversion boundaries** (low risk, explicit rules): AI fixtures flush on a wall grid line are backed against that wall's face inside their own cell box (`convertAiFixtures`); trees whose canopy would reach the walls are pushed out from the nearest face or dropped (`keepTreeOffBuilding`); the rule-based fixture generator only accepts positions clear of walls, other items and (when possible) door zones. Nothing architectural (walls, openings, stairs, rooms) is moved.
 
 ---
 
@@ -168,6 +183,21 @@ The planner emits structured `BdmIssue` objects when architectural, legal, or si
 | `FLOOR_AREA_RATIO_EXCEEDED` | `warn` | Total floor area exceeds zoning floor area ratio (容積率). |
 | `SECOND_FLOOR_SETBACK_INFO` | `info` | 2nd floor depth is smaller than 1st floor; remainder resolved as下屋. |
 | `ISOLATED_ROOM_DETECTED` | `info` | An enclosed room has no direct opening to adjacent circulation. |
+| `SOLID_FIXTURE_WALL_PENETRATION` | `warn` | A fixture footprint enters a wall solid (depth reported). Inside a floor-level door slot this is not reported (the wall is absent there). |
+| `SOLID_FIXTURE_OVERLAP` | `warn` | Two fixtures on the same storey occupy the same volume. |
+| `SOLID_FIXTURE_OUTSIDE_HOST` / `SOLID_FIXTURE_NO_HOST` | `warn` | A fixture leaves the room containing its centre / its centre is in no room. |
+| `SOLID_FIXTURE_IN_DOOR_ZONE` | `info` | A fixture is in a door's swing/passage zone. Swing side is not stored: doors are assumed to swing into the room away from circulation; entrance doors outward. |
+| `SOLID_WALL_DUPLICATE` / `SOLID_WALL_OVERLAP` / `SOLID_WALL_CROSSING` | `warn` | Wall solids overlap beyond a junction contact (same centreline / parallel / crossing without a joint). |
+| `SOLID_OPENING_EXCEEDS_STOREY` | `warn` | `sillMm + heightMm` is above the storey height (or sill < 0). |
+| `SOLID_OPENING_AT_JUNCTION` | `warn` | An opening slot runs into a crossing wall's thickness (renderer clips it to the clear span). |
+| `SOLID_OPENING_OVERLAP` | `warn` | Two openings on the same wall overlap along the wall and in height. |
+| `SOLID_SLAB_OVERLAP` | `warn` | Two room slabs on a storey overlap (coplanar -> z-fighting). |
+| `SOLID_STOREY_STACK_GAP` / `SOLID_STOREY_STACK_OVERLAP` | `warn` | A floor's elevation is not the top of the floor below. |
+| `SOLID_STOREY_UNSUPPORTED` | `warn` | Upper exterior walls extend beyond the storey below (no modelled support). |
+| `SOLID_STAIR_UNCONNECTED` / `SOLID_STAIR_LEVEL_MISMATCH` | `warn` | Stair target floor missing / rise ≠ storey height. |
+| `SOLID_STAIR_OFF_SLAB` / `SOLID_STAIR_HITS_UPPER_SLAB` | `warn` | Stair not on its stair-room slab / no stairwell above it. |
+| `SOLID_ROOF_UNSUPPORTED` | `warn` | Top storey has no exterior walls to carry the roof. |
+| `SOLID_SITE_TREE_HITS_BUILDING`, `SOLID_SITE_DECK_OVERLAPS_BUILDING`, `SOLID_SITE_APPROACH_OVERLAPS_BUILDING`, `SOLID_SITE_CARPAD_OVERLAPS_BUILDING` | `warn` | Site objects intersect the ground-floor building solid (deck/approach may touch the outer wall half). |
 
 ---
 

@@ -1,5 +1,6 @@
 import * as THREE from 'three';
-import { type RoofBounds } from './roof-types.js';
+import { buildInfillMesh } from './roof-infill.js';
+import { type RoofBounds, roofWallFaces } from './roof-types.js';
 import { type MaterialRegistry } from './types.js';
 
 export function buildShedRoofMesh(
@@ -36,31 +37,25 @@ export function buildShedRoofMesh(
     fHigh.position.set(cx, yHigh, b.z1);
     group.add(fLow, fHigh);
 
-    const ov = b.overhang ?? 0;
-    const wx1 = b.x1 + ov;
-    const wx2 = b.x2 - ov;
-    const wz1 = b.z1 + ov;
-    const wz2 = b.z2 - ov;
-    const yLowW = b.yBase + ov * effectiveSlope;
-    const yHighW = yHigh - ov * effectiveSlope;
-
-    const sideWallGeo = new THREE.BufferGeometry();
+    // Side walls up to the roof on the outer wall faces (flush with the walls below). The slab
+    // centreline drops by `effectiveSlope` per metre from the high (z1) to the low (z2) eave.
+    const f = roofWallFaces(b);
+    const yAt = (z: number): number => yHigh - (z - b.z1) * effectiveSlope;
+    const yLowW = yAt(f.z2);
+    const yHighW = yAt(f.z1);
     const pos = [
-        wx1, b.yBase, wz2, wx1, yLowW, wz2, wx1, yHighW, wz1, wx1, b.yBase, wz1,
-        wx2, b.yBase, wz1, wx2, yHighW, wz1, wx2, yLowW, wz2, wx2, b.yBase, wz2,
-        wx1, b.yBase, wz1, wx1, yHighW, wz1, wx2, yHighW, wz1, wx2, b.yBase, wz1,
-        wx2, b.yBase, wz2, wx2, yLowW, wz2, wx1, yLowW, wz2, wx1, b.yBase, wz2,
+        f.x1, b.yBase, f.z2, f.x1, yLowW, f.z2, f.x1, yHighW, f.z1, f.x1, b.yBase, f.z1,
+        f.x2, b.yBase, f.z1, f.x2, yHighW, f.z1, f.x2, yLowW, f.z2, f.x2, b.yBase, f.z2,
+        f.x2, b.yBase, f.z1, f.x1, b.yBase, f.z1, f.x1, yHighW, f.z1, f.x2, yHighW, f.z1,
+        f.x1, b.yBase, f.z2, f.x2, b.yBase, f.z2, f.x2, yLowW, f.z2, f.x1, yLowW, f.z2,
     ];
-    sideWallGeo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
-    sideWallGeo.setIndex([
-        0, 1, 2, 0, 2, 3,
-        4, 5, 6, 4, 6, 7,
-        8, 9, 10, 8, 10, 11,
-        12, 13, 14, 12, 14, 15,
-    ]);
-    sideWallGeo.computeVertexNormals();
-    reg.trackGeometry(sideWallGeo);
-    group.add(new THREE.Mesh(sideWallGeo, reg.wallExteriorAlt));
+    group.add(
+        buildInfillMesh(
+            pos,
+            [0, 1, 2, 0, 2, 3, 4, 5, 6, 4, 6, 7, 8, 9, 10, 8, 10, 11, 12, 13, 14, 12, 14, 15],
+            reg,
+        ),
+    );
 
     return group;
 }
