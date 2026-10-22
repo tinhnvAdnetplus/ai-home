@@ -38,22 +38,22 @@ export function createSidingTexture(
         ctx.fillRect(0, y, canvas.width, plankH);
 
         // Top crisp highlight line
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.55)';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.24)';
         ctx.fillRect(0, y, canvas.width, 1.5);
 
         // Bottom shadow groove seam
         ctx.fillStyle = isLightVariant
-            ? 'rgba(0, 0, 0, 0.16)'
-            : 'rgba(0, 0, 0, 0.28)';
+            ? 'rgba(0, 0, 0, 0.09)'
+            : 'rgba(0, 0, 0, 0.06)';
         ctx.fillRect(0, y + plankH - 2.5, canvas.width, 2.5);
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.45)';
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.20)';
         ctx.fillRect(0, y + plankH - 1, canvas.width, 1);
 
         // Staggered vertical joints
         const jointX = (i % 2 === 0 ? 80 : 190) + ((i * 17) % 30);
         ctx.fillStyle = isLightVariant
             ? 'rgba(0, 0, 0, 0.12)'
-            : 'rgba(0, 0, 0, 0.2)';
+            : 'rgba(0, 0, 0, 0.09)';
         ctx.fillRect(jointX, y, 1, plankH - 2.5);
     }
 
@@ -96,12 +96,12 @@ export function createRoofStandingSeamTexture():
         ctx.fillRect(x + 2.5, 0, 2.5, canvas.height);
 
         // Raised standing seam rib
-        ctx.fillStyle = 'rgba(32, 36, 42, 0.95)';
+        ctx.fillStyle = 'rgba(32, 36, 42, 0.72)';
         ctx.fillRect(x, 0, 2.5, canvas.height);
 
         // Specular highlight crest along the rib
         const highlightX = x === 0 ? canvas.width - 1 : x - 1;
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.28)';
         ctx.fillRect(highlightX, 0, 1.5, canvas.height);
     }
 
