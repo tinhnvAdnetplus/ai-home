@@ -6,6 +6,10 @@ import { rectsTouchSun, sunEdge } from './sun-side.js';
 import { checkFloorDoors } from './ai-layout-check-doors.js';
 import { checkFloorFixtures } from './ai-layout-check-fixtures.js';
 import {
+    checkFloorReach,
+    checkFloorStairsLanding,
+} from './ai-layout-check-access.js';
+import {
     checkFloorWindows,
     checkAiExterior,
 } from './ai-layout-check-windows.js';
@@ -105,6 +109,10 @@ export function checkAiLayout(
         );
         errors.push(...checkFloorFixtures(fl, tag));
         errors.push(...checkFloorWindows(fl, layout.gridW, tag));
+        errors.push(...checkFloorStairsLanding(fl, layout.gridW, tag));
+        // Without AI doors (the internal solver) closed rooms have no links yet to walk.
+        if (options?.shouldRequireDoors)
+            errors.push(...checkFloorReach(fl, tag));
     }
     errors.push(...checkAiExterior(layout));
     const f1 = layout.floors[0];
@@ -137,4 +145,3 @@ export function checkAiLayout(
     }
     return errors;
 }
-
