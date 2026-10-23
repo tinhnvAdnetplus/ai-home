@@ -66,4 +66,21 @@ class AuthController extends Controller
 
         return (new UserResource($user))->response();
     }
+
+    /**
+     * Probe the current session: the authenticated user, or null for guests.
+     *
+     * Unlike me(), a guest is not an error here, so the SPA can check its
+     * session on boot without a 401 in the browser console.
+     */
+    public function session(Request $request): JsonResponse
+    {
+        $user = $request->user('sanctum');
+
+        if ($user === null) {
+            return new JsonResponse(['data' => null]);
+        }
+
+        return (new UserResource($user))->response();
+    }
 }

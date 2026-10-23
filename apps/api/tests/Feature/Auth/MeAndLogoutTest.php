@@ -106,3 +106,26 @@ test('logout invalidates session, regenerates csrf token, and subsequent me retu
     $meAfter->assertStatus(401);
     $meAfter->assertJsonPath('code', ApiErrorCode::UNAUTHENTICATED->value);
 });
+
+test('session without login returns 200 with null data', function (): void {
+    /** @var Tests\TestCase $this */
+    $response = $this->getJson('/api/v1/auth/session');
+
+    $response->assertStatus(200);
+    $response->assertExactJson(['data' => null]);
+});
+
+test('session with authenticated user returns the same body as me', function (): void {
+    /** @var Tests\TestCase $this */
+    $user = User::factory()->create([
+        'email' => 'session-probe@example.com',
+        'role' => Role::USER,
+    ]);
+
+    $me = $this->actingAs($user)->getJson('/api/v1/auth/me');
+    $session = $this->actingAs($user)->getJson('/api/v1/auth/session');
+
+    $session->assertStatus(200);
+    $session->assertJsonPath('data.email', 'session-probe@example.com');
+    expect($session->json())->toBe($me->json());
+});

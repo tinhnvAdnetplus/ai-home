@@ -301,6 +301,16 @@ Route access restriction is enforced using middleware alias `role:<role1>,<role2
   }
   ```
 
+#### `GET /api/v1/auth/session`
+- **Middleware**: none (reads the `sanctum` guard itself)
+- **Behavior**: Session probe used by the SPA on boot. A guest is not an error, so the browser console stays free of 401 noise; endpoints that require a user keep returning 401 via `auth:sanctum`.
+- **Response**: HTTP 200 OK with the same `UserResource` body as `/auth/me` when authenticated, otherwise:
+  ```json
+  {
+    "data": null
+  }
+  ```
+
 ### 8.4 Complete Curl Walkthrough (Stateful Cookie Flow)
 
 Execute against the Nginx reverse proxy:

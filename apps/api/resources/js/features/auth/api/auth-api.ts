@@ -1,5 +1,6 @@
 import { apiClient, type RequestOptions } from '@/shared/api';
 import {
+    sessionResponseSchema,
     userResponseSchema,
     type LoginInput,
     type RegisterInput,
@@ -14,8 +15,8 @@ export async function fetchCurrentUser(
             method: 'GET',
             ...(signal ? { signal } : {}),
         };
-        const raw = await apiClient('/api/v1/auth/me', options);
-        const parsed = userResponseSchema.safeParse(raw);
+        const raw = await apiClient('/api/v1/auth/session', options);
+        const parsed = sessionResponseSchema.safeParse(raw);
         if (parsed.success) {
             return parsed.data.data;
         }

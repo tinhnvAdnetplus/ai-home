@@ -29,6 +29,7 @@ Route::post('/v1/auth/register', [AuthController::class, 'register'])->middlewar
 Route::post('/v1/auth/login', [AuthController::class, 'login']);
 Route::post('/v1/auth/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 Route::get('/v1/auth/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
+Route::get('/v1/auth/session', [AuthController::class, 'session']);
 
 // Public config bundle
 Route::get('/v1/config/bundle', [ConfigBundleController::class, 'show']);

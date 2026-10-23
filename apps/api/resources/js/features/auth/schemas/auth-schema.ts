@@ -16,6 +16,10 @@ export const userResponseSchema = z.object({
 
 export type UserResponse = z.infer<typeof userResponseSchema>;
 
+export const sessionResponseSchema = z.object({
+    data: userSchema.nullable(),
+});
+
 export const loginInputSchema = z.object({
     email: z.string().trim().email(),
     password: z.string().min(1),

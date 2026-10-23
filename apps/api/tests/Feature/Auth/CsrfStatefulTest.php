@@ -98,6 +98,10 @@ test('full stateful cookie authentication flow works seamlessly with CSRF tokens
     $meResponse->assertJsonPath('data.role', 'user');
     $meResponse->assertJsonPath('data.abilities', ['own-plans']);
 
+    $sessionResponse = $this->withHeaders($statefulOrigin)->getJson('/api/v1/auth/session');
+    $sessionResponse->assertStatus(200);
+    $sessionResponse->assertJsonPath('data.email', 'client@aihome.local');
+
     // 5. Log out with updated CSRF token
     $logoutHeaders = array_merge($statefulOrigin, [
         'X-CSRF-TOKEN' => session()->token(),
@@ -110,4 +114,8 @@ test('full stateful cookie authentication flow works seamlessly with CSRF tokens
     $meAfterLogout = $this->withHeaders($statefulOrigin)->getJson('/api/v1/auth/me');
     $meAfterLogout->assertStatus(401);
     $meAfterLogout->assertJsonPath('code', ApiErrorCode::UNAUTHENTICATED->value);
+
+    $sessionAfterLogout = $this->withHeaders($statefulOrigin)->getJson('/api/v1/auth/session');
+    $sessionAfterLogout->assertStatus(200);
+    $sessionAfterLogout->assertExactJson(['data' => null]);
 });
