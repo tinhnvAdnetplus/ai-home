@@ -4,6 +4,7 @@ import {
     checkAiLayout,
     defaultPlannerConfig,
     effectiveProgram,
+    fitAiLayoutFixtures,
     mapAnswersToPlanInput,
     parseAiLayout,
     planFromAiLayout,
@@ -41,13 +42,14 @@ async function designOne(
             previous = raw;
             continue;
         }
-        const structural = checkAiLayout(parsed.layout, input, {
+        const layout = fitAiLayoutFixtures(parsed.layout).layout;
+        const structural = checkAiLayout(layout, input, {
             shouldRequireDoors: true,
         });
         if (structural.length === 0) {
             const plan = planFromAiLayout(
                 input,
-                parsed.layout,
+                layout,
                 variant,
                 defaultPlannerConfig,
                 seed,
@@ -58,13 +60,14 @@ async function designOne(
         } else {
             issues = structural.slice(0, 12);
         }
-        previous = parsed.layout;
+        previous = layout;
     }
     return null;
 }
 
 /**
- * AI designs the three variants in parallel. Each layout is checked with exact geometry rules;
+ * AI designs the three variants in parallel. Its furniture is first fitted into each room's free
+ * cells in code (`fitAiLayoutFixtures`), then the layout is checked with exact geometry rules;
  * on failure the issues are sent back to the AI (max 3 attempts). A variant the AI cannot get
  * right keeps its rule-based plan, so the result is never worse than the default.
  */

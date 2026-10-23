@@ -93,6 +93,7 @@ export {
 } from './ai-layout-schema.js';
 
 export { checkAiLayout, layoutLimits } from './ai-layout-check.js';
+export { fitAiLayoutFixtures } from './ai-layout-fixtures-fit.js';
 export { buildAiLayoutContext, pickLayoutFocus } from './ai-layout-context.js';
 export { planFromAiLayout } from './ai-layout-plan.js';
 export {

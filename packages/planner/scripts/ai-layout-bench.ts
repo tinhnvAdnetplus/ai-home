@@ -4,6 +4,7 @@ import {
     defaultPlannerConfig,
     parseAiLayout,
     checkAiLayout,
+    fitAiLayoutFixtures,
     buildAiLayoutContext,
     planFromAiLayout,
 } from '../src/index.ts';
@@ -96,12 +97,13 @@ async function runCase(c: Case, vi: number): Promise<string> {
             last = 'schema:' + parsed.errors[0];
             continue;
         }
-        const structural = checkAiLayout(parsed.layout, input);
+        const layout = fitAiLayoutFixtures(parsed.layout).layout;
+        const structural = checkAiLayout(layout, input);
         let problems = structural;
         if (structural.length === 0) {
             const plan = planFromAiLayout(
                 input,
-                parsed.layout,
+                layout,
                 variant,
                 defaultPlannerConfig,
                 42 + vi,
@@ -112,7 +114,7 @@ async function runCase(c: Case, vi: number): Promise<string> {
                 return `${c.road ?? 'south'} ${c.fr}x${c.de} ${c.pt} ${c.area} v${variant.id}: PASS attempts=${attempts} ${(ms / 1000).toFixed(1)}s tokens=${tokens} area=${plan.summary.tsubo}坪`;
         }
         issues = problems.slice(0, 12);
-        prev = parsed.layout;
+        prev = layout;
         last = problems[0] ?? '';
     }
     return `${c.road ?? 'south'} ${c.fr}x${c.de} ${c.pt} ${c.area} v${variant.id}: FAIL attempts=${attempts} ${(ms / 1000).toFixed(1)}s | ${last.slice(0, 120)}`;
