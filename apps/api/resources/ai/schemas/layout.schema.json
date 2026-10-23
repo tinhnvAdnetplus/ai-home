@@ -4,15 +4,32 @@
     "properties": {
         "reasoning": {
             "type": "object",
-            "required": ["program", "zoning", "circulation", "exterior"],
+            "required": [
+                "program",
+                "envelope",
+                "zoning",
+                "partitions",
+                "circulation",
+                "furniture",
+                "exterior"
+            ],
             "properties": {
                 "program": {
+                    "type": "string"
+                },
+                "envelope": {
                     "type": "string"
                 },
                 "zoning": {
                     "type": "string"
                 },
+                "partitions": {
+                    "type": "string"
+                },
                 "circulation": {
+                    "type": "string"
+                },
+                "furniture": {
                     "type": "string"
                 },
                 "exterior": {

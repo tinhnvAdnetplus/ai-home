@@ -99,8 +99,11 @@ export const aiLayoutSchema = z.object({
     reasoning: z
         .object({
             program: z.string().max(600).optional(),
-            zoning: z.string().max(600).optional(),
+            envelope: z.string().max(1500).optional(),
+            zoning: z.string().max(1500).optional(),
+            partitions: z.string().max(1500).optional(),
             circulation: z.string().max(600).optional(),
+            furniture: z.string().max(1500).optional(),
             exterior: z.string().max(600).optional(),
         })
         .optional(),
