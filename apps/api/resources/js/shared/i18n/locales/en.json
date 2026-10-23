@@ -559,7 +559,25 @@
         "saveError": "Save Error",
         "guestBannerText": "Log in to save and manage your generated floor plans",
         "guestBannerAction": "Log In / Sign Up",
-        "plansCount": "{{count}} plans"
+        "plansCount": "{{count}} plans",
+        "history": {
+            "title": "3D plan history",
+            "subtitle": "Revisit every floor plan you have generated in 3D, 2D and elevations",
+            "projectsLabel": "Projects and generation history",
+            "generation": "Generation #{{index}}",
+            "generationCount": "Generations: {{count}}",
+            "latest": "Latest",
+            "createdAt": "Generated",
+            "floorArea": "Total floor area",
+            "score": "Total score",
+            "loadMore": "Load more",
+            "loadError": "Could not load the generation history",
+            "emptyTitle": "No generated plans yet",
+            "emptyDescription": "Answer the wizard to generate plans, then come back here to review their 3D models.",
+            "invalidModelTitle": "This plan cannot be displayed",
+            "invalidModelDescription": "The saved model data does not match the current format, so it cannot be shown in 3D. Please generate a new plan.",
+            "planContext": "{{project}} · {{generation}}"
+        }
     },
     "admin": {
         "title": "AI HOME Admin",

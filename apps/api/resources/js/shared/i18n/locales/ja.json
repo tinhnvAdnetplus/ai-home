@@ -559,7 +559,25 @@
         "saveError": "保存エラー",
         "guestBannerText": "ログインすると作成したプランを保存・管理できます",
         "guestBannerAction": "ログイン / 新規登録",
-        "plansCount": "{{count}}件のプラン"
+        "plansCount": "{{count}}件のプラン",
+        "history": {
+            "title": "3Dプラン履歴",
+            "subtitle": "これまでに生成した間取りプランを3D・2D・立面図で見返せます",
+            "projectsLabel": "プロジェクトと生成履歴",
+            "generation": "第{{index}}回の生成",
+            "generationCount": "{{count}}回生成",
+            "latest": "最新",
+            "createdAt": "生成日時",
+            "floorArea": "延床面積",
+            "score": "総合スコア",
+            "loadMore": "さらに読み込む",
+            "loadError": "生成履歴の取得に失敗しました",
+            "emptyTitle": "生成されたプランはまだありません",
+            "emptyDescription": "ウィザードで質問に答えてプランを生成すると、ここで3Dモデルを見返せます。",
+            "invalidModelTitle": "このプランは表示できません",
+            "invalidModelDescription": "保存されたモデルデータが現在の形式と一致しないため、3Dで表示できません。新しくプランを生成してください。",
+            "planContext": "{{project}}・{{generation}}"
+        }
     },
     "admin": {
         "title": "AI HOME 管理画面",

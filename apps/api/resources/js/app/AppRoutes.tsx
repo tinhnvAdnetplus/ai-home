@@ -38,6 +38,11 @@ const ProjectsPageLazy = lazy(async () => {
     return { default: mod.ProjectsPage };
 });
 
+const PlanHistoryPageLazy = lazy(async () => {
+    const mod = await import('@/features/plan-history');
+    return { default: mod.PlanHistoryPage };
+});
+
 const AdminPageLazy = lazy(async () => {
     const mod = await import('@/features/admin');
     return { default: mod.AdminPage };
@@ -82,6 +87,14 @@ export function AppRoutes({ hash }: AppRoutesProps): React.JSX.Element {
         return (
             <Suspense fallback={null}>
                 <ProjectsPageLazy />
+            </Suspense>
+        );
+    }
+
+    if (hash === '#/history' || hash.startsWith('#/history?')) {
+        return (
+            <Suspense fallback={null}>
+                <PlanHistoryPageLazy hash={hash} />
             </Suspense>
         );
     }

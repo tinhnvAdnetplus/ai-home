@@ -559,7 +559,25 @@
         "saveError": "Lỗi lưu",
         "guestBannerText": "Đăng nhập để lưu và quản lý các phương án thiết kế đã tạo",
         "guestBannerAction": "Đăng nhập / Đăng ký",
-        "plansCount": "{{count}} phương án"
+        "plansCount": "{{count}} phương án",
+        "history": {
+            "title": "Lịch sử bản dựng 3D",
+            "subtitle": "Xem lại các phương án mặt bằng đã tạo dưới dạng 3D, 2D và mặt đứng",
+            "projectsLabel": "Dự án và lịch sử tạo",
+            "generation": "Lần tạo #{{index}}",
+            "generationCount": "{{count}} lần tạo",
+            "latest": "Mới nhất",
+            "createdAt": "Thời điểm tạo",
+            "floorArea": "Tổng diện tích sàn",
+            "score": "Điểm tổng",
+            "loadMore": "Tải thêm",
+            "loadError": "Không tải được lịch sử tạo phương án",
+            "emptyTitle": "Chưa có phương án nào được tạo",
+            "emptyDescription": "Hãy trả lời wizard để tạo phương án, sau đó quay lại đây để xem lại mô hình 3D.",
+            "invalidModelTitle": "Không thể hiển thị phương án này",
+            "invalidModelDescription": "Dữ liệu mô hình đã lưu không khớp định dạng hiện tại nên không thể hiển thị 3D. Vui lòng tạo phương án mới.",
+            "planContext": "{{project}} · {{generation}}"
+        }
     },
     "admin": {
         "title": "Quản trị AI HOME",
